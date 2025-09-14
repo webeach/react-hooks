@@ -1,0 +1,1 @@
+export { isErrorLike } from './isErrorLike';

@@ -1,0 +1,9 @@
+{
+  "extends": ["config:base"],
+  "automerge": false,
+  "pinVersions": false,
+  "ignoreUnstable": true,
+  "devDependencies": {
+    "automerge": true
+  }
+}

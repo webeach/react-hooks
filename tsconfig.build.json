@@ -1,0 +1,10 @@
+{
+  "extends": ["./tsconfig.json"],
+  "compilerOptions": {
+    "declaration": true,
+    "declarationMap": true,
+    "declarationDir": "lib/types"
+  },
+  "include": ["src"],
+  "exclude": ["lib", "src/hooks/_draft", "**/__tests__", "**/*.spec.ts", "**/*.spec.tsx"]
+}

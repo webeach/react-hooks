@@ -1,0 +1,332 @@
+{
+  "name": "@webeach/react-hooks",
+  "version": "0.0.0",
+  "author": {
+    "name": "Ruslan Martynov",
+    "email": "github@webea.ch"
+  },
+  "description": "A set of smart React hooks for performant UIs (React 18+)",
+  "keywords": [
+    "react",
+    "react-use",
+    "react-utils",
+    "custom-hooks",
+    "smart-hooks",
+    "ahooks",
+    "webeach"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/webeach/react-hooks"
+  },
+  "bugs": {
+    "url": "https://github.com/webeach/react-hooks/issues"
+  },
+  "homepage": "https://github.com/webeach/react-hooks#readme",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "engines": {
+    "node": "^22",
+    "pnpm": "^10"
+  },
+  "type": "module",
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/esm/index.js",
+  "types": "./lib/types/index.d.ts",
+  "files": [
+    "docs/en",
+    "lib",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "build:watch": "rollup -c -w",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "lint:types": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "release": "semantic-release",
+    "generate-exports": "tsx ./scripts/generate-exports.ts",
+    "prepare": "is-ci || husky"
+  },
+  "lint-staged": {
+    "**/*.{cjs,cts,js,jsx,mjs,mts,ts,tsx}": [
+      "pnpm run lint"
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@eslint/js": "^9.35.0",
+    "@rollup/plugin-commonjs": "^28.0.6",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-typescript": "^12.1.4",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^11.0.5",
+    "@semantic-release/npm": "^12.0.2",
+    "@semantic-release/release-notes-generator": "^14.1.0",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/node": "^24.3.1",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^9.35.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "fast-glob": "^3.3.3",
+    "globals": "^16.4.0",
+    "husky": "^9.1.7",
+    "is-ci": "^4.1.0",
+    "jsdom": "^26.1.0",
+    "lint-staged": "^16.1.6",
+    "prettier": "^3.6.2",
+    "react": "^18",
+    "react-dom": "^18",
+    "rollup": "^4.50.1",
+    "rollup-plugin-node-externals": "^8.1.1",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "semantic-release": "^24.2.7",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.43.0",
+    "vitest": "^3.2.4"
+  },
+  "peerDependencies": {
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "dependencies": {
+    "@webeach/collection": "^1.1.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "import": "./lib/esm/index.js",
+      "require": "./lib/cjs/index.js"
+    },
+    "./useAsyncCallback": {
+      "types": "./lib/types/hooks/useAsyncCallback/index.d.ts",
+      "import": "./lib/esm/hooks/useAsyncCallback/index.js",
+      "require": "./lib/cjs/hooks/useAsyncCallback/index.js"
+    },
+    "./useAsyncHandler": {
+      "types": "./lib/types/hooks/useAsyncHandler/index.d.ts",
+      "import": "./lib/esm/hooks/useAsyncHandler/index.js",
+      "require": "./lib/cjs/hooks/useAsyncHandler/index.js"
+    },
+    "./useBoolean": {
+      "types": "./lib/types/hooks/useBoolean/index.d.ts",
+      "import": "./lib/esm/hooks/useBoolean/index.js",
+      "require": "./lib/cjs/hooks/useBoolean/index.js"
+    },
+    "./useCallbackCompare": {
+      "types": "./lib/types/hooks/useCallbackCompare/index.d.ts",
+      "import": "./lib/esm/hooks/useCallbackCompare/index.js",
+      "require": "./lib/cjs/hooks/useCallbackCompare/index.js"
+    },
+    "./useCollection": {
+      "types": "./lib/types/hooks/useCollection/index.d.ts",
+      "import": "./lib/esm/hooks/useCollection/index.js",
+      "require": "./lib/cjs/hooks/useCollection/index.js"
+    },
+    "./useControlled": {
+      "types": "./lib/types/hooks/useControlled/index.d.ts",
+      "import": "./lib/esm/hooks/useControlled/index.js",
+      "require": "./lib/cjs/hooks/useControlled/index.js"
+    },
+    "./useDebounceCallback": {
+      "types": "./lib/types/hooks/useDebounceCallback/index.d.ts",
+      "import": "./lib/esm/hooks/useDebounceCallback/index.js",
+      "require": "./lib/cjs/hooks/useDebounceCallback/index.js"
+    },
+    "./useDebounceState": {
+      "types": "./lib/types/hooks/useDebounceState/index.d.ts",
+      "import": "./lib/esm/hooks/useDebounceState/index.js",
+      "require": "./lib/cjs/hooks/useDebounceState/index.js"
+    },
+    "./useDemandStructure": {
+      "types": "./lib/types/hooks/useDemandStructure/index.d.ts",
+      "import": "./lib/esm/hooks/useDemandStructure/index.js",
+      "require": "./lib/cjs/hooks/useDemandStructure/index.js"
+    },
+    "./useDeps": {
+      "types": "./lib/types/hooks/useDeps/index.d.ts",
+      "import": "./lib/esm/hooks/useDeps/index.js",
+      "require": "./lib/cjs/hooks/useDeps/index.js"
+    },
+    "./useDOMEvent": {
+      "types": "./lib/types/hooks/useDOMEvent/index.d.ts",
+      "import": "./lib/esm/hooks/useDOMEvent/index.js",
+      "require": "./lib/cjs/hooks/useDOMEvent/index.js"
+    },
+    "./useEffectCompare": {
+      "types": "./lib/types/hooks/useEffectCompare/index.d.ts",
+      "import": "./lib/esm/hooks/useEffectCompare/index.js",
+      "require": "./lib/cjs/hooks/useEffectCompare/index.js"
+    },
+    "./useForceUpdate": {
+      "types": "./lib/types/hooks/useForceUpdate/index.d.ts",
+      "import": "./lib/esm/hooks/useForceUpdate/index.js",
+      "require": "./lib/cjs/hooks/useForceUpdate/index.js"
+    },
+    "./useFrame": {
+      "types": "./lib/types/hooks/useFrame/index.d.ts",
+      "import": "./lib/esm/hooks/useFrame/index.js",
+      "require": "./lib/cjs/hooks/useFrame/index.js"
+    },
+    "./useFrameExtended": {
+      "types": "./lib/types/hooks/useFrameExtended/index.d.ts",
+      "import": "./lib/esm/hooks/useFrameExtended/index.js",
+      "require": "./lib/cjs/hooks/useFrameExtended/index.js"
+    },
+    "./useImageLoader": {
+      "types": "./lib/types/hooks/useImageLoader/index.d.ts",
+      "import": "./lib/esm/hooks/useImageLoader/index.js",
+      "require": "./lib/cjs/hooks/useImageLoader/index.js"
+    },
+    "./useIntersectionObserver": {
+      "types": "./lib/types/hooks/useIntersectionObserver/index.d.ts",
+      "import": "./lib/esm/hooks/useIntersectionObserver/index.js",
+      "require": "./lib/cjs/hooks/useIntersectionObserver/index.js"
+    },
+    "./useIsomorphicLayoutEffect": {
+      "types": "./lib/types/hooks/useIsomorphicLayoutEffect/index.d.ts",
+      "import": "./lib/esm/hooks/useIsomorphicLayoutEffect/index.js",
+      "require": "./lib/cjs/hooks/useIsomorphicLayoutEffect/index.js"
+    },
+    "./useLayoutEffectCompare": {
+      "types": "./lib/types/hooks/useLayoutEffectCompare/index.d.ts",
+      "import": "./lib/esm/hooks/useLayoutEffectCompare/index.js",
+      "require": "./lib/cjs/hooks/useLayoutEffectCompare/index.js"
+    },
+    "./useLiveRef": {
+      "types": "./lib/types/hooks/useLiveRef/index.d.ts",
+      "import": "./lib/esm/hooks/useLiveRef/index.js",
+      "require": "./lib/cjs/hooks/useLiveRef/index.js"
+    },
+    "./useLocalStorage": {
+      "types": "./lib/types/hooks/useLocalStorage/index.d.ts",
+      "import": "./lib/esm/hooks/useLocalStorage/index.js",
+      "require": "./lib/cjs/hooks/useLocalStorage/index.js"
+    },
+    "./useLoop": {
+      "types": "./lib/types/hooks/useLoop/index.d.ts",
+      "import": "./lib/esm/hooks/useLoop/index.js",
+      "require": "./lib/cjs/hooks/useLoop/index.js"
+    },
+    "./useMap": {
+      "types": "./lib/types/hooks/useMap/index.d.ts",
+      "import": "./lib/esm/hooks/useMap/index.js",
+      "require": "./lib/cjs/hooks/useMap/index.js"
+    },
+    "./useMemoCompare": {
+      "types": "./lib/types/hooks/useMemoCompare/index.d.ts",
+      "import": "./lib/esm/hooks/useMemoCompare/index.js",
+      "require": "./lib/cjs/hooks/useMemoCompare/index.js"
+    },
+    "./useNumber": {
+      "types": "./lib/types/hooks/useNumber/index.d.ts",
+      "import": "./lib/esm/hooks/useNumber/index.js",
+      "require": "./lib/cjs/hooks/useNumber/index.js"
+    },
+    "./useOutsideEvent": {
+      "types": "./lib/types/hooks/useOutsideEvent/index.d.ts",
+      "import": "./lib/esm/hooks/useOutsideEvent/index.js",
+      "require": "./lib/cjs/hooks/useOutsideEvent/index.js"
+    },
+    "./usePageTitle": {
+      "types": "./lib/types/hooks/usePageTitle/index.d.ts",
+      "import": "./lib/esm/hooks/usePageTitle/index.js",
+      "require": "./lib/cjs/hooks/usePageTitle/index.js"
+    },
+    "./usePageVisibility": {
+      "types": "./lib/types/hooks/usePageVisibility/index.d.ts",
+      "import": "./lib/esm/hooks/usePageVisibility/index.js",
+      "require": "./lib/cjs/hooks/usePageVisibility/index.js"
+    },
+    "./usePatchDeepState": {
+      "types": "./lib/types/hooks/usePatchDeepState/index.d.ts",
+      "import": "./lib/esm/hooks/usePatchDeepState/index.js",
+      "require": "./lib/cjs/hooks/usePatchDeepState/index.js"
+    },
+    "./usePatchState": {
+      "types": "./lib/types/hooks/usePatchState/index.d.ts",
+      "import": "./lib/esm/hooks/usePatchState/index.js",
+      "require": "./lib/cjs/hooks/usePatchState/index.js"
+    },
+    "./useRefEffect": {
+      "types": "./lib/types/hooks/useRefEffect/index.d.ts",
+      "import": "./lib/esm/hooks/useRefEffect/index.js",
+      "require": "./lib/cjs/hooks/useRefEffect/index.js"
+    },
+    "./useRefState": {
+      "types": "./lib/types/hooks/useRefState/index.d.ts",
+      "import": "./lib/esm/hooks/useRefState/index.js",
+      "require": "./lib/cjs/hooks/useRefState/index.js"
+    },
+    "./useResizeObserver": {
+      "types": "./lib/types/hooks/useResizeObserver/index.d.ts",
+      "import": "./lib/esm/hooks/useResizeObserver/index.js",
+      "require": "./lib/cjs/hooks/useResizeObserver/index.js"
+    },
+    "./useSessionStorage": {
+      "types": "./lib/types/hooks/useSessionStorage/index.d.ts",
+      "import": "./lib/esm/hooks/useSessionStorage/index.js",
+      "require": "./lib/cjs/hooks/useSessionStorage/index.js"
+    },
+    "./useSet": {
+      "types": "./lib/types/hooks/useSet/index.d.ts",
+      "import": "./lib/esm/hooks/useSet/index.js",
+      "require": "./lib/cjs/hooks/useSet/index.js"
+    },
+    "./useStatus": {
+      "types": "./lib/types/hooks/useStatus/index.d.ts",
+      "import": "./lib/esm/hooks/useStatus/index.js",
+      "require": "./lib/cjs/hooks/useStatus/index.js"
+    },
+    "./useThrottleCallback": {
+      "types": "./lib/types/hooks/useThrottleCallback/index.d.ts",
+      "import": "./lib/esm/hooks/useThrottleCallback/index.js",
+      "require": "./lib/cjs/hooks/useThrottleCallback/index.js"
+    },
+    "./useThrottleState": {
+      "types": "./lib/types/hooks/useThrottleState/index.d.ts",
+      "import": "./lib/esm/hooks/useThrottleState/index.js",
+      "require": "./lib/cjs/hooks/useThrottleState/index.js"
+    },
+    "./useTimeout": {
+      "types": "./lib/types/hooks/useTimeout/index.d.ts",
+      "import": "./lib/esm/hooks/useTimeout/index.js",
+      "require": "./lib/cjs/hooks/useTimeout/index.js"
+    },
+    "./useTimeoutExtended": {
+      "types": "./lib/types/hooks/useTimeoutExtended/index.d.ts",
+      "import": "./lib/esm/hooks/useTimeoutExtended/index.js",
+      "require": "./lib/cjs/hooks/useTimeoutExtended/index.js"
+    },
+    "./useToggle": {
+      "types": "./lib/types/hooks/useToggle/index.d.ts",
+      "import": "./lib/esm/hooks/useToggle/index.js",
+      "require": "./lib/cjs/hooks/useToggle/index.js"
+    },
+    "./useUnmount": {
+      "types": "./lib/types/hooks/useUnmount/index.d.ts",
+      "import": "./lib/esm/hooks/useUnmount/index.js",
+      "require": "./lib/cjs/hooks/useUnmount/index.js"
+    },
+    "./useWindowEvent": {
+      "types": "./lib/types/hooks/useWindowEvent/index.d.ts",
+      "import": "./lib/esm/hooks/useWindowEvent/index.js",
+      "require": "./lib/cjs/hooks/useWindowEvent/index.js"
+    }
+  }
+}

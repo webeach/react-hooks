@@ -1,0 +1,1 @@
+export { SafeStorage } from './SafeStorage';

@@ -1,0 +1,1 @@
+export { storageDefaultDeserializer } from './storageDefaultDeserializer';

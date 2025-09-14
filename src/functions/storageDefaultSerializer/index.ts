@@ -1,0 +1,1 @@
+export { storageDefaultSerializer } from './storageDefaultSerializer';

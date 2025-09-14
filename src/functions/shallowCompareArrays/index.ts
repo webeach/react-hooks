@@ -1,0 +1,1 @@
+export { shallowCompareArrays } from './shallowCompareArrays';
