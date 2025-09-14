@@ -1,3 +1,10 @@
+## [0.1.1](https://github.com/webeach/react-hooks/compare/v0.1.0...v0.1.1) (2025-09-14)
+
+
+### Bug Fixes
+
+* **peer-deps:** widen react/react-dom to ^18 || ^19 ([a7f0f82](https://github.com/webeach/react-hooks/commit/a7f0f82ecc74e81506bb5741d4455da1abf73c71))
+
 # [0.1.0](https://github.com/webeach/react-hooks/compare/v0.0.0...v0.1.0) (2025-09-14)
 
 
