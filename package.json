@@ -228,6 +228,11 @@
       "import": "./lib/esm/hooks/useMap/index.js",
       "require": "./lib/cjs/hooks/useMap/index.js"
     },
+    "./useMediaQuery": {
+      "types": "./lib/types/hooks/useMediaQuery/index.d.ts",
+      "import": "./lib/esm/hooks/useMediaQuery/index.js",
+      "require": "./lib/cjs/hooks/useMediaQuery/index.js"
+    },
     "./useMemoCompare": {
       "types": "./lib/types/hooks/useMemoCompare/index.d.ts",
       "import": "./lib/esm/hooks/useMemoCompare/index.js",

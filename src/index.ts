@@ -24,6 +24,7 @@ export { useLiveRef } from './hooks/useLiveRef';
 export { useLocalStorage } from './hooks/useLocalStorage';
 export { useLoop } from './hooks/useLoop';
 export { useMap } from './hooks/useMap';
+export { useMediaQuery } from './hooks/useMediaQuery';
 export { useMemoCompare } from './hooks/useMemoCompare';
 export { useNumber } from './hooks/useNumber';
 export { useOutsideEvent } from './hooks/useOutsideEvent';
@@ -117,6 +118,11 @@ export type {
   UseLoopRunFunction,
 } from './hooks/useLoop';
 export type { ExtendedMap } from './hooks/useMap';
+export type {
+  UseMediaQueryReturn,
+  UseMediaQueryRule,
+  UseMediaQueryType,
+} from './hooks/useMediaQuery';
 export type {
   UseNumberReturn,
   UseNumberReturnObject,

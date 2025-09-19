@@ -105,6 +105,7 @@ const { useBoolean, useEffectCompare, useWindowEvent } = require('@webeach/react
 + [useLocalStorage](./docs/en/useLocalStorage.md)
 + [useLoop](./docs/en/useLoop.md)
 + [useMap](./docs/en/useMap.md)
++ [useMediaQuery](./docs/en/useMediaQuery.md)
 + [useMemoCompare](./docs/en/useMemoCompare.md)
 + [useNumber](./docs/en/useNumber.md)
 + [useOutsideEvent](./docs/en/useOutsideEvent.md)
@@ -193,6 +194,7 @@ const { useBoolean, useEffectCompare, useWindowEvent } = require('@webeach/react
 - [useResizeObserver](./docs/en/useResizeObserver.md)
 
 #### Page & document
+- [useMediaQuery](./docs/en/useMediaQuery.md)
 - [usePageTitle](./docs/en/usePageTitle.md)
 - [usePageVisibility](./docs/en/usePageVisibility.md)
 

@@ -166,3 +166,4 @@ export function ResponsiveGrid() {
 ## Смотрите также
 
 - [useIntersectionObserver](useIntersectionObserver.md)
+- [useMediaQuery](useMediaQuery.md)

@@ -1,0 +1,1 @@
+export { buildMediaQuery } from './buildMediaQuery';

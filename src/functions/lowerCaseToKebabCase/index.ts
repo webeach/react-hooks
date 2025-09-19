@@ -1,0 +1,1 @@
+export { lowerCaseToKebabCase } from './lowerCaseToKebabCase';
