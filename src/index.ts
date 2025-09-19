@@ -62,7 +62,6 @@ export type {
   UseBooleanReturnObject,
   UseBooleanReturnTuple,
 } from './hooks/useBoolean';
-export type { UseCallbackCompareFunction } from './hooks/useCallbackCompare';
 export type { UseCollectionReturn } from './hooks/useCollection';
 export type {
   UseControlledReturn,
@@ -79,7 +78,6 @@ export type {
   UseDemandStructureAccessorWithAlias,
   UseDemandStructureReturnBase,
 } from './hooks/useDemandStructure';
-export type { UseDepsCompareFunction } from './hooks/useDeps';
 export type {
   UseDOMEventHandler,
   UseDOMEventInstance,
@@ -87,7 +85,6 @@ export type {
   UseDOMEventOptions,
   UseDOMEventType,
 } from './hooks/useDOMEvent';
-export type { UseEffectCompareFunction } from './hooks/useEffectCompare';
 export type {
   UseFrameCallback,
   UseFrameCallbackOptions,
@@ -104,7 +101,6 @@ export type {
   UseIntersectionObserverReturnObject,
   UseIntersectionObserverReturnTuple,
 } from './hooks/useIntersectionObserver';
-export type { UseLayoutEffectCompareFunction } from './hooks/useLayoutEffectCompare';
 export type {
   UseLocalStorageDispatch,
   UseLocalStorageOptions,
@@ -121,7 +117,6 @@ export type {
   UseLoopRunFunction,
 } from './hooks/useLoop';
 export type { ExtendedMap } from './hooks/useMap';
-export type { UseMemoCompareFunction } from './hooks/useMemoCompare';
 export type {
   UseNumberReturn,
   UseNumberReturnObject,
@@ -139,10 +134,7 @@ export type {
 } from './hooks/usePageVisibility';
 export type { UsePatchDeepStateFunction } from './hooks/usePatchDeepState';
 export type { UsePatchStateFunction } from './hooks/usePatchState';
-export {
-  UseRefEffectCompareFunction,
-  UseRefEffectHandler,
-} from './hooks/useRefEffect';
+export { UseRefEffectHandler } from './hooks/useRefEffect';
 export type {
   UseRefStateActions,
   UseRefStateDispatch,

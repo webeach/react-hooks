@@ -7,11 +7,7 @@ import { useLiveRef } from '../useLiveRef';
 
 import { makeRefObservable } from './utils/makeRefObservable';
 
-import {
-  ObservableRefSubscriber,
-  UseRefEffectCompareFunction,
-  UseRefEffectHandler,
-} from './types';
+import { ObservableRefSubscriber, UseRefEffectHandler } from './types';
 
 /**
  * Runs the handler when `ref.current` changes to a non-null value.
@@ -69,7 +65,7 @@ function useRefEffect<RefValue>(
 function useRefEffect<RefValue, ComparedValue>(
   ref: RefObject<RefValue | null | undefined>,
   handler: UseRefEffectHandler<RefValue>,
-  compare: UseRefEffectCompareFunction<ComparedValue>,
+  compare: (prev: ComparedValue, next: ComparedValue) => boolean,
   comparedValue: ComparedValue,
 ): void;
 
@@ -88,7 +84,7 @@ function useRefEffect<RefValue, ComparedValue>(
 function useRefEffect<RefValue>(
   ref: RefObject<RefValue | null | undefined>,
   handler: UseRefEffectHandler<RefValue>,
-  compare: UseRefEffectCompareFunction,
+  compare: () => boolean,
 ): void;
 
 function useRefEffect<RefValue, ComparedValue>(

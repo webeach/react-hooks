@@ -24,14 +24,14 @@ function useLayoutEffectCompare(
 // 2) Кастомный компаратор + значение
 function useLayoutEffectCompare<ComparedValue>(
   effect: () => void | (() => void),
-  compare: UseLayoutEffectCompareFunction<ComparedValue>,
+  compare: (prev: ComparedValue, next: ComparedValue) => boolean,
   comparedValue: ComparedValue,
 ): void;
 
 // 3) Только компаратор
 function useLayoutEffectCompare(
   effect: () => void | (() => void),
-  compare: UseLayoutEffectCompareFunction,
+  compare: () => boolean,
 ): void;
 ```
 
@@ -150,16 +150,6 @@ function GridRuler() {
 
 3. **Чрезмерно тяжёлый layout‑эффект**
    - Помните, что layout‑эффект выполняется синхронно до пейнта. Избегайте тяжёлых операций внутри него.
-
----
-
-## Типизация
-
-**Экспортируемые типы**
-
-- `UseLayoutEffectCompareFunction<ValueType>`
-   - `ValueType` указан → `(prev: ValueType, next: ValueType) => boolean` (верните `true`, если **равны**).
-   - `ValueType` не указан → `() => boolean` (вся логика сравнения — внутри функции).
 
 ---
 

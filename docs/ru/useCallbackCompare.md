@@ -25,14 +25,14 @@ function useCallbackCompare<
   ComparedValue,
 >(
   callback: CallbackType,
-  compare: UseCallbackCompareFunction<ComparedValue>,
+  compare: (prev: ComparedValue, next: ComparedValue) => boolean,
   comparedValue: ComparedValue,
 ): CallbackType;
 
 // 3) Только компаратор
 function useCallbackCompare<CallbackType extends (...args: any) => any>(
   callback: CallbackType,
-  compare: UseCallbackCompareFunction,
+  compare: () => boolean,
 ): CallbackType;
 ```
 
@@ -139,16 +139,6 @@ function ApplyTheme({ config }: { config: ThemeConfig }) {
 
 3. **Нестабильный `comparedValue`**
    - В форме с компаратором следите, чтобы `comparedValue` не пересоздавался по пустякам (новые ссылки без смыслового изменения). Иначе колбэк будет пересоздаваться чаще, чем нужно.
-
----
-
-## Типизация
-
-**Экспортируемые типы**
-
-- `UseCallbackCompareFunction<ValueType>`
-   - `ValueType` указан → `(prev: ValueType, next: ValueType) => boolean` (верните `true`, если **равны**).
-   - `ValueType` не указан → `() => boolean` (вся логика сравнения — внутри функции).
 
 ---
 

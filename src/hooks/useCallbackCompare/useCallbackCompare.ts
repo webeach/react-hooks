@@ -2,8 +2,6 @@ import { useCallback } from 'react';
 
 import { useDeps } from '../useDeps';
 
-import { UseCallbackCompareFunction } from './types';
-
 /**
  * Returns a memoized callback that updates only when the provided dependencies array changes.
  *
@@ -45,7 +43,7 @@ function useCallbackCompare<
   ComparedValue,
 >(
   callback: CallbackType,
-  compare: UseCallbackCompareFunction<ComparedValue>,
+  compare: (prevValue: ComparedValue, nextValue: ComparedValue) => boolean,
   comparedValue: ComparedValue,
 ): CallbackType;
 
@@ -62,7 +60,7 @@ function useCallbackCompare<
  */
 function useCallbackCompare<CallbackType extends (...args: any) => any>(
   callback: CallbackType,
-  compare: UseCallbackCompareFunction,
+  compare: () => boolean,
 ): CallbackType;
 
 function useCallbackCompare<

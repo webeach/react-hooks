@@ -141,16 +141,6 @@ useEffect(() => {
 
 ---
 
-## Typing
-
-**Exported types**
-
-- `UseDepsCompareFunction<ValueType = undefined>`
-   - If `ValueType` is **not provided** → function: `() => boolean` (comparison logic inside closure).
-   - If `ValueType` is **provided** → function: `(prevValue: ValueType, nextValue: ValueType) => boolean` (return `true` if equal).
-
----
-
 ## See also
 
 - [useCallbackCompare](useCallbackCompare.md)

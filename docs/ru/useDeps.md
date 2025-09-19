@@ -143,18 +143,6 @@ useEffect(() => {
 
 ---
 
-## Типизация
-
-**Экспортируемые типы**
-
-- `UseDepsCompareFunction<ValueType = undefined>`
-   - Если `ValueType` **не указан** → функция без аргументов: `() => boolean`.
-      - Логика сравнения полностью внутри функции.
-   - Если `ValueType` **указан** → функция сравнения: `(prevValue: ValueType, nextValue: ValueType) => boolean`.
-      - Верните `true`, если значения считаются равными.
-
----
-
 ## Смотрите также
 
 - [useCallbackCompare](useCallbackCompare.md)

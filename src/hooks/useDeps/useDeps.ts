@@ -2,8 +2,6 @@ import { useRef } from 'react';
 
 import { shallowCompareArrays } from '../../functions/shallowCompareArrays';
 
-import { UseDepsCompareFunction } from './types';
-
 /**
  * Tracks a stable identity that never changes.
  *
@@ -48,7 +46,7 @@ function useDeps(deps: unknown[]): [id: number];
  * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useDeps.md
  */
 function useDeps<ValueType>(
-  compare: UseDepsCompareFunction<ValueType>,
+  compare: (prev: ValueType, next: ValueType) => boolean,
   comparedValue: ValueType,
 ): [id: number];
 
@@ -63,12 +61,12 @@ function useDeps<ValueType>(
  *
  * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useDeps.md
  */
-function useDeps(compare: UseDepsCompareFunction): [id: number];
+function useDeps(compare: () => boolean): [id: number];
 
 function useDeps(
   compareOrDeps?:
-    | UseDepsCompareFunction<unknown>
-    | UseDepsCompareFunction
+    | ((prev: unknown, next: unknown) => boolean)
+    | (() => boolean)
     | unknown[],
   maybeComparedValue?: unknown,
 ) {

@@ -28,7 +28,7 @@ function useRefEffect<RefValue>(
 function useRefEffect<RefValue, ComparedValue>(
   ref: React.RefObject<RefValue | null | undefined>,
   handler: UseRefEffectHandler<RefValue>,
-  compare: UseRefEffectCompareFunction<ComparedValue>,
+  compare: (prev: ComparedValue, next: ComparedValue) => boolean,
   comparedValue: ComparedValue,
 ): void;
 
@@ -36,7 +36,7 @@ function useRefEffect<RefValue, ComparedValue>(
 function useRefEffect<RefValue>(
   ref: React.RefObject<RefValue | null | undefined>,
   handler: UseRefEffectHandler<RefValue>,
-  compare: UseRefEffectCompareFunction,
+  compare: () => boolean,
 ): void;
 ```
 
@@ -184,11 +184,6 @@ export function UserBadge(props: UserBadgeProps) {
 ## Типизация
 
 **Экспортируемые типы**
-
-- `UseRefEffectCompareFunction<ValueType = undefined>`
-   - Если `ValueType` **не указан** → функция без аргументов: `() => boolean`.
-   - Если `ValueType` **указан** → функция сравнения: `(prevValue: ValueType, nextValue: ValueType) => boolean`.  
-    (Верните `true`, если значения равны и эффект не должен перезапускаться.)
 
 - `UseRefEffectHandler<RefValue>`
    - Обработчик эффекта для значения рефа: `(current: RefValue) => void | (() => void)`.

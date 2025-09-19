@@ -22,14 +22,14 @@ function useEffectCompare(
 // 2) Custom comparator + value
 function useEffectCompare<ComparedValue>(
   effect: () => void | (() => void),
-  compare: UseEffectCompareFunction<ComparedValue>,
+  compare: (prev: ComparedValue, next: ComparedValue) => boolean,
   comparedValue: ComparedValue,
 ): void;
 
 // 3) Comparator only
 function useEffectCompare(
   effect: () => void | (() => void),
-  compare: UseEffectCompareFunction,
+  compare: () => boolean,
 ): void;
 ```
 
@@ -147,17 +147,6 @@ function CacheWarmup() {
 
 4. **Expecting `useLayoutEffect` behavior**
    - This hook wraps `useEffect`. If you need synchronous before-paint execution, use `useLayoutEffectCompare`.
-
----
-
-## Typing
-
-**Exported types**
-
-- `UseEffectCompareFunction<ValueType = undefined>`
-   - If `ValueType` is **not provided** → `() => boolean` (comparison logic inside closure).
-   - If `ValueType` is **provided** → `(prevValue: ValueType, nextValue: ValueType) => boolean`.
-   - Should return `true` if values are equal, `false` otherwise.
 
 ---
 

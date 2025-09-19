@@ -2,8 +2,6 @@ import { useEffect } from 'react';
 
 import { useDeps } from '../useDeps';
 
-import { UseEffectCompareFunction } from './types';
-
 /**
  * Runs an effect only when the provided dependency array changes.
  *
@@ -32,7 +30,7 @@ function useEffectCompare(
  */
 function useEffectCompare<ComparedValue>(
   effect: () => void | (() => void),
-  compare: UseEffectCompareFunction<ComparedValue>,
+  compare: (prevValue: ComparedValue, nextValue: ComparedValue) => boolean,
   comparedValue: ComparedValue,
 ): void;
 
@@ -48,7 +46,7 @@ function useEffectCompare<ComparedValue>(
  */
 function useEffectCompare(
   effect: () => void | (() => void),
-  compare: UseEffectCompareFunction,
+  compare: () => boolean,
 ): void;
 
 function useEffectCompare<ComparedValue = unknown>(

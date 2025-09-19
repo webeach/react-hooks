@@ -25,14 +25,14 @@ function useCallbackCompare<
   ComparedValue,
 >(
   callback: CallbackType,
-  compare: UseCallbackCompareFunction<ComparedValue>,
+  compare: (prev: ComparedValue, next: ComparedValue) => boolean,
   comparedValue: ComparedValue,
 ): CallbackType;
 
 // 3) Comparator only
 function useCallbackCompare<CallbackType extends (...args: any) => any>(
   callback: CallbackType,
-  compare: UseCallbackCompareFunction,
+  compare: () => boolean,
 ): CallbackType;
 ```
 
@@ -139,16 +139,6 @@ function ApplyTheme({ config }: { config: ThemeConfig }) {
 
 3. **Unstable `comparedValue`**
    - Avoid passing objects/functions that change identity each render without meaningful change. Otherwise, the callback will be recreated too often.
-
----
-
-## Typing
-
-**Exported types**
-
-- `UseCallbackCompareFunction<ValueType>`
-   - With `ValueType`: `(prev: ValueType, next: ValueType) => boolean` (return `true` if equal).
-   - Without `ValueType`: `() => boolean` (all comparison logic handled inside).
 
 ---
 

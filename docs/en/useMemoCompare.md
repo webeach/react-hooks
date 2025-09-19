@@ -22,14 +22,14 @@ function useMemoCompare<ValueType>(
 // 2) Custom comparator + value
 function useMemoCompare<ValueType, ComparedValue>(
   factory: () => ValueType,
-  compare: UseMemoCompareFunction<ComparedValue>,
+  compare: (prev: ComparedValue, next: ComparedValue) => boolean,
   comparedValue: ComparedValue,
 ): ValueType;
 
 // 3) Comparator only
 function useMemoCompare<ValueType>(
   factory: () => ValueType,
-  compare: UseMemoCompareFunction,
+  compare: () => boolean,
 ): ValueType;
 ```
 
@@ -146,15 +146,6 @@ function ThemeProvider({ config }: { config: ThemeConfig }) {
 
 4. **Wrong comparison key**
    - In the comparator form, make sure you use the right criterion of “significance” (e.g., `id` instead of the whole object reference).
-
----
-
-## Typing
-
-- `UseMemoCompareFunction<ValueType>`
-   - Generic comparator type:
-   - `ValueType` provided → `(prev: ValueType, next: ValueType) => boolean` (return `true` if **equal**).
-   - `ValueType` omitted → `() => boolean` (all comparison logic lives inside the function).
 
 ---
 

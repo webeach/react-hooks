@@ -24,14 +24,14 @@ function useLayoutEffectCompare(
 // 2) Custom comparator + value
 function useLayoutEffectCompare<ComparedValue>(
   effect: () => void | (() => void),
-  compare: UseLayoutEffectCompareFunction<ComparedValue>,
+  compare: (prev: ComparedValue, next: ComparedValue) => boolean,
   comparedValue: ComparedValue,
 ): void;
 
 // 3) Comparator only
 function useLayoutEffectCompare(
   effect: () => void | (() => void),
-  compare: UseLayoutEffectCompareFunction,
+  compare: () => boolean,
 ): void;
 ```
 
@@ -150,16 +150,6 @@ function GridRuler() {
 
 3. **Overly heavy layout‑effect**
    - Layout‑effects run before paint; avoid long‑running operations inside them.
-
----
-
-## Types
-
-**Exported types**
-
-- `UseLayoutEffectCompareFunction<ValueType>`
-   - With `ValueType`: `(prev: ValueType, next: ValueType) => boolean` (return `true` if **equal**).
-   - Without `ValueType`: `() => boolean` (all comparison logic lives inside the function).
 
 ---
 

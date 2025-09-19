@@ -1,8 +1,6 @@
 import { useDeps } from '../useDeps';
 import { useIsomorphicLayoutEffect } from '../useIsomorphicLayoutEffect';
 
-import { UseLayoutEffectCompareFunction } from './types';
-
 /**
  * Runs a layout effect only when the provided dependency array changes.
  *
@@ -31,7 +29,7 @@ function useLayoutEffectCompare(
  */
 function useLayoutEffectCompare<ComparedValue>(
   effect: () => void | (() => void),
-  compare: UseLayoutEffectCompareFunction<ComparedValue>,
+  compare: (prevValue: ComparedValue, nextValue: ComparedValue) => boolean,
   comparedValue: ComparedValue,
 ): void;
 
@@ -47,7 +45,7 @@ function useLayoutEffectCompare<ComparedValue>(
  */
 function useLayoutEffectCompare(
   effect: () => void | (() => void),
-  compare: UseLayoutEffectCompareFunction,
+  compare: () => boolean,
 ): void;
 
 function useLayoutEffectCompare<ComparedValue = unknown>(

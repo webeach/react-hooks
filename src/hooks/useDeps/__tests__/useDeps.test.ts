@@ -1,6 +1,5 @@
 import { renderHook } from '@testing-library/react';
 
-import { UseDepsCompareFunction } from '../types';
 import { useDeps } from '../useDeps';
 
 describe('useDeps hook', () => {
@@ -32,7 +31,7 @@ describe('useDeps hook', () => {
   });
 
   it('uses compare function to determine changes', () => {
-    const compare: UseDepsCompareFunction<{ id: number }> = (prev, next) =>
+    const compare = (prev: { id: number }, next: { id: number }) =>
       prev.id === next.id;
 
     const { result, rerender } = renderHook(

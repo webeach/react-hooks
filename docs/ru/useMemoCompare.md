@@ -22,14 +22,14 @@ function useMemoCompare<ValueType>(
 // 2) Кастомный компаратор + значение
 function useMemoCompare<ValueType, ComparedValue>(
   factory: () => ValueType,
-  compare: UseMemoCompareFunction<ComparedValue>,
+  compare: (prev: ComparedValue, next: ComparedValue) => boolean,
   comparedValue: ComparedValue,
 ): ValueType;
 
 // 3) Только компаратор
 function useMemoCompare<ValueType>(
   factory: () => ValueType,
-  compare: UseMemoCompareFunction,
+  compare: () => boolean,
 ): ValueType;
 ```
 
@@ -140,15 +140,6 @@ function ThemeProvider({ config }: { config: ThemeConfig }) {
 
 4. **Неподходящий ключ сравнения**
    - В форме с компаратором убедитесь, что используете правильный критерий «значимости» (например, `id` вместо всей ссылки объекта).
-
----
-
-## Типизация
-
-- `UseMemoCompareFunction<ValueType>`
-  - Универсальный тип компаратора:
-  - `ValueType` указан → `(prev: ValueType, next: ValueType) => boolean` (верните `true`, если **равны**).
-  - `ValueType` не указан → `() => boolean` (вся логика сравнения — внутри функции).
 
 ---
 

@@ -22,14 +22,14 @@ function useEffectCompare(
 // 2) Кастомный компаратор + значение
 function useEffectCompare<ComparedValue>(
   effect: () => void | (() => void),
-  compare: UseEffectCompareFunction<ComparedValue>,
+  compare: (prev: ComparedValue, next: ComparedValue) => boolean,
   comparedValue: ComparedValue,
 ): void;
 
 // 3) Только компаратор
 function useEffectCompare(
   effect: () => void | (() => void),
-  compare: UseEffectCompareFunction,
+  compare: () => boolean,
 ): void;
 ```
 
@@ -147,18 +147,6 @@ function CacheWarmup() {
 
 4. **Ожидание работы как `useLayoutEffect`**
    - Это обёртка над `useEffect`. Для синхронных до‑пейнта побочных эффектов используйте `useLayoutEffectCompare`.
-
----
-
-## Типизация
-
-**Экспортируемые типы**
-
-- `UseEffectCompareFunction<ValueType = undefined>`
-   - Если `ValueType` **не указан** → функция без аргументов: `() => boolean`.
-       - Сравнение или логика выполняется внутри функции.
-   - Если `ValueType` **указан** → функция сравнения: `(prevValue: ValueType, nextValue: ValueType) => boolean`.
-       - Верните `true`, если значения считаются равными.
 
 ---
 

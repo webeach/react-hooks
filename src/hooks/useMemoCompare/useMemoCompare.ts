@@ -2,8 +2,6 @@ import { useMemo } from 'react';
 
 import { useDeps } from '../useDeps';
 
-import { UseMemoCompareFunction } from './types';
-
 /**
  * Returns a memoized value that updates only when the provided dependencies array changes.
  *
@@ -40,7 +38,7 @@ function useMemoCompare<ValueType>(
  */
 function useMemoCompare<ValueType, ComparedValue>(
   factory: () => ValueType,
-  compare: UseMemoCompareFunction<ComparedValue>,
+  compare: (prevValue: ComparedValue, nextValue: ComparedValue) => boolean,
   comparedValue: ComparedValue,
 ): ValueType;
 
@@ -57,7 +55,7 @@ function useMemoCompare<ValueType, ComparedValue>(
  */
 function useMemoCompare<ValueType>(
   factory: () => ValueType,
-  compare: UseMemoCompareFunction,
+  compare: () => boolean,
 ): ValueType;
 
 function useMemoCompare<ValueType, ComparedValue>(

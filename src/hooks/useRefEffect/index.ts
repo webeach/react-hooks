@@ -1,3 +1,3 @@
 export { useRefEffect } from './useRefEffect';
 
-export type { UseRefEffectCompareFunction, UseRefEffectHandler } from './types';
+export type { UseRefEffectHandler } from './types';
