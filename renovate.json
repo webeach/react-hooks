@@ -5,5 +5,11 @@
   "ignoreUnstable": true,
   "devDependencies": {
     "automerge": true
-  }
+  },
+  "ignoreDeps": [
+    "react",
+    "react-dom",
+    "@types/react",
+    "@types/react-dom"
+  ]
 }
