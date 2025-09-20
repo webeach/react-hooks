@@ -328,6 +328,11 @@
       "import": "./lib/esm/hooks/useUnmount/index.js",
       "require": "./lib/cjs/hooks/useUnmount/index.js"
     },
+    "./useViewportBreakpoint": {
+      "types": "./lib/types/hooks/useViewportBreakpoint/index.d.ts",
+      "import": "./lib/esm/hooks/useViewportBreakpoint/index.js",
+      "require": "./lib/cjs/hooks/useViewportBreakpoint/index.js"
+    },
     "./useWindowEvent": {
       "types": "./lib/types/hooks/useWindowEvent/index.d.ts",
       "import": "./lib/esm/hooks/useWindowEvent/index.js",

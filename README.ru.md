@@ -125,6 +125,7 @@ const { useBoolean, useEffectCompare, useWindowEvent } = require('@webeach/react
 + [useTimeoutExtended](./docs/ru/useTimeoutExtended.md)
 + [useToggle](./docs/ru/useToggle.md)
 + [useUnmount](./docs/ru/useUnmount.md)
+- [useViewportBreakpoint](./docs/en/useViewportBreakpoint.md)
 + [useWindowEvent](./docs/ru/useWindowEvent.md)
 
 ### По категориям
@@ -197,6 +198,7 @@ const { useBoolean, useEffectCompare, useWindowEvent } = require('@webeach/react
 - [useMediaQuery](./docs/ru/useMediaQuery.md)
 - [usePageTitle](./docs/ru/usePageTitle.md)
 - [usePageVisibility](./docs/ru/usePageVisibility.md)
+- [useViewportBreakpoint](./docs/ru/useViewportBreakpoint.md)
 
 #### Служебные
 - [useDemandStructure](./docs/ru/useDemandStructure.md)

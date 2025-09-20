@@ -125,6 +125,7 @@ const { useBoolean, useEffectCompare, useWindowEvent } = require('@webeach/react
 + [useTimeoutExtended](./docs/en/useTimeoutExtended.md)
 + [useToggle](./docs/en/useToggle.md)
 + [useUnmount](./docs/en/useUnmount.md)
++ [useViewportBreakpoint](./docs/en/useViewportBreakpoint.md)
 + [useWindowEvent](./docs/en/useWindowEvent.md)
 
 ### By category
@@ -197,6 +198,7 @@ const { useBoolean, useEffectCompare, useWindowEvent } = require('@webeach/react
 - [useMediaQuery](./docs/en/useMediaQuery.md)
 - [usePageTitle](./docs/en/usePageTitle.md)
 - [usePageVisibility](./docs/en/usePageVisibility.md)
+- [useViewportBreakpoint](./docs/en/useViewportBreakpoint.md)
 
 #### Utilities
 - [useDemandStructure](./docs/en/useDemandStructure.md)

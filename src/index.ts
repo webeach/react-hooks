@@ -44,6 +44,7 @@ export { useTimeout } from './hooks/useTimeout';
 export { useTimeoutExtended } from './hooks/useTimeoutExtended';
 export { useToggle } from './hooks/useToggle';
 export { useUnmount } from './hooks/useUnmount';
+export { useViewportBreakpoint } from './hooks/useViewportBreakpoint';
 export { useWindowEvent } from './hooks/useWindowEvent';
 
 export type {
@@ -182,6 +183,13 @@ export type {
   UseToggleReturnTuple,
 } from './hooks/useToggle';
 export type { UseUnmountCallback } from './hooks/useUnmount';
+export type {
+  UseViewportBreakpointMatches,
+  UseViewportBreakpointOptions,
+  UseViewportBreakpointReturn,
+  UseViewportBreakpointReturnObject,
+  UseViewportBreakpointReturnTuple,
+} from './hooks/useViewportBreakpoint';
 export type {
   UseWindowEventInstance,
   UseWindowEventHandler,

@@ -167,3 +167,4 @@ export function ResponsiveGrid() {
 
 - [useIntersectionObserver](useIntersectionObserver.md)
 - [useMediaQuery](useMediaQuery.md)
+- [useViewportBreakpoint](useViewportBreakpoint.md)

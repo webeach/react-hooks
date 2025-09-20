@@ -1,0 +1,1 @@
+export { getEntries } from './getEntries';
