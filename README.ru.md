@@ -125,7 +125,7 @@ const { useBoolean, useEffectCompare, useWindowEvent } = require('@webeach/react
 + [useTimeoutExtended](./docs/ru/useTimeoutExtended.md)
 + [useToggle](./docs/ru/useToggle.md)
 + [useUnmount](./docs/ru/useUnmount.md)
-- [useViewportBreakpoint](./docs/en/useViewportBreakpoint.md)
++ [useViewportBreakpoint](./docs/ru/useViewportBreakpoint.md)
 + [useWindowEvent](./docs/ru/useWindowEvent.md)
 
 ### По категориям
