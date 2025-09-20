@@ -1,3 +1,16 @@
+# [0.2.0](https://github.com/webeach/react-hooks/compare/v0.1.1...v0.2.0) (2025-09-20)
+
+
+### Bug Fixes
+
+* **types:** correct typing in compare-based hooks ([350627c](https://github.com/webeach/react-hooks/commit/350627cd24c3ee9d4e39af038dabc70a4993962a))
+
+
+### Features
+
+* **hooks:** add useMediaQuery hook ([f88930a](https://github.com/webeach/react-hooks/commit/f88930a4a686dc223c85e19b59730d045f1c24e4))
+* **hooks:** add useViewportBreakpoint hook ([f8c1371](https://github.com/webeach/react-hooks/commit/f8c137191c6610da2630330e4f07337622dc6dab))
+
 ## [0.1.1](https://github.com/webeach/react-hooks/compare/v0.1.0...v0.1.1) (2025-09-14)
 
 
