@@ -18,7 +18,7 @@ jobs:
     name: Commit Lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: wagoid/commitlint-github-action@v6
         with:
           configFile: .commitlintrc.json
@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -55,7 +55,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -87,7 +87,7 @@ jobs:
       pull-requests: write
     steps:
       - name: Check out repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
