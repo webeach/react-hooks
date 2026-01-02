@@ -83,7 +83,7 @@
     "eslint-plugin-prettier": "^5.5.4",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "fast-glob": "^3.3.3",
-    "globals": "^16.4.0",
+    "globals": "^17.0.0",
     "husky": "^9.1.7",
     "is-ci": "^4.1.0",
     "jsdom": "^27.0.0",
