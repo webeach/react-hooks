@@ -29,7 +29,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "engines": {
-    "node": "^22",
+    "node": "^24.0.0",
     "pnpm": "^10"
   },
   "type": "module",
