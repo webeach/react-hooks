@@ -53,7 +53,13 @@ export function CursorTracker({ enabled }: { enabled: boolean }) {
 import { useEffect } from 'react';
 import { useLiveRef } from '@webeach/react-hooks/useLiveRef';
 
-export function Poller({ intervalMs, onTick }: { intervalMs: number; onTick: () => void }) {
+export function Poller({
+  intervalMs,
+  onTick,
+}: {
+  intervalMs: number;
+  onTick: () => void;
+}) {
   const onTickRef = useLiveRef(onTick);
 
   useEffect(() => {
@@ -88,11 +94,7 @@ export function Example() {
     log();
   };
 
-  return (
-    <button onClick={handleButtonClick}>
-      increment & log
-    </button>
-  );
+  return <button onClick={handleButtonClick}>increment & log</button>;
 }
 ```
 

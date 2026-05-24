@@ -10,15 +10,15 @@
 
 ```ts
 function useSet<ValueType = any>(
-  initialValues?: ReadonlyArray<ValueType> | (() => ReadonlyArray<ValueType>)
+  initialValues?: ReadonlyArray<ValueType> | (() => ReadonlyArray<ValueType>),
 ): ExtendedSet<ValueType>;
 ```
 
 - **Parameters**
-   - `initialValues?` — initial values. A lazy variant is supported: a function returning the array.
+  - `initialValues?` — initial values. A lazy variant is supported: a function returning the array.
 
 - **Returns**
-   - A reactive structure compatible with `Set`, where mutations trigger a re‑render.
+  - A reactive structure compatible with `Set`, where mutations trigger a re‑render.
 
 ---
 
@@ -55,7 +55,7 @@ import { useSet } from '@webeach/react-hooks/useSet';
 
 type PermissionsProps = {
   fetchAll: () => Promise<string[]>;
-}
+};
 
 export function Permissions(props: PermissionsProps) {
   const { fetchAll } = props;
@@ -126,8 +126,8 @@ export function Permissions(props: PermissionsProps) {
 **Exported types**
 
 - `ExtendedSet<ValueType>`
-   - Compatible with `Set`, additionally provides `replaceAll(values)` for atomic content rebuild.
-   - Mutations (`add`/`delete`/`clear`/`replaceAll`) trigger a component re‑render.
+  - Compatible with `Set`, additionally provides `replaceAll(values)` for atomic content rebuild.
+  - Mutations (`add`/`delete`/`clear`/`replaceAll`) trigger a component re‑render.
 
 ---
 

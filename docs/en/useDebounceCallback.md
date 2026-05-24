@@ -20,10 +20,12 @@ function useDebounceCallback<Args extends any[]>(
 ```
 
 **Parameters**
+
 - `callback` — the function to debounce. Called with the **latest** arguments after `delayMs`.
 - `delayMs` — debounce delay in milliseconds.
 
 **Returns**
+
 - A debounced function `(...args) => void` with a **stable** identity.
 
 ---
@@ -128,7 +130,7 @@ export function AdjustableDelay() {
 
 ## Common mistakes
 
-1. **Expecting execution after the *first* call**
+1. **Expecting execution after the _first_ call**
    - Debounce waits for `delayMs` after the **last** call, not the first.
 
 2. **Assuming `delayMs` change cancels pending call**

@@ -1,5 +1,4 @@
 import { getKeys } from '../getKeys';
-
 import { Entry } from './types';
 
 /**

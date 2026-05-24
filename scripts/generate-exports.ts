@@ -1,41 +1,50 @@
 // Run: pnpm run generate-exports
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 
 type ExportTarget = {
-  import: string; // ESM .js
-  require: string; // CJS .cjs
-  types: string; // .d.ts
+  import: { types: string; default: string };
+  require: { types: string; default: string };
 };
 
 type PackageJson = {
   name?: string;
   type?: 'module' | 'commonjs';
-  exports?: Record<string, Partial<ExportTarget> | string>;
-  [k: string]: any;
+  exports?: Record<string, ExportTarget | string>;
+  [k: string]: unknown;
 };
 
 const ROOT = process.cwd();
-const LIB_DIR = 'lib';
+const DIST_DIR = 'dist';
 const SRC_HOOKS_PATH = path.join(ROOT, 'src', 'hooks');
 
-function hookToLibPaths(hook: string) {
+function rootPaths(): ExportTarget {
   return {
-    types: `./${LIB_DIR}/types/hooks/${hook}/index.d.ts`,
-    import: `./${LIB_DIR}/esm/hooks/${hook}/index.js`,
-    require: `./${LIB_DIR}/cjs/hooks/${hook}/index.js`,
+    import: {
+      types: `./${DIST_DIR}/esm/index.d.ts`,
+      default: `./${DIST_DIR}/esm/index.js`,
+    },
+    require: {
+      types: `./${DIST_DIR}/cjs/index.d.cts`,
+      default: `./${DIST_DIR}/cjs/index.cjs`,
+    },
   };
 }
 
-function rootLibPaths() {
+function hookPaths(hook: string): ExportTarget {
   return {
-    types: `./${LIB_DIR}/types/index.d.ts`,
-    import: `./${LIB_DIR}/esm/index.js`,
-    require: `./${LIB_DIR}/cjs/index.js`,
+    import: {
+      types: `./${DIST_DIR}/esm/hooks/${hook}/index.d.ts`,
+      default: `./${DIST_DIR}/esm/hooks/${hook}/index.js`,
+    },
+    require: {
+      types: `./${DIST_DIR}/cjs/hooks/${hook}/index.d.cts`,
+      default: `./${DIST_DIR}/cjs/hooks/${hook}/index.cjs`,
+    },
   };
 }
 
-async function readJson<T = any>(file: string): Promise<T> {
+async function readJson<T>(file: string): Promise<T> {
   const raw = await fs.promises.readFile(file, 'utf8');
   return JSON.parse(raw) as T;
 }
@@ -59,33 +68,24 @@ function looksLikeHookName(name: string) {
 
 async function listHooks(srcHooksDir: string): Promise<string[]> {
   const items = await fs.promises.readdir(srcHooksDir, { withFileTypes: true });
-
   const hooks = new Set<string>();
 
   for (const it of items) {
-    if (it.isDirectory()) {
-      const dirName = it.name;
-
-      if (looksLikeHookName(dirName)) {
-        hooks.add(dirName);
-      }
+    if (it.isDirectory() && looksLikeHookName(it.name)) {
+      hooks.add(it.name);
     }
   }
 
   return [...hooks].sort((a, b) => a.localeCompare(b));
 }
 
-function buildExportsMap(
-  hooks: string[],
-): Record<string, ExportTarget | string> {
-  const map: Record<string, ExportTarget | string> = {};
+function buildExportsMap(hooks: string[]): Record<string, ExportTarget> {
+  const map: Record<string, ExportTarget> = {};
 
-  // root export "."
-  map['.'] = rootLibPaths();
+  map['.'] = rootPaths();
 
-  // Subpaths for each hook: "./useXxx"
   for (const hook of hooks) {
-    map[`./${hook}`] = hookToLibPaths(hook);
+    map[`./${hook}`] = hookPaths(hook);
   }
 
   return map;
@@ -103,7 +103,7 @@ async function main() {
   if (hooks.length === 0) {
     console.warn('⚠️  Hooks not found in src/hooks. Nothing to export.');
   } else {
-    console.log(`✔ Found hooks: ${hooks.join(', ')}`);
+    console.log(`✔ Found ${hooks.length} hooks`);
   }
 
   const exportsMap = buildExportsMap(hooks);
@@ -118,19 +118,19 @@ async function main() {
     );
   }
 
-  // Update package.json
   const nextPkg: PackageJson = { ...pkg, exports: exportsMap };
 
   const backupPath = pkgPath.replace(/\.json$/, '.backup.json');
-
   await writeJson(backupPath, pkg);
   await writeJson(pkgPath, nextPkg);
+
   console.log(
     `\n✅ package.json updated. Backup saved to ${path.basename(backupPath)}\n`,
   );
-
-  console.log(`  - Root: ${LIB_DIR}/index.{js,cjs,d.ts}`);
-  console.log(`  - Hooks: ${LIB_DIR}/<hook>/index.{js,cjs,d.ts}`);
+  console.log(`  - Root: ${DIST_DIR}/{esm,cjs}/index.{js,cjs,d.ts,d.cts}`);
+  console.log(
+    `  - Hooks: ${DIST_DIR}/{esm,cjs}/hooks/<hook>/index.{js,cjs,d.ts,d.cts}`,
+  );
 }
 
 main().catch((error) => {

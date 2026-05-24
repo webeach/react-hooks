@@ -13,9 +13,9 @@ function useLiveRef<Value>(value: Value): React.RefObject<Value>;
 ```
 
 - **Parameters**
-   - `value: Value` — the current value that should be available via `ref.current`.
+  - `value: Value` — the current value that should be available via `ref.current`.
 - **Returns**
-   - `RefObject<Value>` — a stable `ref` object (does not change between renders) whose `ref.current` always points to the latest `value`.
+  - `RefObject<Value>` — a stable `ref` object (does not change between renders) whose `ref.current` always points to the latest `value`.
 
 ---
 
@@ -53,7 +53,13 @@ export function CursorTracker({ enabled }: { enabled: boolean }) {
 import { useEffect } from 'react';
 import { useLiveRef } from '@webeach/react-hooks/useLiveRef';
 
-export function Poller({ intervalMs, onTick }: { intervalMs: number; onTick: () => void }) {
+export function Poller({
+  intervalMs,
+  onTick,
+}: {
+  intervalMs: number;
+  onTick: () => void;
+}) {
   const onTickRef = useLiveRef(onTick);
 
   useEffect(() => {
@@ -88,11 +94,7 @@ export function Example() {
     log();
   };
 
-  return (
-    <button onClick={handleButtonClick}>
-      increment & log
-    </button>
-  );
+  return <button onClick={handleButtonClick}>increment & log</button>;
 }
 ```
 

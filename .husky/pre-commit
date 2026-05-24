@@ -1,2 +1,2 @@
 lint-staged
-pnpm run lint:types
+pnpm run typecheck

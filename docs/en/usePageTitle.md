@@ -13,10 +13,10 @@ function usePageTitle(title: string): void;
 ```
 
 - **Parameters**
-   - `title: string` — the page title to set on the current render.
+  - `title: string` — the page title to set on the current render.
 
 - **Returns**
-   - `void` — no return value; the hook manages `document.title` and the title history.
+  - `void` — no return value; the hook manages `document.title` and the title history.
 
 ---
 
@@ -64,7 +64,7 @@ type UserProfileProps = {
 
 export function UserProfile(props: UserProfileProps) {
   const { name } = props;
-  
+
   usePageTitle(`${name} — Profile`);
 
   return <h1>{name}</h1>;

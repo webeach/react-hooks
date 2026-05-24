@@ -2,7 +2,7 @@
 
 ## Описание
 
-`useNumber` — хук для управления **числовым состоянием** с удобными методами: `setValue`, `increment`, `decrement`, `reset`. Возвращает *гибридную* структуру, поддерживающую **кортежную** и **объектную** деструктуризацию.
+`useNumber` — хук для управления **числовым состоянием** с удобными методами: `setValue`, `increment`, `decrement`, `reset`. Возвращает _гибридную_ структуру, поддерживающую **кортежную** и **объектную** деструктуризацию.
 
 ---
 
@@ -13,15 +13,15 @@ function useNumber(initialValue?: number): UseNumberReturn;
 ```
 
 - **Параметры**
-   - `initialValue?: number` — начальное значение; по умолчанию `0`.
+  - `initialValue?: number` — начальное значение; по умолчанию `0`.
 
 - **Возвращает**: `UseNumberReturn` — гибридная структура с полями/позициями:
-   - `value: number` — текущее значение;
-   - `setValue(newValue: number): void` — заменить значение на конкретное число;
-   - `increment(step?: number): void` — увеличить на `step` (по умолчанию `1`);
-   - `decrement(step?: number): void` — уменьшить на `step` (по умолчанию `1`);
-   - `reset(): void` — сбросить к начальному `initialValue`.
-   - кортежный доступ: `[value, setValue, increment, decrement, reset]`.
+  - `value: number` — текущее значение;
+  - `setValue(newValue: number): void` — заменить значение на конкретное число;
+  - `increment(step?: number): void` — увеличить на `step` (по умолчанию `1`);
+  - `decrement(step?: number): void` — уменьшить на `step` (по умолчанию `1`);
+  - `reset(): void` — сбросить к начальному `initialValue`.
+  - кортежный доступ: `[value, setValue, increment, decrement, reset]`.
 
 ---
 
@@ -143,17 +143,16 @@ export function NumericInput() {
 
 ## Типизация
 
-
 **Экспортируемые типы**
 
 - `UseNumberReturn`
-   - Гибридный тип возврата, объединяющий объектную и кортежную формы.
+  - Гибридный тип возврата, объединяющий объектную и кортежную формы.
 
 - `UseNumberReturnObject`
-   - Объектная форма: `{ value: number; setValue: (value: number) => void; increment: (step?: number) => void; decrement: (step?: number) => void; reset: () => void }`.
+  - Объектная форма: `{ value: number; setValue: (value: number) => void; increment: (step?: number) => void; decrement: (step?: number) => void; reset: () => void }`.
 
 - `UseNumberReturnTuple`
-   - Кортежная форма: `[value: number, setValue: (value: number) => void, increment: (step?: number) => void, decrement: (step?: number) => void, reset: () => void]`. 
+  - Кортежная форма: `[value: number, setValue: (value: number) => void, increment: (step?: number) => void, decrement: (step?: number) => void, reset: () => void]`.
 
 ---
 

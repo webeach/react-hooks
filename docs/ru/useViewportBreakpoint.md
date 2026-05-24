@@ -22,14 +22,14 @@ function useViewportBreakpoint<BreakpointKey extends string | symbol>(
 ```
 
 - **Параметры**
-   - `breakpointMap: Record<BreakpointKey, number>` — карта брейкпоинтов: ключ → минимальная ширина в пикселях.
-   - `options?: UseViewportBreakpointOptions` — дополнительные настройки:
-      - `defaultBreakpoint?: BreakpointKey` — запасной ключ, который считается активным, если ни один брейкпоинт не подходит.
+  - `breakpointMap: Record<BreakpointKey, number>` — карта брейкпоинтов: ключ → минимальная ширина в пикселях.
+  - `options?: UseViewportBreakpointOptions` — дополнительные настройки:
+    - `defaultBreakpoint?: BreakpointKey` — запасной ключ, который считается активным, если ни один брейкпоинт не подходит.
 
 - **Возвращает**: `UseViewportBreakpointReturn` — гибридная структура с кортежем и объектом:
-   - `matches: Record<BreakpointKey, boolean>` — карта всех брейкпоинтов с их состоянием.
-   - `activeBreakpoint: BreakpointKey | null` — активный брейкпоинт или `null`, если ни один не подходит.
-   - Кортеж: `[matches, activeBreakpoint]`.
+  - `matches: Record<BreakpointKey, boolean>` — карта всех брейкпоинтов с их состоянием.
+  - `activeBreakpoint: BreakpointKey | null` — активный брейкпоинт или `null`, если ни один не подходит.
+  - Кортеж: `[matches, activeBreakpoint]`.
 
 ---
 

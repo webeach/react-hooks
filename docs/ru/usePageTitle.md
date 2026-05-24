@@ -13,10 +13,10 @@ function usePageTitle(title: string): void;
 ```
 
 - **Параметры**
-   - `title: string` — заголовок страницы, который следует установить на текущем рендере.
+  - `title: string` — заголовок страницы, который следует установить на текущем рендере.
 
 - **Возвращает**
-   - `void` — побочных значений нет; хук управляет `document.title` и историей заголовков.
+  - `void` — побочных значений нет; хук управляет `document.title` и историей заголовков.
 
 ---
 
@@ -64,7 +64,7 @@ type UserProfileProps = {
 
 export function UserProfile(props: UserProfileProps) {
   const { name } = props;
-  
+
   usePageTitle(`${name} — Profile`);
 
   return <h1>{name}</h1>;

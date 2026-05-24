@@ -10,15 +10,17 @@
 
 ```ts
 function useMap<KeyType = any, ValueType = any>(
-  initialEntries?: ReadonlyArray<[KeyType, ValueType]> | (() => ReadonlyArray<[KeyType, ValueType]>)
+  initialEntries?:
+    | ReadonlyArray<[KeyType, ValueType]>
+    | (() => ReadonlyArray<[KeyType, ValueType]>),
 ): UseMapReturn<KeyType, ValueType>;
 ```
 
 - **Параметры**
-   - `initialEntries?` — начальные пары `[key, value]`. Поддерживается ленивый вариант: функция, возвращающая массив.
+  - `initialEntries?` — начальные пары `[key, value]`. Поддерживается ленивый вариант: функция, возвращающая массив.
 
 - **Возвращает**
-   - Реактивную структуру, совместимую с `Map`, у которой мутации инициируют перерисовку.
+  - Реактивную структуру, совместимую с `Map`, у которой мутации инициируют перерисовку.
 
 ---
 
@@ -39,7 +41,9 @@ export function Users() {
 
   return (
     <div>
-      <button onClick={() => users.set('u3', { id: 'u3', name: 'Charlie' })}>Add Charlie</button>
+      <button onClick={() => users.set('u3', { id: 'u3', name: 'Charlie' })}>
+        Add Charlie
+      </button>
       <button onClick={() => users.delete('u1')}>Remove Alice</button>
       <div>Total: {users.size}</div>
       <ul>
@@ -60,7 +64,7 @@ import { useMap } from '@webeach/react-hooks/useMap';
 
 type CatalogProps = {
   fetchAll: () => Promise<Array<[string, Product]>>;
-}
+};
 
 export function Catalog(props: CatalogProps) {
   const { fetchAll } = props;
@@ -89,7 +93,7 @@ type RenameProps = {
 // Нужно выполнить повторную запись ключа через set.
 function Rename(props: RenameProps) {
   const { users } = props;
-  
+
   const rename = (id: string, name: string) => {
     const current = users.get(id);
 
@@ -97,9 +101,11 @@ function Rename(props: RenameProps) {
       return;
     }
 
-    users.set(id, {...current, name}); // триггерит обновление
+    users.set(id, { ...current, name }); // триггерит обновление
   };
-  return <button onClick={() => rename('u2', 'Bobby')}>Rename Bob → Bobby</button>;
+  return (
+    <button onClick={() => rename('u2', 'Bobby')}>Rename Bob → Bobby</button>
+  );
 }
 ```
 
@@ -158,8 +164,8 @@ function Rename(props: RenameProps) {
 **Экспортируемые типы**
 
 - `ExtendedMap<KeyType, ValueType>`
-   - Совместим с `Map`, но дополнительно предоставляет метод `replaceAll(entries)` для атомарной пересборки содержимого.
-   - Мутации (`set`/`delete`/`clear`/`replaceAll`) инициируют перерисовку компонента.
+  - Совместим с `Map`, но дополнительно предоставляет метод `replaceAll(entries)` для атомарной пересборки содержимого.
+  - Мутации (`set`/`delete`/`clear`/`replaceAll`) инициируют перерисовку компонента.
 
 ---
 

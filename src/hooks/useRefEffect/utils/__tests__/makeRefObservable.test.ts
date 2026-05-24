@@ -41,7 +41,9 @@ describe('makeRefObservable util', () => {
     const subscribers = makeRefObservable(ref);
 
     const handleSubscribe = vi.fn((value) => {
-      if (value === div2) return;
+      if (value === div2) {
+        return;
+      }
       ref.current = div2; // reentrant write
     });
 

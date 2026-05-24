@@ -41,7 +41,7 @@ describe('useIntersectionObserver hook', () => {
   beforeAll(() => {
     vi.stubGlobal(
       'IntersectionObserver',
-      vi.fn((callback: IntersectionObserverCallback) => {
+      vi.fn(function (callback: IntersectionObserverCallback) {
         ioMock = new MockIntersectionObserver(callback);
         return ioMock as unknown as IntersectionObserver;
       }),

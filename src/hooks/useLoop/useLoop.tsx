@@ -2,7 +2,6 @@ import { useEffect, useMemo, useRef } from 'react';
 
 import { useDemandStructure } from '../useDemandStructure';
 import { useLiveRef } from '../useLiveRef';
-
 import { UseLoopCallback, UseLoopOptions, UseLoopReturn } from './types';
 
 /**

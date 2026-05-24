@@ -2,7 +2,6 @@ import { useCallback, useState } from 'react';
 
 import { isFunction } from '../../functions/isFunction';
 import { PlainObject } from '../../types/common';
-
 import { UsePatchStateFunction } from './types';
 
 /**

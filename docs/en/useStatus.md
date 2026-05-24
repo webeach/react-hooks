@@ -13,12 +13,12 @@ function useStatus(defaultStatus?: Status): UseStatusReturn;
 ```
 
 - **Parameters**
-   - `defaultStatus?: Status` — initial status; defaults to `'initial'`.
+  - `defaultStatus?: Status` — initial status; defaults to `'initial'`.
 
 - **Returns**: `UseStatusReturn` — a combined object:
-   - flags: `isPending`, `isSuccess`, `isError`;
-   - `error` field (only in `'error'`, otherwise `null`);
-   - control methods: `setPending()`, `setSuccess()`, `setError(error?)`, `reset()`, `setStatus(status)`.
+  - flags: `isPending`, `isSuccess`, `isError`;
+  - `error` field (only in `'error'`, otherwise `null`);
+  - control methods: `setPending()`, `setSuccess()`, `setError(error?)`, `reset()`, `setStatus(status)`.
 
 ---
 
@@ -35,7 +35,7 @@ export type SaveButtonProps = {
 
 export function SaveButton(props: SaveButtonProps) {
   const { save } = props;
-  
+
   const status = useStatus();
 
   const handleClick = async () => {
@@ -137,18 +137,18 @@ status.setStatus('success');
 **Exported types**
 
 - `UseStatusReturn`
-   - Combines status flags, possible error, and control methods.
-   - Fields:
-    - `isPending: boolean` — `true` while the operation is in progress.
-    - `isSuccess: boolean` — `true` when the operation has completed successfully.
-    - `isError: boolean` — `true` when an error has occurred.
-    - `error: ErrorLike | null` — error object (only if `isError: true`).
-   - Methods:
-    - `reset(): void` — sets status to `'initial'`.
-    - `setError(error?: ErrorLike | null): void` — sets status to `'error'` and stores the error.
-    - `setPending(): void` — sets status to `'pending'`.
-    - `setSuccess(): void` — sets status to `'success'`.
-    - `setStatus(status: Status): void` — sets the status directly.
+  - Combines status flags, possible error, and control methods.
+  - Fields:
+  - `isPending: boolean` — `true` while the operation is in progress.
+  - `isSuccess: boolean` — `true` when the operation has completed successfully.
+  - `isError: boolean` — `true` when an error has occurred.
+  - `error: ErrorLike | null` — error object (only if `isError: true`).
+  - Methods:
+  - `reset(): void` — sets status to `'initial'`.
+  - `setError(error?: ErrorLike | null): void` — sets status to `'error'` and stores the error.
+  - `setPending(): void` — sets status to `'pending'`.
+  - `setSuccess(): void` — sets status to `'success'`.
+  - `setStatus(status: Status): void` — sets the status directly.
 
 ---
 

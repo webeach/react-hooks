@@ -5,14 +5,16 @@
 `useIsomorphicLayoutEffect` — это безопасная версия `useLayoutEffect`, которая автоматически переключается на `useEffect` при выполнении на сервере (например, во время SSR).
 
 - В браузере ведёт себя как `useLayoutEffect`.
-- На сервере использует `useEffect`, предотвращая предупреждение React: *"useLayoutEffect does nothing on the server"*.
+- На сервере использует `useEffect`, предотвращая предупреждение React: _"useLayoutEffect does nothing on the server"_.
 
 ---
 
 ## Сигнатура
 
 ```ts
-export const useIsomorphicLayoutEffect: typeof useLayoutEffect | typeof useEffect;
+export const useIsomorphicLayoutEffect:
+  | typeof useLayoutEffect
+  | typeof useEffect;
 ```
 
 ---

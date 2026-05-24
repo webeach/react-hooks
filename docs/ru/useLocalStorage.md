@@ -28,12 +28,12 @@ function useLocalStorage<ValueType>(
 ```
 
 - **Параметры**
-   - `key` — ключ в `localStorage`.
-   - `initialValue?` — начальное значение или фабрика. Используется, если в хранилище нет валидной строки.
-   - `options?` — настройки сериализации и поведения:
-      - `serializer?: (key, value) => string` — преобразует значение в строку перед записью.
-      - `deserializer?: (key, raw) => Value | undefined` — парсит строку из хранилища. Верните `undefined`, чтобы считать, что значения нет.
-      - `watch?: boolean` — обновлять ли состояние при изменении этого ключа в других вкладках.
+  - `key` — ключ в `localStorage`.
+  - `initialValue?` — начальное значение или фабрика. Используется, если в хранилище нет валидной строки.
+  - `options?` — настройки сериализации и поведения:
+    - `serializer?: (key, value) => string` — преобразует значение в строку перед записью.
+    - `deserializer?: (key, raw) => Value | undefined` — парсит строку из хранилища. Верните `undefined`, чтобы считать, что значения нет.
+    - `watch?: boolean` — обновлять ли состояние при изменении этого ключа в других вкладках.
 
 - **Возвращает**: `UseLocalStorageReturn<Value>` — кортеж `[value, setValue]`.
 
@@ -42,6 +42,7 @@ function useLocalStorage<ValueType>(
 ## Примеры
 
 ### 1) Простейшее сохранение предпочтения
+
 ```tsx
 const [theme, setTheme] = useLocalStorage<'light' | 'dark'>(
   'ui:theme',
@@ -53,6 +54,7 @@ setTheme('dark');
 ```
 
 ### 2) Счётчик с функциональным апдейтером
+
 ```tsx
 const [count, setCount] = useLocalStorage<number>('app:count', 0);
 
@@ -61,6 +63,7 @@ const reset = () => setCount(0);
 ```
 
 ### 3) Удаление значения (сброс ключа)
+
 ```tsx
 const [token, setToken] = useLocalStorage<string | undefined>('auth:token');
 
@@ -69,10 +72,12 @@ setToken(undefined);
 ```
 
 ### 4) Кастомные сериализаторы
+
 ```tsx
 type Profile = { id: number; name: string };
 
-const serializer = (_key: string, value: Profile) => JSON.stringify({ root: value });
+const serializer = (_key: string, value: Profile) =>
+  JSON.stringify({ root: value });
 const deserializer = (_key: string, rawValue: string): Profile | undefined => {
   const parsed = JSON.parse(rawValue);
   return parsed?.root;
@@ -86,6 +91,7 @@ const [profile, setProfile] = useLocalStorage<Profile>(
 ```
 
 ### 5) Синхронизация между вкладками
+
 ```tsx
 const [filter, setFilter] = useLocalStorage<string>('list:filter', '', {
   watch: true,

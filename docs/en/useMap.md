@@ -10,15 +10,17 @@
 
 ```ts
 function useMap<KeyType = any, ValueType = any>(
-  initialEntries?: ReadonlyArray<[KeyType, ValueType]> | (() => ReadonlyArray<[KeyType, ValueType]>)
+  initialEntries?:
+    | ReadonlyArray<[KeyType, ValueType]>
+    | (() => ReadonlyArray<[KeyType, ValueType]>),
 ): UseMapReturn<KeyType, ValueType>;
 ```
 
 - **Parameters**
-   - `initialEntries?` — initial `[key, value]` pairs. A lazy variant is supported: a function returning the array.
+  - `initialEntries?` — initial `[key, value]` pairs. A lazy variant is supported: a function returning the array.
 
 - **Returns**
-   - A reactive structure compatible with `Map`, where mutations trigger a re‑render.
+  - A reactive structure compatible with `Map`, where mutations trigger a re‑render.
 
 ---
 
@@ -39,7 +41,9 @@ export function Users() {
 
   return (
     <div>
-      <button onClick={() => users.set('u3', { id: 'u3', name: 'Charlie' })}>Add Charlie</button>
+      <button onClick={() => users.set('u3', { id: 'u3', name: 'Charlie' })}>
+        Add Charlie
+      </button>
       <button onClick={() => users.delete('u1')}>Remove Alice</button>
       <div>Total: {users.size}</div>
       <ul>
@@ -91,7 +95,7 @@ type RenameProps = {
 // You must reassign the key via `set`.
 function Rename(props: RenameProps) {
   const { users } = props;
-  
+
   const rename = (id: string, name: string) => {
     const current = users.get(id);
 
@@ -101,7 +105,9 @@ function Rename(props: RenameProps) {
 
     users.set(id, { ...current, name }); // triggers update
   };
-  return <button onClick={() => rename('u2', 'Bobby')}>Rename Bob → Bobby</button>;
+  return (
+    <button onClick={() => rename('u2', 'Bobby')}>Rename Bob → Bobby</button>
+  );
 }
 ```
 
@@ -160,8 +166,8 @@ function Rename(props: RenameProps) {
 **Exported types**
 
 - `ExtendedMap<KeyType, ValueType>`
-   - Compatible with `Map`, additionally provides `replaceAll(entries)` for atomic content rebuild.
-   - Mutations (`set`/`delete`/`clear`/`replaceAll`) trigger a component re‑render.
+  - Compatible with `Map`, additionally provides `replaceAll(entries)` for atomic content rebuild.
+  - Mutations (`set`/`delete`/`clear`/`replaceAll`) trigger a component re‑render.
 
 ---
 

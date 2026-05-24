@@ -12,9 +12,13 @@ function mockImageLoad(type: 'success' | 'error' | 'abort') {
 
     set src(_: string) {
       setTimeout(() => {
-        if (type === 'success') this.onload?.();
-        else if (type === 'error') this.onerror?.();
-        else this.onabort?.();
+        if (type === 'success') {
+          this.onload?.();
+        } else if (type === 'error') {
+          this.onerror?.();
+        } else {
+          this.onabort?.();
+        }
       }, 0);
     }
   }

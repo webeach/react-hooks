@@ -4,7 +4,7 @@
 
 `useAsyncCallback` — хук‑обёртка над асинхронной функцией, который отслеживает её статус (`'pending'` / `'success'` / `'error'`), поддерживает **ленивую реактивность** (перерисовки начинаются только после первого обращения к `status`) и защищает от гонок: только **последний** вызов влияет на статус. Предоставляет методы: `handler` (вызов асинхронной операции) и `abort()` (сброс/отмена актуального вызова).
 
-Возвращаемая структура — *гибрид* для кортежной и объектной деструктуризации: `[handler, status, abort]` **и** `{ handler, status, abort }`.
+Возвращаемая структура — _гибрид_ для кортежной и объектной деструктуризации: `[handler, status, abort]` **и** `{ handler, status, abort }`.
 
 ---
 
@@ -17,12 +17,12 @@ function useAsyncCallback<Args extends unknown[], R>(
 ```
 
 - **Параметры**
-   - `asyncCallback` — асинхронная функция, статус выполнения которой нужно отслеживать.
+  - `asyncCallback` — асинхронная функция, статус выполнения которой нужно отслеживать.
 
 - **Возвращает**: `UseAsyncCallbackReturn<Args, R>` — гибридная структура:
-   - `handler(...args): Promise<R>` — обёртка над исходной функцией;
-   - `status` — флаги `isPending`, `isSuccess`, `isError` и `error` (только при ошибке);
-   - `abort()` — отменяет актуальный вызов и переводит статус в `'initial'`.
+  - `handler(...args): Promise<R>` — обёртка над исходной функцией;
+  - `status` — флаги `isPending`, `isSuccess`, `isError` и `error` (только при ошибке);
+  - `abort()` — отменяет актуальный вызов и переводит статус в `'initial'`.
 
 ---
 
@@ -39,12 +39,12 @@ type SaveButtonProps = {
 
 export function SaveButton(props: SaveButtonProps) {
   const { save } = props;
-  
+
   const { handler: onSave, status, abort } = useAsyncCallback(save);
 
   return (
     <>
-      <button onClick={() => onSave()} disabled={status.isPending}> 
+      <button onClick={() => onSave()} disabled={status.isPending}>
         {status.isPending ? 'Saving…' : 'Save'}
       </button>
 
@@ -54,7 +54,9 @@ export function SaveButton(props: SaveButtonProps) {
 
       {/* При необходимости дать пользователю отмену */}
       {status.isPending && (
-        <button onClick={abort} type="button">Cancel</button>
+        <button onClick={abort} type="button">
+          Cancel
+        </button>
       )}
     </>
   );
@@ -79,7 +81,11 @@ import { ChangeEventHandler } from 'react';
 import { useAsyncCallback } from '@webeach/react-hooks/useAsyncCallback';
 
 export function SearchBox() {
-  const {handler: load, status, abort} = useAsyncCallback(async (q: string) => {
+  const {
+    handler: load,
+    status,
+    abort,
+  } = useAsyncCallback(async (q: string) => {
     const response = await fetch(`/api/search?q=${encodeURIComponent(q)}`);
 
     if (!response.ok) {
@@ -90,13 +96,13 @@ export function SearchBox() {
   });
 
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    abort();                   // отменяем прошлый запрос логически
+    abort(); // отменяем прошлый запрос логически
     void load(event.target.value); // запускаем новый
   };
 
   return (
     <div>
-      <input onChange={handleInputChange} placeholder="Search…"/>
+      <input onChange={handleInputChange} placeholder="Search…" />
       {status.isPending && <span>Loading…</span>}
       {status.isError && <span role="alert">{status.error?.message}</span>}
     </div>
@@ -165,16 +171,16 @@ export function SearchBox() {
 **Экспортируемые типы**
 
 - `UseAsyncCallbackReturn<Args, ReturnType>`
-   - Гибридный тип результата: кортеж `[handler, status, abort]` **и** объект `{ handler, status, abort }`.
+  - Гибридный тип результата: кортеж `[handler, status, abort]` **и** объект `{ handler, status, abort }`.
 
 - `UseAsyncCallbackReturnObject<Args, ReturnType>`
-   - Объектная форма результата с полями `handler`, `status`, `abort`.
+  - Объектная форма результата с полями `handler`, `status`, `abort`.
 
 - `UseAsyncCallbackReturnTuple<Args, ReturnType>`
-   - Кортежная форма: `[handler: (...args: Args) => Promise<R>, status: StatusStateMapTuple & StatusStateMap, abort: () => void]`.
+  - Кортежная форма: `[handler: (...args: Args) => Promise<R>, status: StatusStateMapTuple & StatusStateMap, abort: () => void]`.
 
 - `UseAsyncCallbackAbortHandler`
-   - Сигнатура функции отмены: `() => void`.
+  - Сигнатура функции отмены: `() => void`.
 
 ---
 

@@ -10,7 +10,7 @@ export function storageDefaultDeserializer<Value>(
     if ('_' in value) {
       return value._;
     }
-  } catch (_error: unknown) {
+  } catch {
     if (__DEVELOPMENT__) {
       console.error(
         `[useStorage] with key "${key}" error. Invalid deserializeValue to JSON: "${rawValue}"`,

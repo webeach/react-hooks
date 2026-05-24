@@ -14,7 +14,12 @@
 // 1) Без начального значения
 function useRefState<ValueType = undefined>(): readonly [
   stateRef: React.RefObject<ValueType | undefined>,
-  setRefState: (value: ValueType | ((prev: ValueType | undefined) => ValueType | undefined) | undefined) => void,
+  setRefState: (
+    value:
+      | ValueType
+      | ((prev: ValueType | undefined) => ValueType | undefined)
+      | undefined,
+  ) => void,
   actions: { disableUpdate(): void; enableUpdate(forceUpdate?: boolean): void },
 ];
 
@@ -30,13 +35,13 @@ function useRefState<ValueType>(
 ```
 
 - **Параметры**
-   - `initialValue` — начальное значение или ленивая функция‑инициализатор.
-   - `initialUpdatable` — включить ли перерисовки **сразу** (по умолчанию `false`).
+  - `initialValue` — начальное значение или ленивая функция‑инициализатор.
+  - `initialUpdatable` — включить ли перерисовки **сразу** (по умолчанию `false`).
 
 - **Возвращает**: кортеж
-   - `stateRef` — `ref`, в `stateRef.current` хранится **актуальное** значение.
-   - `setRefState(next)` — обновляет `stateRef.current`. При включённой реактивности вызывает ререндер.
-   - `actions` — `{ disableUpdate(), enableUpdate(forceUpdate?) }` для управления реактивностью.
+  - `stateRef` — `ref`, в `stateRef.current` хранится **актуальное** значение.
+  - `setRefState(next)` — обновляет `stateRef.current`. При включённой реактивности вызывает ререндер.
+  - `actions` — `{ disableUpdate(), enableUpdate(forceUpdate?) }` для управления реактивностью.
 
 ---
 
@@ -123,15 +128,15 @@ export function Stopwatch() {
 **Экспортируемые типы**
 
 - `UseRefStateActions`
-   - Методы управления реактивностью:
-      - `disableUpdate(): void` — отключает обновления состояния.
-      - `enableUpdate(forceUpdate?: boolean): void` — включает обновления, при `forceUpdate: true` принудительно вызывает ререндер.
+  - Методы управления реактивностью:
+    - `disableUpdate(): void` — отключает обновления состояния.
+    - `enableUpdate(forceUpdate?: boolean): void` — включает обновления, при `forceUpdate: true` принудительно вызывает ререндер.
 
 - `UseRefStateDispatch<ValueType>`
-   - Функциональный апдейтер: `(prevState: ValueType) => ValueType`.
+  - Функциональный апдейтер: `(prevState: ValueType) => ValueType`.
 
 - `UseRefStateReturn<ValueType>`
-   - Кортеж: `[stateRef: MutableRefObject<ValueType>, setRefState: (value: ValueType | UseRefStateDispatch<ValueType>) => void, actions: UseRefStateActions]`.
+  - Кортеж: `[stateRef: MutableRefObject<ValueType>, setRefState: (value: ValueType | UseRefStateDispatch<ValueType>) => void, actions: UseRefStateActions]`.
 
 ---
 

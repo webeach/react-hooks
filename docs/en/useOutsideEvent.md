@@ -20,9 +20,9 @@ function useOutsideEvent<
 ```
 
 - **Parameters**
-   - `ref` — a ref to the target DOM element for which you want to detect **outside** events.
-   - `eventType` — a DOM event type, e.g. `'click' | 'mousedown' | 'pointerdown' | 'touchstart'`, etc.
-   - `handler` — a callback fired **only when the event happened outside** of `ref.current`.
+  - `ref` — a ref to the target DOM element for which you want to detect **outside** events.
+  - `eventType` — a DOM event type, e.g. `'click' | 'mousedown' | 'pointerdown' | 'touchstart'`, etc.
+  - `handler` — a callback fired **only when the event happened outside** of `ref.current`.
 
 - **Returns**: `void`.
 
@@ -31,6 +31,7 @@ function useOutsideEvent<
 ## Examples
 
 ### 1) Close a dropdown on outside click
+
 ```tsx
 const ref = useRef<HTMLDivElement>(null);
 const [open, setOpen] = useState(false);
@@ -41,13 +42,17 @@ return (
   <div>
     <button onClick={() => setOpen((v) => !v)}>Toggle</button>
     {open && (
-      <div ref={ref} role="menu"> ... </div>
+      <div ref={ref} role="menu">
+        {' '}
+        ...{' '}
+      </div>
     )}
   </div>
 );
 ```
 
 ### 2) React to “early” interactions
+
 ```tsx
 // Fires at press time, before `click`
 useOutsideEvent(ref, 'mousedown', onOutsidePress);
@@ -56,6 +61,7 @@ useOutsideEvent(ref, 'touchstart', onOutsideTouch);
 ```
 
 ### 3) Multiple event types
+
 ```tsx
 useOutsideEvent(ref, 'pointerdown', onOutside);
 useOutsideEvent(ref, 'keydown', (e) => {
@@ -120,11 +126,11 @@ useOutsideEvent(ref, 'keydown', (e) => {
 **Exported types**
 
 - `UseOutsideEventHandler<EventType extends UseOutsideEventType = UseOutsideEventType>`
-   - Callback fired when the specified DOM event occurs: `(event: GlobalEventHandlersEventMap[EventType]) => void`.
+  - Callback fired when the specified DOM event occurs: `(event: GlobalEventHandlersEventMap[EventType]) => void`.
 
 - `UseOutsideEventType`
-   - A union of all standard DOM event names (`keyof GlobalEventHandlersEventMap`).
-   - Restricts which events can be used with `useOutsideEvent`.
+  - A union of all standard DOM event names (`keyof GlobalEventHandlersEventMap`).
+  - Restricts which events can be used with `useOutsideEvent`.
 
 ---
 

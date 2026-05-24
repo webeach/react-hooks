@@ -35,7 +35,7 @@ export type SaveButtonProps = {
 
 export function SaveButton(props: SaveButtonProps) {
   const { save } = props;
-  
+
   const status = useStatus();
 
   const handleClick = async () => {
@@ -141,18 +141,18 @@ status.setStatus('success');
 **Экспортируемые типы**
 
 - `UseStatusReturn`
-   - Объединяет статусные флаги, возможную ошибку и методы управления.
-   - Поля:
-      - `isPending: boolean` — `true`, если статус в процессе выполнения.
-      - `isSuccess: boolean` — `true`, если операция завершилась успешно.
-      - `isError: boolean` — `true`, если произошла ошибка.
-      - `error: ErrorLike | null` — объект ошибки (только если `isError: true`).
-   - Методы:
-      - `reset(): void` — сбрасывает статус в `'initial'`.
-      - `setError(error?: ErrorLike | null): void` — переводит в `'error'` и сохраняет ошибку.
-      - `setPending(): void` — переводит в `'pending'`.
-      - `setSuccess(): void` — переводит в `'success'`.
-      - `setStatus(status: Status): void` — устанавливает статус напрямую.
+  - Объединяет статусные флаги, возможную ошибку и методы управления.
+  - Поля:
+    - `isPending: boolean` — `true`, если статус в процессе выполнения.
+    - `isSuccess: boolean` — `true`, если операция завершилась успешно.
+    - `isError: boolean` — `true`, если произошла ошибка.
+    - `error: ErrorLike | null` — объект ошибки (только если `isError: true`).
+  - Методы:
+    - `reset(): void` — сбрасывает статус в `'initial'`.
+    - `setError(error?: ErrorLike | null): void` — переводит в `'error'` и сохраняет ошибку.
+    - `setPending(): void` — переводит в `'pending'`.
+    - `setSuccess(): void` — переводит в `'success'`.
+    - `setStatus(status: Status): void` — устанавливает статус напрямую.
 
 ---
 

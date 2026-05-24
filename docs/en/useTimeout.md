@@ -5,6 +5,7 @@
 `useTimeout` starts a one‑shot timer and returns the **completion flag**.
 
 Supports two call forms:
+
 - **duration only** (in milliseconds);
 - **callback + duration**.
 
@@ -23,13 +24,13 @@ function useTimeout(callback: UseTimeoutCallback, ms: number): UseTimeoutReturn;
 ```
 
 - **Parameters**
-   - `ms` — timeout duration in milliseconds.
-   - `callback` *(optional)* — a function invoked after the timeout completes. Receives the **actual elapsed time** in milliseconds.
+  - `ms` — timeout duration in milliseconds.
+  - `callback` _(optional)_ — a function invoked after the timeout completes. Receives the **actual elapsed time** in milliseconds.
 
 - **Returns**
-   - A hybrid structure accessible as:
-      - Tuple: `[isDone]`
-      - Object: `{ isDone }`
+  - A hybrid structure accessible as:
+    - Tuple: `[isDone]`
+    - Object: `{ isDone }`
 
 ---
 
@@ -102,17 +103,17 @@ function Example() {
 **Exported types**
 
 - `UseTimeoutCallback`
-   - Callback invoked after the timeout completes: `(actualTime: number) => void`.
-    - `actualTime` — the **actual** time (ms) elapsed since start.
+  - Callback invoked after the timeout completes: `(actualTime: number) => void`.
+  - `actualTime` — the **actual** time (ms) elapsed since start.
 
 - `UseTimeoutReturn`
-   - Hybrid: tuple `[isDone]` **and** object `{ isDone }`.
+  - Hybrid: tuple `[isDone]` **and** object `{ isDone }`.
 
 - `UseTimeoutReturnObject`
-   - Object form: `{ isDone: boolean }`.
+  - Object form: `{ isDone: boolean }`.
 
 - `UseTimeoutReturnTuple`
-   - Tuple form: `[isDone: boolean]`.
+  - Tuple form: `[isDone: boolean]`.
 
 ---
 

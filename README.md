@@ -33,13 +33,9 @@
 npm install @webeach/react-hooks
 ```
 
-or
-
 ```bash
 pnpm install @webeach/react-hooks
 ```
-
-or
 
 ```bash
 yarn add @webeach/react-hooks
@@ -49,29 +45,21 @@ yarn add @webeach/react-hooks
 
 ## 📥 Import
 
-**ES Modules**
-
 ```ts
 import { useBoolean } from '@webeach/react-hooks/useBoolean';
 import { useEffectCompare } from '@webeach/react-hooks/useEffectCompare';
 import { useWindowEvent } from '@webeach/react-hooks/useWindowEvent';
 
 // or
-import { useBoolean, useEffectCompare, useWindowEvent } from '@webeach/react-hooks';
-```
-
-**CommonJS**
-
-```ts
-const { useBoolean } = require('@webeach/react-hooks/useBoolean');
-const { useEffectCompare } = require('@webeach/react-hooks/useEffectCompare');
-const { useWindowEvent } = require('@webeach/react-hooks/useWindowEvent');
-
-// or
-const { useBoolean, useEffectCompare, useWindowEvent } = require('@webeach/react-hooks');
+import {
+  useBoolean,
+  useEffectCompare,
+  useWindowEvent,
+} from '@webeach/react-hooks';
 ```
 
 ### 🌿 Tree‑shaking
+
 - Every hook is available as an **individual module path** (`@webeach/react-hooks/useX`). Importing this way pulls **only the code you need** — the most predictable and compact option for any bundler (ESM and CJS).
 - Named import from the package root (`@webeach/react-hooks`) supports tree‑shaking in bundlers that optimize **ES modules** (Vite/Rollup/esbuild/Webpack 5 in production). Unused exports will be removed at build time.
 - For **CommonJS** projects, we recommend per‑module imports (`require('@webeach/react-hooks/useX')`) to avoid pulling extra code through the index.
@@ -82,55 +70,56 @@ const { useBoolean, useEffectCompare, useWindowEvent } = require('@webeach/react
 
 ### Alphabetical
 
-+ [useAsyncCallback](./docs/en/useAsyncCallback.md)
-+ [useAsyncHandler](./docs/en/useAsyncHandler.md)
-+ [useBoolean](./docs/en/useBoolean.md)
-+ [useCallbackCompare](./docs/en/useCallbackCompare.md)
-+ [useCollection](./docs/en/useCollection.md)
-+ [useControlled](./docs/en/useControlled.md)
-+ [useDebounceCallback](./docs/en/useDebounceCallback.md)
-+ [useDebounceState](./docs/en/useDebounceState.md)
-+ [useDemandStructure](./docs/en/useDemandStructure.md)
-+ [useDeps](./docs/en/useDeps.md)
-+ [useDOMEvent](./docs/en/useDOMEvent.md)
-+ [useEffectCompare](./docs/en/useEffectCompare.md)
-+ [useForceUpdate](./docs/en/useForceUpdate.md)
-+ [useFrame](./docs/en/useFrame.md)
-+ [useFrameExtended](./docs/en/useFrameExtended.md)
-+ [useImageLoader](./docs/en/useImageLoader.md)
-+ [useIntersectionObserver](./docs/en/useIntersectionObserver.md)
-+ [useIsomorphicLayoutEffect](./docs/en/useIsomorphicLayoutEffect.md)
-+ [useLayoutEffectCompare](./docs/en/useLayoutEffectCompare.md)
-+ [useLiveRef](./docs/en/useLiveRef.md)
-+ [useLocalStorage](./docs/en/useLocalStorage.md)
-+ [useLoop](./docs/en/useLoop.md)
-+ [useMap](./docs/en/useMap.md)
-+ [useMediaQuery](./docs/en/useMediaQuery.md)
-+ [useMemoCompare](./docs/en/useMemoCompare.md)
-+ [useNumber](./docs/en/useNumber.md)
-+ [useOutsideEvent](./docs/en/useOutsideEvent.md)
-+ [usePageTitle](./docs/en/usePageTitle.md)
-+ [usePageVisibility](./docs/en/usePageVisibility.md)
-+ [usePatchDeepState](./docs/en/usePatchDeepState.md)
-+ [usePatchState](./docs/en/usePatchState.md)
-+ [useRefEffect](./docs/en/useRefEffect.md)
-+ [useRefState](./docs/en/useRefState.md)
-+ [useResizeObserver](./docs/en/useResizeObserver.md)
-+ [useSessionStorage](./docs/en/useSessionStorage.md)
-+ [useSet](./docs/en/useSet.md)
-+ [useStatus](./docs/en/useStatus.md)
-+ [useThrottleCallback](./docs/en/useThrottleCallback.md)
-+ [useThrottleState](./docs/en/useThrottleState.md)
-+ [useTimeout](./docs/en/useTimeout.md)
-+ [useTimeoutExtended](./docs/en/useTimeoutExtended.md)
-+ [useToggle](./docs/en/useToggle.md)
-+ [useUnmount](./docs/en/useUnmount.md)
-+ [useViewportBreakpoint](./docs/en/useViewportBreakpoint.md)
-+ [useWindowEvent](./docs/en/useWindowEvent.md)
+- [useAsyncCallback](./docs/en/useAsyncCallback.md)
+- [useAsyncHandler](./docs/en/useAsyncHandler.md)
+- [useBoolean](./docs/en/useBoolean.md)
+- [useCallbackCompare](./docs/en/useCallbackCompare.md)
+- [useCollection](./docs/en/useCollection.md)
+- [useControlled](./docs/en/useControlled.md)
+- [useDebounceCallback](./docs/en/useDebounceCallback.md)
+- [useDebounceState](./docs/en/useDebounceState.md)
+- [useDemandStructure](./docs/en/useDemandStructure.md)
+- [useDeps](./docs/en/useDeps.md)
+- [useDOMEvent](./docs/en/useDOMEvent.md)
+- [useEffectCompare](./docs/en/useEffectCompare.md)
+- [useForceUpdate](./docs/en/useForceUpdate.md)
+- [useFrame](./docs/en/useFrame.md)
+- [useFrameExtended](./docs/en/useFrameExtended.md)
+- [useImageLoader](./docs/en/useImageLoader.md)
+- [useIntersectionObserver](./docs/en/useIntersectionObserver.md)
+- [useIsomorphicLayoutEffect](./docs/en/useIsomorphicLayoutEffect.md)
+- [useLayoutEffectCompare](./docs/en/useLayoutEffectCompare.md)
+- [useLiveRef](./docs/en/useLiveRef.md)
+- [useLocalStorage](./docs/en/useLocalStorage.md)
+- [useLoop](./docs/en/useLoop.md)
+- [useMap](./docs/en/useMap.md)
+- [useMediaQuery](./docs/en/useMediaQuery.md)
+- [useMemoCompare](./docs/en/useMemoCompare.md)
+- [useNumber](./docs/en/useNumber.md)
+- [useOutsideEvent](./docs/en/useOutsideEvent.md)
+- [usePageTitle](./docs/en/usePageTitle.md)
+- [usePageVisibility](./docs/en/usePageVisibility.md)
+- [usePatchDeepState](./docs/en/usePatchDeepState.md)
+- [usePatchState](./docs/en/usePatchState.md)
+- [useRefEffect](./docs/en/useRefEffect.md)
+- [useRefState](./docs/en/useRefState.md)
+- [useResizeObserver](./docs/en/useResizeObserver.md)
+- [useSessionStorage](./docs/en/useSessionStorage.md)
+- [useSet](./docs/en/useSet.md)
+- [useStatus](./docs/en/useStatus.md)
+- [useThrottleCallback](./docs/en/useThrottleCallback.md)
+- [useThrottleState](./docs/en/useThrottleState.md)
+- [useTimeout](./docs/en/useTimeout.md)
+- [useTimeoutExtended](./docs/en/useTimeoutExtended.md)
+- [useToggle](./docs/en/useToggle.md)
+- [useUnmount](./docs/en/useUnmount.md)
+- [useViewportBreakpoint](./docs/en/useViewportBreakpoint.md)
+- [useWindowEvent](./docs/en/useWindowEvent.md)
 
 ### By category
 
 #### State — simple primitives
+
 - [useControlled](./docs/en/useControlled.md)
 - [useBoolean](./docs/en/useBoolean.md)
 - [useNumber](./docs/en/useNumber.md)
@@ -138,19 +127,23 @@ const { useBoolean, useEffectCompare, useWindowEvent } = require('@webeach/react
 - [useStatus](./docs/en/useStatus.md)
 
 #### State — object patterns
+
 - [usePatchDeepState](./docs/en/usePatchDeepState.md)
 - [usePatchState](./docs/en/usePatchState.md)
 
 #### State — collections
+
 - [useCollection](./docs/en/useCollection.md)
 - [useMap](./docs/en/useMap.md)
 - [useSet](./docs/en/useSet.md)
 
 #### State — storage (persistence)
+
 - [useLocalStorage](./docs/en/useLocalStorage.md)
 - [useSessionStorage](./docs/en/useSessionStorage.md)
 
 #### Timers, loops & frames
+
 - [useFrame](./docs/en/useFrame.md)
 - [useFrameExtended](./docs/en/useFrameExtended.md)
 - [useLoop](./docs/en/useLoop.md)
@@ -158,17 +151,20 @@ const { useBoolean, useEffectCompare, useWindowEvent } = require('@webeach/react
 - [useTimeoutExtended](./docs/en/useTimeoutExtended.md)
 
 #### Rate limiting (throttle/debounce)
+
 - [useDebounceCallback](./docs/en/useDebounceCallback.md)
 - [useDebounceState](./docs/en/useDebounceState.md)
 - [useThrottleCallback](./docs/en/useThrottleCallback.md)
 - [useThrottleState](./docs/en/useThrottleState.md)
 
 #### Async operations
+
 - [useAsyncCallback](./docs/en/useAsyncCallback.md)
 - [useAsyncHandler](./docs/en/useAsyncHandler.md)
 - [useImageLoader](./docs/en/useImageLoader.md)
 
 #### Dependency optimization
+
 - [useDeps](./docs/en/useDeps.md)
 - [useCallbackCompare](./docs/en/useCallbackCompare.md)
 - [useEffectCompare](./docs/en/useEffectCompare.md)
@@ -177,30 +173,36 @@ const { useBoolean, useEffectCompare, useWindowEvent } = require('@webeach/react
 - [useIsomorphicLayoutEffect](./docs/en/useIsomorphicLayoutEffect.md)
 
 #### Lifecycle
+
 - [useEffectCompare](./docs/en/useEffectCompare.md)
 - [useLayoutEffectCompare](./docs/en/useLayoutEffectCompare.md)
 - [useUnmount](./docs/en/useUnmount.md)
 
 #### Refs
+
 - [useLiveRef](./docs/en/useLiveRef.md)
 - [useRefEffect](./docs/en/useRefEffect.md)
 
 #### Events
+
 - [useDOMEvent](./docs/en/useDOMEvent.md)
 - [useWindowEvent](./docs/en/useWindowEvent.md)
 - [useOutsideEvent](./docs/en/useOutsideEvent.md)
 
 #### Observers
+
 - [useIntersectionObserver](./docs/en/useIntersectionObserver.md)
 - [useResizeObserver](./docs/en/useResizeObserver.md)
 
 #### Page & document
+
 - [useMediaQuery](./docs/en/useMediaQuery.md)
 - [usePageTitle](./docs/en/usePageTitle.md)
 - [usePageVisibility](./docs/en/usePageVisibility.md)
 - [useViewportBreakpoint](./docs/en/useViewportBreakpoint.md)
 
 #### Utilities
+
 - [useDemandStructure](./docs/en/useDemandStructure.md)
 - [useForceUpdate](./docs/en/useForceUpdate.md)
 - [useRefState](./docs/en/useRefState.md)
@@ -224,9 +226,11 @@ Before publishing a new version, make sure that:
 
 1. All changes are committed and pushed to `main`.
 2. Commit messages follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/):
-  - `feat: ...` — new features
-  - `fix: ...` — bug fixes
-  - `chore: ...`, `refactor: ...`, etc. — as needed
+
+- `feat: ...` — new features
+- `fix: ...` — bug fixes
+- `chore: ...`, `refactor: ...`, etc. — as needed
+
 3. The next version (`patch`, `minor`, `major`) is derived automatically from the commit types.
 
 ---

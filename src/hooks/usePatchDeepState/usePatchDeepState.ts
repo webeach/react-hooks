@@ -3,7 +3,6 @@ import { useCallback, useState } from 'react';
 import { isFunction } from '../../functions/isFunction';
 import { objectDeepMerge } from '../../functions/objectDeepMerge/objectDeepMerge';
 import { PlainObject } from '../../types/common';
-
 import { UsePatchDeepStateFunction } from './types';
 
 /**

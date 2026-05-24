@@ -4,7 +4,6 @@ import { useDemandStructure } from '../useDemandStructure';
 import { useLiveRef } from '../useLiveRef';
 import { useRefState } from '../useRefState';
 import { useUnmount } from '../useUnmount';
-
 import {
   UseTimeoutExtendedCallback,
   UseTimeoutExtendedReturn,

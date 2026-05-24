@@ -17,12 +17,12 @@ function usePatchDeepState<ObjectType extends PlainObject>(
 ```
 
 - **Parameters**
-   - `initialState` — initial state object or a lazy initializer function.
+  - `initialState` — initial state object or a lazy initializer function.
 
 - **Returns**
-   - Tuple `[state, patch]`:
-      - `state: ObjectType` — current state;
-      - `patch(partial | updater): void` — deep patch of the state (see Behavior).
+  - Tuple `[state, patch]`:
+    - `state: ObjectType` — current state;
+    - `patch(partial | updater): void` — deep patch of the state (see Behavior).
 
 ---
 
@@ -44,7 +44,7 @@ export function Profile() {
       name: 'Alice',
       meta: {
         age: 25,
-      }
+      },
     },
     ui: {
       theme: {
@@ -84,7 +84,10 @@ export function Profile() {
 ```tsx
 import { usePatchDeepState } from '@webeach/react-hooks/usePatchDeepState';
 
-type Basket = { items: Array<{ id: string; qty: number }>; meta: { total: number } };
+type Basket = {
+  items: Array<{ id: string; qty: number }>;
+  meta: { total: number };
+};
 
 export function Cart() {
   const [state, patch] = usePatchDeepState<Basket>(() => ({
@@ -105,7 +108,9 @@ export function Cart() {
 
   const increment = (id: string) => {
     patch((prev) => ({
-      items: prev.items.map((x) => (x.id === id ? { ...x, qty: x.qty + 1 } : x)),
+      items: prev.items.map((x) =>
+        x.id === id ? { ...x, qty: x.qty + 1 } : x,
+      ),
       meta: {
         total: prev.meta.total + 1,
       },
@@ -138,7 +143,7 @@ type SettingsSyncProps = {
 
 export function SettingsSync(props: SettingsSyncProps) {
   const { fetchPatch } = props;
-  
+
   const [settings, patch] = usePatchDeepState<Settings>({
     flags: { beta: false, analytics: true },
     profile: { name: 'Anon', contacts: {} },
@@ -227,11 +232,11 @@ export function SettingsSync(props: SettingsSyncProps) {
 **Exported types**
 
 - `UsePatchDeepStateFunction<ObjectType extends PlainObject = PlainObject>`
-   - Function for deep‑updating an object state.
-   - Accepts:
-      - Partial object: `Partial<ObjectType>`.
-      - Or functional updater: `(currentState: ObjectType) => Partial<ObjectType>`.
-   - Returns `void`.
+  - Function for deep‑updating an object state.
+  - Accepts:
+    - Partial object: `Partial<ObjectType>`.
+    - Or functional updater: `(currentState: ObjectType) => Partial<ObjectType>`.
+  - Returns `void`.
 
 ---
 

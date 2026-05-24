@@ -34,13 +34,13 @@ function useEffectCompare(
 ```
 
 - **Parameters**
-   - `effect` — the effect function; may return a cleanup function (same as in `useEffect`).
-   - `deps` — dependency array; compared **shallowly** by index (`===`).
-   - `compare` — a function that returns `true` if values are considered **equal** (no change) and `false` if they **differ** (change detected).
-   - `comparedValue` — a value passed into the custom comparator.
+  - `effect` — the effect function; may return a cleanup function (same as in `useEffect`).
+  - `deps` — dependency array; compared **shallowly** by index (`===`).
+  - `compare` — a function that returns `true` if values are considered **equal** (no change) and `false` if they **differ** (change detected).
+  - `comparedValue` — a value passed into the custom comparator.
 
 - **Returns**
-   - `void` — just like `useEffect`.
+  - `void` — just like `useEffect`.
 
 ---
 
@@ -51,7 +51,15 @@ function useEffectCompare(
 ```tsx
 import { useEffectCompare } from '@webeach/react-hooks/useEffectCompare';
 
-function Search({ query, page, pageSize }: { query: string; page: number; pageSize: number }) {
+function Search({
+  query,
+  page,
+  pageSize,
+}: {
+  query: string;
+  page: number;
+  pageSize: number;
+}) {
   useEffectCompare(() => {
     // Runs only if query/page/pageSize actually changed in value
     fetchResults({ query, page, pageSize });

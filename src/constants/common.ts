@@ -1,7 +1,7 @@
 export const __DEVELOPMENT__ = (() => {
   try {
     return process.env.NODE_ENV !== 'production';
-  } catch (_error) {
+  } catch {
     return false;
   }
 })();

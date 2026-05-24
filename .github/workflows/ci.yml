@@ -1,4 +1,4 @@
-name: Build and publish package
+name: CI
 
 on:
   pull_request:
@@ -9,10 +9,6 @@ on:
       - main
       - next
 
-env:
-  NODE_VERSION: 22
-  PNPM_VERSION: 10
-
 jobs:
   commitlint:
     name: Commit Lint
@@ -22,6 +18,7 @@ jobs:
       - uses: wagoid/commitlint-github-action@v6
         with:
           configFile: .commitlintrc.json
+
   lint:
     name: Lint
     runs-on: ubuntu-latest
@@ -31,27 +28,28 @@ jobs:
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
 
-      - name: Setup node ${{ env.NODE_VERSION }}
+      - name: Setup Node
         uses: actions/setup-node@v6
         with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'pnpm'
+          node-version-file: .nvmrc
+          cache: pnpm
 
       - name: Install dependencies
         run: pnpm install
 
-      - name: Run lint with ESLint
-        run: pnpm run lint
+      - name: Lint (oxlint)
+        run: pnpm lint
 
-      - name: Run lint with TypeScript
-        run: pnpm run lint:types
+      - name: Format check (oxfmt)
+        run: pnpm fmt:check
+
+      - name: Type check
+        run: pnpm typecheck
 
   test:
     name: Test
-    needs: [ commitlint, lint ]
+    needs: [commitlint, lint]
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -59,26 +57,24 @@ jobs:
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
 
-      - name: Setup node ${{ env.NODE_VERSION }}
+      - name: Setup Node
         uses: actions/setup-node@v6
         with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'pnpm'
+          node-version-file: .nvmrc
+          cache: pnpm
 
       - name: Install dependencies
         run: pnpm install
 
       - name: Run tests
-        run: pnpm run test
+        run: pnpm test
 
   publish:
-    name: Build and publish
+    name: Publish
     if: |
       github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/next')
-    needs: [ commitlint, lint, test ]
+    needs: [commitlint, lint, test]
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -91,23 +87,22 @@ jobs:
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
 
-      - name: Setup node ${{ env.NODE_VERSION }}
+      - name: Setup Node
         uses: actions/setup-node@v6
         with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'pnpm'
+          node-version-file: .nvmrc
+          cache: pnpm
 
       - name: Install dependencies
         run: pnpm install
 
-      - name: Run build
+      - name: Build
         run: pnpm build
 
       - name: Release
         run: pnpm release
         env:
+          GITHUB_TOKEN: ${{ secrets.WEBEACH_GITHUB_RELEASE_TOKEN }}
           GH_TOKEN: ${{ secrets.WEBEACH_GITHUB_RELEASE_TOKEN }}
           NPM_TOKEN: ${{ secrets.WEBEACH_NPM_PUBLISH_TOKEN }}

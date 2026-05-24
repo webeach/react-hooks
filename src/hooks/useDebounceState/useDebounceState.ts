@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 import { useDebounceCallback } from '../useDebounceCallback';
-
 import { UseDebounceStateReturn } from './types';
 
 /**

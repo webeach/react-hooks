@@ -36,13 +36,13 @@ function useLayoutEffectCompare(
 ```
 
 - **Parameters**
-   - `effect` — the layout‑effect function; may return a cleanup function.
-   - `deps` — a dependencies array; compared **shallowly** by index (`===`).
-   - `compare` — a comparator function that must return `true` when values are **equal** (no change) and `false` when they **differ** (there is a change).
-   - `comparedValue` — the value to be compared by the custom comparator.
+  - `effect` — the layout‑effect function; may return a cleanup function.
+  - `deps` — a dependencies array; compared **shallowly** by index (`===`).
+  - `compare` — a comparator function that must return `true` when values are **equal** (no change) and `false` when they **differ** (there is a change).
+  - `comparedValue` — the value to be compared by the custom comparator.
 
 - **Returns**
-   - `void` — same as regular effects.
+  - `void` — same as regular effects.
 
 ---
 
@@ -76,7 +76,8 @@ function ResizeConsumer({ size }: { size: Size }) {
     () => {
       applySize(size);
     },
-    (prev, next) => prev?.width === next?.width && prev?.height === next?.height,
+    (prev, next) =>
+      prev?.width === next?.width && prev?.height === next?.height,
     size,
   );
 

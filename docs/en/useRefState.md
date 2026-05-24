@@ -35,13 +35,13 @@ function useRefState<ValueType>(
 ```
 
 - **Parameters**
-   - `initialValue` — the initial value or a lazy initializer function.
-   - `initialUpdatable` — whether to enable re-renders **immediately** (default `false`).
+  - `initialValue` — the initial value or a lazy initializer function.
+  - `initialUpdatable` — whether to enable re-renders **immediately** (default `false`).
 
 - **Returns**: tuple
-   - `stateRef` — a ref whose `stateRef.current` holds the **latest** value.
-   - `setRefState(next)` — updates `stateRef.current`. When reactivity is enabled, triggers a re-render.
-   - `actions` — `{ disableUpdate(), enableUpdate(forceUpdate?) }` for toggling reactivity.
+  - `stateRef` — a ref whose `stateRef.current` holds the **latest** value.
+  - `setRefState(next)` — updates `stateRef.current`. When reactivity is enabled, triggers a re-render.
+  - `actions` — `{ disableUpdate(), enableUpdate(forceUpdate?) }` for toggling reactivity.
 
 ---
 
@@ -130,15 +130,15 @@ export function Stopwatch() {
 **Exported types**
 
 - `UseRefStateActions`
-   - Methods to control reactivity:
-      - `disableUpdate(): void` — turns off updates (no re-renders on future `setRefState`).
-      - `enableUpdate(forceUpdate?: boolean): void` — turns on updates; with `forceUpdate: true` triggers an immediate re-render if needed.
+  - Methods to control reactivity:
+    - `disableUpdate(): void` — turns off updates (no re-renders on future `setRefState`).
+    - `enableUpdate(forceUpdate?: boolean): void` — turns on updates; with `forceUpdate: true` triggers an immediate re-render if needed.
 
 - `UseRefStateDispatch<ValueType>`
-   - Functional updater: `(prevState: ValueType) => ValueType`.
+  - Functional updater: `(prevState: ValueType) => ValueType`.
 
 - `UseRefStateReturn<ValueType>`
-   - Tuple: `[stateRef: MutableRefObject<ValueType>, setRefState: (value: ValueType | UseRefStateDispatch<ValueType>) => void, actions: UseRefStateActions]`.
+  - Tuple: `[stateRef: MutableRefObject<ValueType>, setRefState: (value: ValueType | UseRefStateDispatch<ValueType>) => void, actions: UseRefStateActions]`.
 
 ---
 

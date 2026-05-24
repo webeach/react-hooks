@@ -1,5 +1,4 @@
 import { shallowCompareObjects } from '../../functions/shallowCompareObjects';
-
 import { UseMediaQueryRule, UseMediaQueryType } from './types';
 
 /**

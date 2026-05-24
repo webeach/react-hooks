@@ -5,7 +5,7 @@
 `useIntersectionObserver` is a hook for observing a DOM element’s visibility via the native `IntersectionObserver`.
 It subscribes to the element from `ref`, can invoke a **callback** on each change, and exposes a **lazily‑activated** `currentEntry` field with the observer’s latest record.
 
-The hook returns a *hybrid* structure: you can destructure it as a **tuple** (`[currentEntry]`) or as an **object** (`{ currentEntry }`).
+The hook returns a _hybrid_ structure: you can destructure it as a **tuple** (`[currentEntry]`) or as an **object** (`{ currentEntry }`).
 
 ---
 
@@ -19,11 +19,11 @@ function useIntersectionObserver<ElementType extends Element | null>(
 ```
 
 - **Parameters**
-   - `ref` — a ref object to the element whose visibility should be tracked.
-   - `callback?` — a function called on each change; receives the current `IntersectionObserverEntry`.
+  - `ref` — a ref object to the element whose visibility should be tracked.
+  - `callback?` — a function called on each change; receives the current `IntersectionObserverEntry`.
 
 - **Returns**: `UseIntersectionObserverReturn`
-   - A hybrid object/tuple with `currentEntry: IntersectionObserverEntry | null` — the latest observer record (updated as changes occur; re-renders are **enabled after the first external access** to this field).
+  - A hybrid object/tuple with `currentEntry: IntersectionObserverEntry | null` — the latest observer record (updated as changes occur; re-renders are **enabled after the first external access** to this field).
 
 ---
 
@@ -45,7 +45,11 @@ export function Section() {
     }
   }, [currentEntry]);
 
-  return <div ref={ref} style={{ height: 300 }}>Section</div>;
+  return (
+    <div ref={ref} style={{ height: 300 }}>
+      Section
+    </div>
+  );
 }
 ```
 
@@ -151,16 +155,16 @@ export function LazyImage({ src, alt }: { src: string; alt: string }) {
 **Exported types**
 
 - `UseIntersectionObserverCallback`
-   - `(entry: IntersectionObserverEntry) => void`.
+  - `(entry: IntersectionObserverEntry) => void`.
 
 - `UseIntersectionObserverReturn`
-   - Hybrid: object `{ currentEntry: IntersectionObserverEntry | null }` **and** tuple `[currentEntry: IntersectionObserverEntry | null]`.
+  - Hybrid: object `{ currentEntry: IntersectionObserverEntry | null }` **and** tuple `[currentEntry: IntersectionObserverEntry | null]`.
 
 - `UseIntersectionObserverReturnObject`
-   - Object form: `{ currentEntry: IntersectionObserverEntry | null }`.
+  - Object form: `{ currentEntry: IntersectionObserverEntry | null }`.
 
 - `UseIntersectionObserverReturnTuple`
-   - Tuple form: `[currentEntry: IntersectionObserverEntry | null]`.
+  - Tuple form: `[currentEntry: IntersectionObserverEntry | null]`.
 
 ---
 

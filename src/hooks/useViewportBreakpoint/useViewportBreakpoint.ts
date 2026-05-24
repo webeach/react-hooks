@@ -7,16 +7,14 @@ import { useDemandStructure } from '../useDemandStructure';
 import { useIsomorphicLayoutEffect } from '../useIsomorphicLayoutEffect';
 import { useLiveRef } from '../useLiveRef';
 import { useMemoCompare } from '../useMemoCompare';
-
-import { buildBreakpointMediaQuery } from './utils/buildBreakpointMediaQuery';
-import { validateBreakpointEntry } from './utils/validateBreakpointEntry';
-
 import {
   BreakpointBaseKey,
   UseViewportBreakpointMatches,
   UseViewportBreakpointOptions,
   UseViewportBreakpointReturn,
 } from './types';
+import { buildBreakpointMediaQuery } from './utils/buildBreakpointMediaQuery';
+import { validateBreakpointEntry } from './utils/validateBreakpointEntry';
 
 const mediaQueryInstanceCacheMap = new Map<number, MediaQueryList>();
 

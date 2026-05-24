@@ -46,7 +46,7 @@ describe('useResizeObserver hook', () => {
   beforeAll(() => {
     vi.stubGlobal(
       'ResizeObserver',
-      vi.fn((callback) => {
+      vi.fn(function (callback: ResizeObserverCallback) {
         resizeObserverMock = new MockResizeObserver(callback);
         return resizeObserverMock;
       }),

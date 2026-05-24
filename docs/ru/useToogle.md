@@ -2,9 +2,10 @@
 
 ## Описание
 
-`useToggle` — хук для управления булевым состоянием с единым методом `toggle`. Возвращает *гибридную* структуру, поддерживающую **кортежную** и **объектную** деструктуризацию.
+`useToggle` — хук для управления булевым состоянием с единым методом `toggle`. Возвращает _гибридную_ структуру, поддерживающую **кортежную** и **объектную** деструктуризацию.
 
 Особенности `toggle`:
+
 - без аргументов — **переключает** текущее значение `true ⇄ false`;
 - с аргументом `true`/`false` — **принудительно устанавливает** переданное значение.
 
@@ -77,8 +78,8 @@ export function KeyboardControlled() {
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 't') toggle();      // переключить
-      if (e.key === '1') toggle(true);  // включить
+      if (e.key === 't') toggle(); // переключить
+      if (e.key === '1') toggle(true); // включить
       if (e.key === '0') toggle(false); // выключить
     };
     window.addEventListener('keydown', onKey);
@@ -140,18 +141,18 @@ export function KeyboardControlled() {
 **Экспортируемые типы**
 
 - `UseToggleFunction`
-   - Функция для обновления булевого состояния: `(force?: boolean) => void`.
-     - Без аргументов — инвертирует текущее значение.
-     - С `true` или `false` — устанавливает значение явно.
+  - Функция для обновления булевого состояния: `(force?: boolean) => void`.
+    - Без аргументов — инвертирует текущее значение.
+    - С `true` или `false` — устанавливает значение явно.
 
 - `UseToggleReturn`
-   - Гибрид: кортеж `[value, toggle]` **и** объект `{ value, toggle }`.
+  - Гибрид: кортеж `[value, toggle]` **и** объект `{ value, toggle }`.
 
 - `UseToggleReturnObject`
-   - Объектная форма: `{ value: boolean; toggle: UseToggleFunction }`.
+  - Объектная форма: `{ value: boolean; toggle: UseToggleFunction }`.
 
 - `UseToggleReturnTuple`
-   - Кортежная форма: `[value: boolean, toggle: UseToggleFunction]`.
+  - Кортежная форма: `[value: boolean, toggle: UseToggleFunction]`.
 
 ---
 

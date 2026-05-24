@@ -8,7 +8,6 @@ import { Status } from '../../types/status';
 import { useDemandStructure } from '../useDemandStructure';
 import { useLiveRef } from '../useLiveRef';
 import { useRefState } from '../useRefState';
-
 import { UseAsyncCallbackReturn } from './types';
 
 /**

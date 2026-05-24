@@ -2,7 +2,7 @@
 
 ## Description
 
-`useNumber` is a hook for managing **numeric state** with convenient methods: `setValue`, `increment`, `decrement`, `reset`. It returns a *hybrid* structure that supports both **tuple** and **object** destructuring.
+`useNumber` is a hook for managing **numeric state** with convenient methods: `setValue`, `increment`, `decrement`, `reset`. It returns a _hybrid_ structure that supports both **tuple** and **object** destructuring.
 
 ---
 
@@ -13,15 +13,15 @@ function useNumber(initialValue?: number): UseNumberReturn;
 ```
 
 - **Parameters**
-   - `initialValue?: number` — starting value; defaults to `0`.
+  - `initialValue?: number` — starting value; defaults to `0`.
 
 - **Returns**: `UseNumberReturn` — a hybrid structure with fields/positions:
-   - `value: number` — current value;
-   - `setValue(newValue: number): void` — replace the value with an explicit number;
-   - `increment(step?: number): void` — increase by `step` (defaults to `1`);
-   - `decrement(step?: number): void` — decrease by `step` (defaults to `1`);
-   - `reset(): void` — reset back to the initial `initialValue`.
-   - tuple access: `[value, setValue, increment, decrement, reset]`.
+  - `value: number` — current value;
+  - `setValue(newValue: number): void` — replace the value with an explicit number;
+  - `increment(step?: number): void` — increase by `step` (defaults to `1`);
+  - `decrement(step?: number): void` — decrease by `step` (defaults to `1`);
+  - `reset(): void` — reset back to the initial `initialValue`.
+  - tuple access: `[value, setValue, increment, decrement, reset]`.
 
 ---
 
@@ -146,13 +146,13 @@ export function NumericInput() {
 **Exported types**
 
 - `UseNumberReturn`
-   - Hybrid return type combining object and tuple forms.
+  - Hybrid return type combining object and tuple forms.
 
 - `UseNumberReturnObject`
-   - Object form: `{ value: number; setValue: (value: number) => void; increment: (step?: number) => void; decrement: (step?: number) => void; reset: () => void }`.
+  - Object form: `{ value: number; setValue: (value: number) => void; increment: (step?: number) => void; decrement: (step?: number) => void; reset: () => void }`.
 
 - `UseNumberReturnTuple`
-   - Tuple form: `[value: number, setValue: (value: number) => void, increment: (step?: number) => void, decrement: (step?: number) => void, reset: () => void]`.
+  - Tuple form: `[value: number, setValue: (value: number) => void, increment: (step?: number) => void, decrement: (step?: number) => void, reset: () => void]`.
 
 ---
 

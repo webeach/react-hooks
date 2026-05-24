@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 
 import { useLiveRef } from '../useLiveRef';
-
 import { UseUnmountCallback } from './types';
 
 /**

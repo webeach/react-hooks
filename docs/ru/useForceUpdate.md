@@ -13,7 +13,7 @@ function useForceUpdate(): (onBeforeUpdate?: () => void) => void;
 ```
 
 - **Возвращает**
-   - Функцию `forceUpdate(onBeforeUpdate?)`, которая инициирует повторный рендер. Если передан `onBeforeUpdate`, он будет вызван синхронно перед обновлением.
+  - Функцию `forceUpdate(onBeforeUpdate?)`, которая инициирует повторный рендер. Если передан `onBeforeUpdate`, он будет вызван синхронно перед обновлением.
 
 ---
 
@@ -31,14 +31,10 @@ export function RefCounter() {
 
   const increment = () => {
     countRef.current += 1; // императивная мутация вне React‑state
-    forceUpdate();         // отобразить новое значение
+    forceUpdate(); // отобразить новое значение
   };
 
-  return (
-    <button onClick={increment}>
-      count = {countRef.current}
-    </button>
-  );
+  return <button onClick={increment}>count = {countRef.current}</button>;
 }
 ```
 
@@ -102,4 +98,3 @@ export function WithCallback() {
 
 3. **Ожидание «после‑рендер» эффекта**
    - `onBeforeUpdate` исполняется **до** обновления. Для логики «после рендера» используйте `useEffect`/`useLayoutEffect`.
-

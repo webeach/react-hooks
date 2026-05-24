@@ -3,7 +3,6 @@ import { useMemo, useState } from 'react';
 import { mapStatusToState } from '../../functions/mapStatusToState';
 import { ErrorLike } from '../../types/common';
 import { Status } from '../../types/status';
-
 import { UseStatusReturn } from './types';
 
 /**

@@ -16,7 +16,7 @@ function useUnmount(callback: UseUnmountCallback): void;
 ```
 
 - **Parameters**
-   - `callback` — a function to run when the component unmounts.
+  - `callback` — a function to run when the component unmounts.
 
 - **Returns**: `void`.
 
@@ -25,6 +25,7 @@ function useUnmount(callback: UseUnmountCallback): void;
 ## Examples
 
 ### 1) Unsubscribe from events
+
 ```tsx
 import { useEffect } from 'react';
 import { useUnmount } from '@webeach/react-hooks/useUnmount';
@@ -48,6 +49,7 @@ export function Chat() {
 ```
 
 ### 2) Clearing a timer/interval
+
 ```tsx
 import { useEffect } from 'react';
 import { useUnmount } from '@webeach/react-hooks/useUnmount';
@@ -72,6 +74,7 @@ export function Ticker() {
 ```
 
 ### 3) Save a draft / logging
+
 ```tsx
 import { useUnmount } from '@webeach/react-hooks/useUnmount';
 
@@ -121,7 +124,7 @@ export function Editor() {
 **Exported types**
 
 - `UseUnmountCallback`
-   - A callback invoked on component unmount: `() => any`.
+  - A callback invoked on component unmount: `() => any`.
 
 ---
 

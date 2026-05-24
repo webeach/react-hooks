@@ -41,9 +41,9 @@ function useRefEffect<RefValue>(
 ```
 
 - **Parameters**
-   - `ref` — the observed `ref`; the handler runs when `ref.current` becomes non‑`null/undefined`.
-   - `handler(current)` — function that receives the current `ref.current`; may return `cleanup`.
-   - `deps` | `compare` | `comparedValue` — optional triggers to re‑run the handler.
+  - `ref` — the observed `ref`; the handler runs when `ref.current` becomes non‑`null/undefined`.
+  - `handler(current)` — function that receives the current `ref.current`; may return `cleanup`.
+  - `deps` | `compare` | `comparedValue` — optional triggers to re‑run the handler.
 
 - **Returns**: `void`.
 
@@ -189,8 +189,8 @@ export function UserBadge(props: UserBadgeProps) {
 **Exported types**
 
 - `UseRefEffectHandler<RefValue>`
-   - Effect handler for the ref value: `(current: RefValue) => void | (() => void)`.
-   - May return a cleanup function, same as in `useEffect`.
+  - Effect handler for the ref value: `(current: RefValue) => void | (() => void)`.
+  - May return a cleanup function, same as in `useEffect`.
 
 ---
 

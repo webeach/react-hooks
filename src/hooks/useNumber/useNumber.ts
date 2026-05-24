@@ -1,7 +1,6 @@
 import { useCallback, useState } from 'react';
 
 import { useDemandStructure } from '../useDemandStructure'; // или где у тебя интерфейс лежит
-
 import type { UseNumberReturn } from './types';
 
 /**

@@ -2,7 +2,7 @@
 
 ## Описание
 
-`useImageLoader` — хук для **загрузки изображения** с удобными флагами состояния: `isPending`, `isSuccess`, `isError`, а также `error`. Возвращает *гибридную* структуру (кортеж и объект), поля которой вычисляются «по требованию».
+`useImageLoader` — хук для **загрузки изображения** с удобными флагами состояния: `isPending`, `isSuccess`, `isError`, а также `error`. Возвращает _гибридную_ структуру (кортеж и объект), поля которой вычисляются «по требованию».
 
 Хук инициирует загрузку при каждом изменении `imageUrl`, сообщает об успехе/ошибке/отмене и в режиме разработки предупреждает, если передана пустая строка.
 
@@ -15,13 +15,13 @@ function useImageLoader(imageUrl: string): UseImageReturn;
 ```
 
 - **Параметры**
-   - `imageUrl` — URL изображения, которое нужно загрузить.
+  - `imageUrl` — URL изображения, которое нужно загрузить.
 
 - **Возвращает**: `UseImageReturn` — гибридная структура со статусами загрузки:
-   - `isPending: boolean`
-   - `isSuccess: boolean`
-   - `isError: boolean`
-   - `error: { message: string } | null`
+  - `isPending: boolean`
+  - `isSuccess: boolean`
+  - `isError: boolean`
+  - `error: { message: string } | null`
 
 ---
 
@@ -39,13 +39,13 @@ type AvatarProps = {
 
 export function Avatar(props: AvatarProps) {
   const { src, alt } = props;
-  
+
   const status = useImageLoader(src);
 
   if (status.isPending) {
     return <Spinner />;
   }
-  
+
   if (status.isError) {
     return <FallbackAvatar alt={alt} />;
   }
@@ -61,11 +61,11 @@ import { useImageLoader } from '@webeach/react-hooks/useImageLoader';
 
 type GalleryItemProps = {
   image: string;
-}
+};
 
 export function GalleryItem(props: GalleryItemProps) {
   const { image } = props;
-  
+
   const [isPending, isSuccess, isError, error] = useImageLoader(image);
 
   return (
@@ -134,7 +134,7 @@ export function GalleryItem(props: GalleryItemProps) {
 **Экспортируемые типы**
 
 - `UseImageReturn`
-   - Гибрид: кортеж `[isPending, isSuccess, isError, error]` **и** объект `{ isPending; isSuccess; isError; error }`.
+  - Гибрид: кортеж `[isPending, isSuccess, isError, error]` **и** объект `{ isPending; isSuccess; isError; error }`.
 
 ---
 

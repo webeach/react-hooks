@@ -123,7 +123,7 @@ describe('useDOMEvent hook', () => {
     let capturedRef!: RefObject<Element | null>;
 
     function Test() {
-      const [ref] = useDOMEvent({ click: vi.fn() });
+      const [ref] = useDOMEvent({ click: vi.fn<(e: PointerEvent) => void>() });
       capturedRef = ref;
       return <div ref={ref as RefObject<HTMLDivElement>}>Box</div>;
     }

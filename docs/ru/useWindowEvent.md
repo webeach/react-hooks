@@ -21,13 +21,13 @@ function useWindowEvent(eventsMap: UseWindowEventMap): void;
 ```
 
 - **Параметры**
-   - `eventType` — строка события окна (`'resize'`, `'scroll'`, `'keydown'`, и т.д.).
-   - `eventHandler` — обработчик; тип события выводится автоматически.
-   - `eventOptions?` — опции слушателя (`capture`, `once`, `passive`).
-   - `eventsMap` — объект вида `{ type: handler | [handler, options] }`.
+  - `eventType` — строка события окна (`'resize'`, `'scroll'`, `'keydown'`, и т.д.).
+  - `eventHandler` — обработчик; тип события выводится автоматически.
+  - `eventOptions?` — опции слушателя (`capture`, `once`, `passive`).
+  - `eventsMap` — объект вида `{ type: handler | [handler, options] }`.
 
 - **Возвращает**
-   - `void`.
+  - `void`.
 
 ---
 
@@ -61,7 +61,7 @@ type ConfirmLeaveProps = {
 
 export function ConfirmLeave(props: ConfirmLeaveProps) {
   const { enabled } = props;
-  
+
   useWindowEvent('beforeunload', (event) => {
     if (!enabled) {
       return;
@@ -163,19 +163,19 @@ export function ScrollAndHotkey() {
 **Экспортируемые типы**
 
 - `UseWindowEventHandler<EventType>`
-   - `(event: UseWindowEventInstance<EventType>) => void` — типобезопасный обработчик; тип события выводится из имени (`'keydown'` → `KeyboardEvent`, `'resize'` → `UIEvent` / `Event`).
+  - `(event: UseWindowEventInstance<EventType>) => void` — типобезопасный обработчик; тип события выводится из имени (`'keydown'` → `KeyboardEvent`, `'resize'` → `UIEvent` / `Event`).
 
 - `UseWindowEventInstance<EventType>`
-   - Соответствующий объект события из `WindowEventMap[EventType]`.
+  - Соответствующий объект события из `WindowEventMap[EventType]`.
 
 - `UseWindowEventMap`
-   - Сопоставление `{ [type]: handler | [handler, options] }` для навешивания нескольких подписок одним вызовом.
+  - Сопоставление `{ [type]: handler | [handler, options] }` для навешивания нескольких подписок одним вызовом.
 
 - `UseWindowEventOptions`
-   - Опции слушателя без `signal`: `{ capture?: boolean; once?: boolean; passive?: boolean }`.
+  - Опции слушателя без `signal`: `{ capture?: boolean; once?: boolean; passive?: boolean }`.
 
 - `UseWindowEventType`
-   - Объединение всех ключей `WindowEventMap`.
+  - Объединение всех ключей `WindowEventMap`.
 
 ---
 

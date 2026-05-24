@@ -5,7 +5,7 @@
 `useIntersectionObserver` — хук для наблюдения за видимостью DOM-элемента через `IntersectionObserver`.  
 Подписывается на элемент из `ref`, по каждому изменению может вызывать **колбэк**, а также предоставляет **лениво-активируемое** поле `currentEntry` c последней записью наблюдателя.
 
-Хук возвращает *гибридную* структуру: её можно деструктурировать как **кортеж** (`[currentEntry]`) или как **объект** (`{ currentEntry }`).
+Хук возвращает _гибридную_ структуру: её можно деструктурировать как **кортеж** (`[currentEntry]`) или как **объект** (`{ currentEntry }`).
 
 ---
 
@@ -19,11 +19,11 @@ function useIntersectionObserver<ElementType extends Element | null>(
 ```
 
 - **Параметры**
-   - `ref` — ссылочный объект на элемент, видимость которого нужно отслеживать.
-   - `callback?` — функция, вызываемая при каждом изменении; принимает актуальный `IntersectionObserverEntry`.
+  - `ref` — ссылочный объект на элемент, видимость которого нужно отслеживать.
+  - `callback?` — функция, вызываемая при каждом изменении; принимает актуальный `IntersectionObserverEntry`.
 
 - **Возвращает**: `UseIntersectionObserverReturn`
-   - Объект/кортеж с полем `currentEntry: IntersectionObserverEntry | null` — последняя запись наблюдателя (обновляется по мере изменений; ререндеры включаются **после первого доступа** к этому полю).
+  - Объект/кортеж с полем `currentEntry: IntersectionObserverEntry | null` — последняя запись наблюдателя (обновляется по мере изменений; ререндеры включаются **после первого доступа** к этому полю).
 
 ---
 
@@ -45,7 +45,11 @@ export function Section() {
     }
   }, [currentEntry]);
 
-  return <div ref={ref} style={{ height: 300 }}>Секция</div>;
+  return (
+    <div ref={ref} style={{ height: 300 }}>
+      Секция
+    </div>
+  );
 }
 ```
 
@@ -151,16 +155,16 @@ export function LazyImage({ src, alt }: { src: string; alt: string }) {
 **Экспортируемые типы**
 
 - `UseIntersectionObserverCallback`
-   - `(entry: IntersectionObserverEntry) => void`.
+  - `(entry: IntersectionObserverEntry) => void`.
 
 - `UseIntersectionObserverReturn`
-   - Гибрид: объект `{ currentEntry: IntersectionObserverEntry | null }` **и** кортеж `[currentEntry: IntersectionObserverEntry | null]`.
+  - Гибрид: объект `{ currentEntry: IntersectionObserverEntry | null }` **и** кортеж `[currentEntry: IntersectionObserverEntry | null]`.
 
 - `UseIntersectionObserverReturnObject`
-   - Объектная форма: `{ currentEntry: IntersectionObserverEntry | null }`.
+  - Объектная форма: `{ currentEntry: IntersectionObserverEntry | null }`.
 
 - `UseIntersectionObserverReturnTuple`
-   - Кортежная форма: `[currentEntry: IntersectionObserverEntry | null]`.
+  - Кортежная форма: `[currentEntry: IntersectionObserverEntry | null]`.
 
 ---
 

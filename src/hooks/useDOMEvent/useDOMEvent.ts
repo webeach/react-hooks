@@ -2,7 +2,6 @@ import { RefObject, useRef } from 'react';
 
 import { useLayoutEffectCompare } from '../useLayoutEffectCompare';
 import { useLiveRef } from '../useLiveRef';
-
 import { DEFAULT_EVENT_OPTIONS } from './constants';
 import {
   EventArgs,

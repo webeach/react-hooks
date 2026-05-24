@@ -12,10 +12,7 @@
 
 ```ts
 // Перегрузка 1: фиксированная длительность
-function useLoop(
-  callback: UseLoopCallback,
-  durationMs: number,
-): UseLoopReturn;
+function useLoop(callback: UseLoopCallback, durationMs: number): UseLoopReturn;
 
 // Перегрузка 2: полная конфигурация
 function useLoop(
@@ -25,13 +22,15 @@ function useLoop(
 ```
 
 **Параметры**
+
 - `callback` — вызывается на каждом тике. Получает `{ actualTime, resume }`:
-   - `actualTime` — фактически прошедшее время (мс) за текущий интервал;
-   - `resume()` — продолжить цикл (актуально при `manual: true`).
+  - `actualTime` — фактически прошедшее время (мс) за текущий интервал;
+  - `resume()` — продолжить цикл (актуально при `manual: true`).
 - `durationMs` — длительность одного интервала (мс) для краткой перегрузки.
 - `options` — полная конфигурация (см. ниже).
 
 **Возвращает**
+
 - Управляющую функцию `run()` — запустить или продолжить цикл с текущими опциями.
 
 > Возврат поддерживает кортеж/объект (через `useDemandStructure`), но внешне вы используете **одну функцию `run()`**.
@@ -59,8 +58,8 @@ function useLoop(
 - **`manual: true`** — выполняется **один тик**, дальше пауза. Чтобы продолжить, вызовите `resume()` **внутри** `callback` или `run()` **снаружи**.
 - **`disabled`** — переводит цикл в паузу; при возвращении в `false` цикл продолжится.
 - **`resetElapsedOnResume`**:
-   - `false` — продолжать с **оставшимся** временем текущего интервала;
-   - `true` — следующий интервал начинается **с нуля** полной длительностью.
+  - `false` — продолжать с **оставшимся** временем текущего интервала;
+  - `true` — следующий интервал начинается **с нуля** полной длительностью.
 
 ---
 
@@ -96,12 +95,15 @@ export function Example() {
 import { useLoop } from '@webeach/react-hooks/useLoop';
 
 export function Example() {
-  const [run] = useLoop(({ actualTime }) => {
-    // выполняется каждые ~500мс
-  }, {
-    durationMs: 500,
-    autorun: true,
-  });
+  const [run] = useLoop(
+    ({ actualTime }) => {
+      // выполняется каждые ~500мс
+    },
+    {
+      durationMs: 500,
+      autorun: true,
+    },
+  );
 
   return <button onClick={run}>Restart</button>;
 }
@@ -113,15 +115,18 @@ export function Example() {
 import { useLoop } from '@webeach/react-hooks/useLoop';
 
 export function Example() {
-  const [run] = useLoop(({ actualTime, resume }) => {
-    doWork();
-    if (shouldContinue()) {
-      resume(); // продолжить следующий тик сразу из callback
-    }
-  }, {
-    durationMs: 800,
-    manual: true,
-  });
+  const [run] = useLoop(
+    ({ actualTime, resume }) => {
+      doWork();
+      if (shouldContinue()) {
+        resume(); // продолжить следующий тик сразу из callback
+      }
+    },
+    {
+      durationMs: 800,
+      manual: true,
+    },
+  );
 
   return <button onClick={run}>Tick</button>;
 }
@@ -134,13 +139,16 @@ import { useLoop } from '@webeach/react-hooks/useLoop';
 
 export function Example() {
   const [paused, setPaused] = useState(false);
-  const [run] = useLoop(() => {
-    // ...
-  }, {
-    durationMs: 1000,
-    autorun: true,
-    disabled: paused,
-  });
+  const [run] = useLoop(
+    () => {
+      // ...
+    },
+    {
+      durationMs: 1000,
+      autorun: true,
+      disabled: paused,
+    },
+  );
 
   return (
     <>
@@ -159,7 +167,11 @@ import { useLoop } from '@webeach/react-hooks/useLoop';
 
 export function Example() {
   const [ms, setMs] = useState(1000);
-  const run = useLoop(() => {}, { durationMs: ms, autorun: true, resetElapsedOnResume: false });
+  const run = useLoop(() => {}, {
+    durationMs: ms,
+    autorun: true,
+    resetElapsedOnResume: false,
+  });
 
   return (
     <>

@@ -1,7 +1,6 @@
 import { RefObject } from 'react';
 
 import { shallowCompareArrays } from '../../functions/shallowCompareArrays';
-
 import { DEFAULT_EVENT_OPTIONS } from './constants';
 import { EventArgs, UseDOMEventMap, UseDOMEventType } from './types';
 

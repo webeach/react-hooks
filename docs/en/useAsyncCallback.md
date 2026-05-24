@@ -4,7 +4,7 @@
 
 `useAsyncCallback` is a hook wrapper around an asynchronous function. It tracks its execution status (`'pending'` / `'success'` / `'error'`), supports **lazy reactivity** (re-renders only start after `status` is read for the first time), and protects against race conditions: only the **latest** call can update the status. It provides methods: `handler` (to invoke the async operation) and `abort()` (to cancel/reset the current call).
 
-The return value is a *hybrid* that works with both tuple and object destructuring: `[handler, status, abort]` **and** `{ handler, status, abort }`.
+The return value is a _hybrid_ that works with both tuple and object destructuring: `[handler, status, abort]` **and** `{ handler, status, abort }`.
 
 ---
 
@@ -17,12 +17,12 @@ function useAsyncCallback<Args extends unknown[], R>(
 ```
 
 - **Parameters**
-   - `asyncCallback` — the async function whose execution status should be tracked.
+  - `asyncCallback` — the async function whose execution status should be tracked.
 
 - **Returns**: `UseAsyncCallbackReturn<Args, R>` — a hybrid structure:
-   - `handler(...args): Promise<R>` — a wrapper around the original async function.
-   - `status` — flags `isPending`, `isSuccess`, `isError`, and `error` (present only when an error occurs).
-   - `abort()` — logically cancels the current call and resets the status to `'initial'`.
+  - `handler(...args): Promise<R>` — a wrapper around the original async function.
+  - `status` — flags `isPending`, `isSuccess`, `isError`, and `error` (present only when an error occurs).
+  - `abort()` — logically cancels the current call and resets the status to `'initial'`.
 
 ---
 
@@ -44,7 +44,7 @@ export function SaveButton(props: SaveButtonProps) {
 
   return (
     <>
-      <button onClick={() => onSave()} disabled={status.isPending}> 
+      <button onClick={() => onSave()} disabled={status.isPending}>
         {status.isPending ? 'Saving…' : 'Save'}
       </button>
 
@@ -79,7 +79,11 @@ import { ChangeEventHandler } from 'react';
 import { useAsyncCallback } from '@webeach/react-hooks/useAsyncCallback';
 
 export function SearchBox() {
-  const { handler: load, status, abort } = useAsyncCallback(async (q: string) => {
+  const {
+    handler: load,
+    status,
+    abort,
+  } = useAsyncCallback(async (q: string) => {
     const response = await fetch(`/api/search?q=${encodeURIComponent(q)}`);
 
     if (!response.ok) {
@@ -90,13 +94,13 @@ export function SearchBox() {
   });
 
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    abort();                   // logically cancel the previous request
+    abort(); // logically cancel the previous request
     void load(event.target.value); // start a new one
   };
 
   return (
     <div>
-      <input onChange={handleInputChange} placeholder="Search…"/>
+      <input onChange={handleInputChange} placeholder="Search…" />
       {status.isPending && <span>Loading…</span>}
       {status.isError && <span role="alert">{status.error?.message}</span>}
     </div>
@@ -164,17 +168,17 @@ export function SearchBox() {
 
 **Exported types**
 
-- `UseAsyncCallbackReturn<Args, ReturnType>`**
-   - Hybrid return type: tuple `[handler, status, abort]` **and** object `{ handler, status, abort }`.
+- `UseAsyncCallbackReturn<Args, ReturnType>`\*\*
+  - Hybrid return type: tuple `[handler, status, abort]` **and** object `{ handler, status, abort }`.
 
-- `UseAsyncCallbackReturnObject<Args, ReturnType>`**
-   - Object form with fields `handler`, `status`, `abort`.
+- `UseAsyncCallbackReturnObject<Args, ReturnType>`\*\*
+  - Object form with fields `handler`, `status`, `abort`.
 
-- `UseAsyncCallbackReturnTuple<Args, ReturnType>`**
-   - Tuple form: `[handler: (...args: Args) => Promise<R>, status: StatusStateMapTuple & StatusStateMap, abort: () => void]`.
+- `UseAsyncCallbackReturnTuple<Args, ReturnType>`\*\*
+  - Tuple form: `[handler: (...args: Args) => Promise<R>, status: StatusStateMapTuple & StatusStateMap, abort: () => void]`.
 
-- `UseAsyncCallbackAbortHandler`**
-   - Function signature for cancellation: `() => void`.
+- `UseAsyncCallbackAbortHandler`\*\*
+  - Function signature for cancellation: `() => void`.
 
 ---
 

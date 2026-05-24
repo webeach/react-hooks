@@ -2,7 +2,6 @@ import { useCallback, useRef } from 'react';
 
 import { useLiveRef } from '../useLiveRef';
 import { useUnmount } from '../useUnmount';
-
 import { SharedOptions } from './types';
 
 /**

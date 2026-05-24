@@ -37,13 +37,13 @@ function useCallbackCompare<CallbackType extends (...args: any) => any>(
 ```
 
 - **Parameters**
-   - `callback` — the function to be memoized.
-   - `deps` — an array of dependencies; compared **shallowly** by index (`===`).
-   - `compare` — a comparison function that should return `true` if values are **equal** (no change), and `false` if they **differ** (change detected).
-   - `comparedValue` — a value passed into the custom comparator for comparison.
+  - `callback` — the function to be memoized.
+  - `deps` — an array of dependencies; compared **shallowly** by index (`===`).
+  - `compare` — a comparison function that should return `true` if values are **equal** (no change), and `false` if they **differ** (change detected).
+  - `comparedValue` — a value passed into the custom comparator for comparison.
 
 - **Returns**
-   - A memoized callback of the same type as `callback`.
+  - A memoized callback of the same type as `callback`.
 
 ---
 

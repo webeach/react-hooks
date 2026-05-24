@@ -46,7 +46,9 @@ export class SafeStorage implements Storage {
    * @returns The string value, or `null` if absent or on error/unavailable storage.
    */
   public getItem(key: string): string | null {
-    if (this._storage === null) return null;
+    if (this._storage === null) {
+      return null;
+    }
     try {
       return this._storage.getItem(key);
     } catch (error: unknown) {
@@ -61,7 +63,9 @@ export class SafeStorage implements Storage {
    * @returns Key name or `null` if out of range or on error/unavailable storage.
    */
   public key(index: number): string | null {
-    if (this._storage === null) return null;
+    if (this._storage === null) {
+      return null;
+    }
     try {
       return this._storage.key(index);
     } catch (error: unknown) {
@@ -100,7 +104,9 @@ export class SafeStorage implements Storage {
    * Returns `0` if storage is unavailable or on error.
    */
   public get length(): number {
-    if (this._storage === null) return 0;
+    if (this._storage === null) {
+      return 0;
+    }
     try {
       return this._storage.length;
     } catch (error: unknown) {

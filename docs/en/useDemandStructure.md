@@ -2,9 +2,10 @@
 
 ## Description
 
-`useDemandStructure` is a **system-level hook** for **lazy evaluation** of values and **tracking property access**. It builds an object/tuple where each field is a *getter* that calls its `accessor` **every time it’s read**. Additionally, the returned structure contains a special symbol `$DemandStructureUsingSymbol` that stores a map of which fields have been accessed.
+`useDemandStructure` is a **system-level hook** for **lazy evaluation** of values and **tracking property access**. It builds an object/tuple where each field is a _getter_ that calls its `accessor` **every time it’s read**. Additionally, the returned structure contains a special symbol `$DemandStructureUsingSymbol` that stores a map of which fields have been accessed.
 
 This hook is primarily intended for building **other hooks** (an infrastructural utility), for example:
+
 - Creating hybrid return values (both tuple and object with aliases).
 - Enabling reactivity **only if** a specific field has actually been read.
 
@@ -15,37 +16,58 @@ This hook is primarily intended for building **other hooks** (an infrastructural
 ```ts
 // A) Array of accessors (tuple without names)
 function useDemandStructure<
-  const AccessorArray extends readonly UseDemandStructureAccessor<any>[]
+  const AccessorArray extends readonly UseDemandStructureAccessor<any>[],
 >(
   accessors: readonly [...AccessorArray],
 ): UseDemandStructureReturnBase<{
-  [Key in keyof AccessorArray]: AccessorArray[Key] extends UseDemandStructureAccessor<infer R> ? R : never;
+  [Key in keyof AccessorArray]: AccessorArray[Key] extends UseDemandStructureAccessor<
+    infer R
+  >
+    ? R
+    : never;
 }>;
 
 // B) Array with aliases (hybrid: indexes + names)
 function useDemandStructure<
-  const AccessorArray extends ReadonlyArray<UseDemandStructureAccessorWithAlias<any>>
+  const AccessorArray extends ReadonlyArray<
+    UseDemandStructureAccessorWithAlias<any>
+  >,
 >(
   accessors: AccessorArray,
 ): UseDemandStructureReturnBase<
-  { [I in keyof AccessorArray]: AccessorArray[I] extends UseDemandStructureAccessorWithAlias<infer V> ? V : never } &
-  { readonly [Item in AccessorArray[number] as Item['alias']]: Item extends UseDemandStructureAccessorWithAlias<infer V> ? V : never }
+  {
+    [I in keyof AccessorArray]: AccessorArray[I] extends UseDemandStructureAccessorWithAlias<
+      infer V
+    >
+      ? V
+      : never;
+  } & {
+    readonly [Item in AccessorArray[number] as Item['alias']]: Item extends UseDemandStructureAccessorWithAlias<
+      infer V
+    >
+      ? V
+      : never;
+  }
 >;
 
 // C) Object of accessors (only named properties)
 function useDemandStructure<
-  const AccessorObject extends { readonly [key: string]: UseDemandStructureAccessor }
+  const AccessorObject extends {
+    readonly [key: string]: UseDemandStructureAccessor;
+  },
 >(
   accessors: AccessorObject,
-): UseDemandStructureReturnBase<{ [K in keyof AccessorObject]: ReturnType<AccessorObject[K]> }>;
+): UseDemandStructureReturnBase<{
+  [K in keyof AccessorObject]: ReturnType<AccessorObject[K]>;
+}>;
 ```
 
 - **Parameters**
-   - `accessors` — a set of functions (or `{ alias, accessor }` objects) that compute values **on demand**.
+  - `accessors` — a set of functions (or `{ alias, accessor }` objects) that compute values **on demand**.
 
 - **Returns**: `UseDemandStructureReturnBase<…>` — a lazily computed structure:
-   - numeric indices and/or named properties (depending on form);
-   - a special symbol `$DemandStructureUsingSymbol` with a map of accessed keys.
+  - numeric indices and/or named properties (depending on form);
+  - a special symbol `$DemandStructureUsingSymbol` with a map of accessed keys.
 
 ---
 
@@ -80,7 +102,11 @@ export function DemoHybrid(props: DemoHybridProps) {
   // Access by alias
   const x2 = result.double; // == count * 2
 
-  return <div>{first} → {x2}</div>;
+  return (
+    <div>
+      {first} → {x2}
+    </div>
+  );
 }
 ```
 
@@ -173,9 +199,9 @@ function useVisibilityWithOptIn(forceUpdate: () => void) {
 ## Typing
 
 - **Exported types**
-   - `UseDemandStructureReturnBase<ObjectType>` — base return type with the usage-tracking symbol.
-   - `UseDemandStructureAccessor<ValueType>` — accessor signature `(isInitial: boolean) => ValueType`.
-   - `UseDemandStructureAccessorWithAlias<ValueType>` — object with `alias` and `accessor` fields.
+  - `UseDemandStructureReturnBase<ObjectType>` — base return type with the usage-tracking symbol.
+  - `UseDemandStructureAccessor<ValueType>` — accessor signature `(isInitial: boolean) => ValueType`.
+  - `UseDemandStructureAccessorWithAlias<ValueType>` — object with `alias` and `accessor` fields.
 
 ---
 

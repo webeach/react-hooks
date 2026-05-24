@@ -2,7 +2,7 @@
 
 ## Description
 
-`useImageLoader` is a hook for **loading an image** with convenient state flags: `isPending`, `isSuccess`, `isError`, and `error`. It returns a *hybrid* structure (tuple + object) whose fields are computed **on demand**.
+`useImageLoader` is a hook for **loading an image** with convenient state flags: `isPending`, `isSuccess`, `isError`, and `error`. It returns a _hybrid_ structure (tuple + object) whose fields are computed **on demand**.
 
 The hook starts loading on every `imageUrl` change, reports success/error/abort, and in development warns if an empty string is provided.
 
@@ -15,13 +15,13 @@ function useImageLoader(imageUrl: string): UseImageReturn;
 ```
 
 - **Parameters**
-   - `imageUrl` — the URL of the image to load.
+  - `imageUrl` — the URL of the image to load.
 
 - **Returns**: `UseImageReturn` — a hybrid structure with loading statuses:
-   - `isPending: boolean`
-   - `isSuccess: boolean`
-   - `isError: boolean`
-   - `error: { message: string } | null`
+  - `isPending: boolean`
+  - `isSuccess: boolean`
+  - `isError: boolean`
+  - `error: { message: string } | null`
 
 ---
 
@@ -39,13 +39,13 @@ type AvatarProps = {
 
 export function Avatar(props: AvatarProps) {
   const { src, alt } = props;
-  
+
   const status = useImageLoader(src);
 
   if (status.isPending) {
     return <Spinner />;
   }
-  
+
   if (status.isError) {
     return <FallbackAvatar alt={alt} />;
   }
@@ -61,11 +61,11 @@ import { useImageLoader } from '@webeach/react-hooks/useImageLoader';
 
 type GalleryItemProps = {
   image: string;
-}
+};
 
 export function GalleryItem(props: GalleryItemProps) {
   const { image } = props;
-  
+
   const [isPending, isSuccess, isError, error] = useImageLoader(image);
 
   return (
@@ -134,7 +134,7 @@ export function GalleryItem(props: GalleryItemProps) {
 **Exported types**
 
 - `UseImageReturn`
-   - Hybrid: tuple `[isPending, isSuccess, isError, error]` **and** object `{ isPending; isSuccess; isError; error }`.
+  - Hybrid: tuple `[isPending, isSuccess, isError, error]` **and** object `{ isPending; isSuccess; isError; error }`.
 
 ---
 

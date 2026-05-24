@@ -20,10 +20,12 @@ function useDebounceCallback<Args extends any[]>(
 ```
 
 **Параметры**
+
 - `callback` — функция, которую нужно «задебаунсить». Будет вызвана с **последними** переданными аргументами.
 - `delayMs` — задержка в миллисекундах.
 
 **Возвращает**
+
 - Дебаунс‑функцию `(...args) => void` со **стабильной** идентичностью.
 
 ---
@@ -91,7 +93,10 @@ import { useDebounceCallback } from '@webeach/react-hooks/useDebounceCallback';
 
 export function AdjustableDelay() {
   const [delay, setDelay] = useState(500);
-  const debouncedLog = useDebounceCallback((value: string) => console.log(value), delay);
+  const debouncedLog = useDebounceCallback(
+    (value: string) => console.log(value),
+    delay,
+  );
 
   // Новая задержка применится к СЛЕДУЮЩЕМУ вызову
   return (

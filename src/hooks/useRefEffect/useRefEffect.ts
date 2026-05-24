@@ -4,10 +4,8 @@ import { isFunction } from '../../functions/isFunction';
 import { useDeps } from '../useDeps';
 import { useIsomorphicLayoutEffect } from '../useIsomorphicLayoutEffect';
 import { useLiveRef } from '../useLiveRef';
-
-import { makeRefObservable } from './utils/makeRefObservable';
-
 import { ObservableRefSubscriber, UseRefEffectHandler } from './types';
+import { makeRefObservable } from './utils/makeRefObservable';
 
 /**
  * Runs the handler when `ref.current` changes to a non-null value.

@@ -15,12 +15,12 @@ function usePatchState<ObjectType extends PlainObject>(
 ```
 
 - **Parameters**
-   - `initialState` — the complete initial state object or a lazy initializer function.
+  - `initialState` — the complete initial state object or a lazy initializer function.
 
 - **Returns**
-   - Tuple `[state, patch]`:
-      - `state: ObjectType` — current state;
-      - `patch(partial | updater): void` — applies a partial update (see below).
+  - Tuple `[state, patch]`:
+    - `state: ObjectType` — current state;
+    - `patch(partial | updater): void` — applies a partial update (see below).
 
 ---
 
@@ -105,7 +105,8 @@ export function SettingsPanel() {
 
   // Important: the patch is shallow. For nested fields create a new nested object
   // (or use `usePatchDeepState` for deep merge semantics).
-  const setDark = () => patch((prev) => ({ theme: { ...prev.theme, mode: 'dark' } }));
+  const setDark = () =>
+    patch((prev) => ({ theme: { ...prev.theme, mode: 'dark' } }));
   const addTag = (t: string) => patch((prev) => ({ tags: [...prev.tags, t] }));
 
   return (
@@ -182,12 +183,12 @@ export function SettingsPanel() {
 **Exported types**
 
 - `UsePatchStateFunction<ObjectType extends PlainObject = PlainObject>`
-   - Function for partially updating an object state.
-   - Accepts:
-      - Partial object: `Partial<ObjectType>`.
-      - Or functional updater: `(currentState: ObjectType) => Partial<ObjectType>`.
-   - The update is applied via **shallow** merge.
-   - Returns `void`.
+  - Function for partially updating an object state.
+  - Accepts:
+    - Partial object: `Partial<ObjectType>`.
+    - Or functional updater: `(currentState: ObjectType) => Partial<ObjectType>`.
+  - The update is applied via **shallow** merge.
+  - Returns `void`.
 
 ---
 

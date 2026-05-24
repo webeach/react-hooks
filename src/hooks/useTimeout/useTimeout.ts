@@ -5,7 +5,6 @@ import {
   useDemandStructure,
 } from '../useDemandStructure';
 import { useLiveRef } from '../useLiveRef';
-
 import { UseTimeoutCallback, UseTimeoutReturn } from './types';
 
 /**

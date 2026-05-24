@@ -1,7 +1,6 @@
 import { useCallback, useState } from 'react';
 
 import { useDemandStructure } from '../useDemandStructure';
-
 import { UseToggleFunction, UseToggleReturn } from './types';
 
 /**

@@ -26,18 +26,18 @@ function useTimeoutExtended(
 ```
 
 - **Parameters**
-   - `callback` — function invoked when the timer completes. Receives the **actual elapsed time** (ms).
-   - `delayMs` *(optional)* — default timer duration. Used when starting **without** an override value.
+  - `callback` — function invoked when the timer completes. Receives the **actual elapsed time** (ms).
+  - `delayMs` _(optional)_ — default timer duration. Used when starting **without** an override value.
 
 - **Returns**
-   - A control object with methods and state:
-      - **Methods**
-         - `start(overrideDelayMs?)` — starts or restarts the timer. If an argument is provided, that duration is used and subsequent changes to `delayMs` are **ignored** for this run.
-         - `restart(overrideDelayMs?)` — alias of `start` for readability.
-         - `cancel()` — cancels the active timer.
-      - **State**
-         - `isPending` — the timer is active.
-         - `isDone` — the timer has finished.
+  - A control object with methods and state:
+    - **Methods**
+      - `start(overrideDelayMs?)` — starts or restarts the timer. If an argument is provided, that duration is used and subsequent changes to `delayMs` are **ignored** for this run.
+      - `restart(overrideDelayMs?)` — alias of `start` for readability.
+      - `cancel()` — cancels the active timer.
+    - **State**
+      - `isPending` — the timer is active.
+      - `isDone` — the timer has finished.
 
 ---
 
@@ -121,8 +121,8 @@ function Example() {
 ## Typing
 
 - **Exported types**
-   - `UseTimeoutExtendedCallback` — `(actualTime: number) => void`.
-   - `UseTimeoutExtendedReturn<RequiredMsArg = false>` — control object. When `RequiredMsArg` is `true`, `start(ms: number)` requires the delay argument.
+  - `UseTimeoutExtendedCallback` — `(actualTime: number) => void`.
+  - `UseTimeoutExtendedReturn<RequiredMsArg = false>` — control object. When `RequiredMsArg` is `true`, `start(ms: number)` requires the delay argument.
 
 ---
 

@@ -28,19 +28,22 @@ function useThrottleState<State>(
 ```
 
 **Parameters**
+
 - `initialState` — initial value or lazy initializer (optional).
 - `delayMs` — throttling window in milliseconds.
 
 **Returns**
+
 - Tuple `[state, setThrottleState]`:
-   - `state` — current value;
-   - `setThrottleState(next)` — throttled setter (stable reference), accepts a value **or** a functional updater.
+  - `state` — current value;
+  - `setThrottleState(next)` — throttled setter (stable reference), accepts a value **or** a functional updater.
 
 ---
 
 ## Examples
 
 ### 1) Input field with “fast first” and finalization
+
 ```tsx
 import { useThrottleState } from '@webeach/react-hooks/useThrottleState';
 
@@ -57,6 +60,7 @@ export function SearchBox() {
 ```
 
 ### 2) High-frequency events (resize/scroll/drag)
+
 ```tsx
 const [pos, setPos] = useThrottleState({ x: 0, y: 0 }, 100);
 
@@ -68,15 +72,17 @@ useEffect(() => {
 ```
 
 ### 3) Functional updates
+
 ```tsx
 const [count, setCount] = useThrottleState(0, 250);
 
 // The first click after idle applies +1 immediately,
 // subsequent clicks within the window collapse into one final +1
-<button onClick={() => setCount((x) => x + 1)}>+1 (throttled)</button>
+<button onClick={() => setCount((x) => x + 1)}>+1 (throttled)</button>;
 ```
 
 ### 4) Adjustable interval
+
 ```tsx
 const [delay, setDelay] = useState(300);
 const [text, setText] = useThrottleState('', delay);
@@ -115,14 +121,14 @@ const [text, setText] = useThrottleState('', delay);
 **Exported types**
 
 - `UseThrottleStateSetAction<State>`
-   - Direct value: `State`.
-   - Or functional updater: `(prev: State) => State`.
+  - Direct value: `State`.
+  - Or functional updater: `(prev: State) => State`.
 
 - `UseThrottleStateDispatch<State>`
-   - Throttled state setter: `(action: UseThrottleStateSetAction<State>) => void`.
+  - Throttled state setter: `(action: UseThrottleStateSetAction<State>) => void`.
 
 - `UseThrottleStateReturn<State>`
-   - Tuple: `[state: State, setThrottleState: UseThrottleStateDispatch<State>]`.
+  - Tuple: `[state: State, setThrottleState: UseThrottleStateDispatch<State>]`.
 
 ---
 

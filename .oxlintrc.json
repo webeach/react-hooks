@@ -1,0 +1,39 @@
+{
+  "plugins": ["react", "typescript"],
+  "rules": {
+    "curly": ["error", "all"],
+    "id-length": [
+      "error",
+      {
+        "min": 2,
+        "exceptions": [
+          "K",
+          "a",
+          "b",
+          "c",
+          "e",
+          "i",
+          "j",
+          "k",
+          "n",
+          "r",
+          "v",
+          "x",
+          "_"
+        ],
+        "properties": "never",
+        "checkGeneric": false
+      }
+    ],
+    "react/exhaustive-deps": "off",
+    "typescript/no-explicit-any": "off",
+    "no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
+    ]
+  },
+  "ignorePatterns": ["dist"]
+}

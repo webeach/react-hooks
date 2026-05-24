@@ -22,14 +22,14 @@ function useViewportBreakpoint<BreakpointKey extends string | symbol>(
 ```
 
 - **Parameters**
-   - `breakpointMap: Record<BreakpointKey, number>` — map of breakpoint keys to their minimum width in pixels.
-   - `options?: UseViewportBreakpointOptions` — optional settings:
-      - `defaultBreakpoint?: BreakpointKey` — fallback key when no breakpoint matches.
+  - `breakpointMap: Record<BreakpointKey, number>` — map of breakpoint keys to their minimum width in pixels.
+  - `options?: UseViewportBreakpointOptions` — optional settings:
+    - `defaultBreakpoint?: BreakpointKey` — fallback key when no breakpoint matches.
 
 - **Returns**: `UseViewportBreakpointReturn` — a hybrid structure with both tuple and object forms:
-   - `matches: Record<BreakpointKey, boolean>` — map of all breakpoints and whether they currently match.
-   - `activeBreakpoint: BreakpointKey | null` — the currently active breakpoint key, or `null` if none matches.
-   - Tuple access: `[matches, activeBreakpoint]`.
+  - `matches: Record<BreakpointKey, boolean>` — map of all breakpoints and whether they currently match.
+  - `activeBreakpoint: BreakpointKey | null` — the currently active breakpoint key, or `null` if none matches.
+  - Tuple access: `[matches, activeBreakpoint]`.
 
 ---
 
@@ -140,13 +140,13 @@ const { matches, activeBreakpoint } = useViewportBreakpoint(
 **Exported types**
 
 - `UseViewportBreakpointMatches<BreakpointKey>`
-   - Record of breakpoints and their boolean state.
+  - Record of breakpoints and their boolean state.
 
 - `UseViewportBreakpointOptions<BreakpointKey>`
-   - Options object with `defaultBreakpoint`.
+  - Options object with `defaultBreakpoint`.
 
 - `UseViewportBreakpointReturn<BreakpointKey>`
-   - Hybrid: tuple `[matches, activeBreakpoint]` **and** object `{ matches, activeBreakpoint }`.
+  - Hybrid: tuple `[matches, activeBreakpoint]` **and** object `{ matches, activeBreakpoint }`.
 
 ---
 

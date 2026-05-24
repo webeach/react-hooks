@@ -2,7 +2,6 @@ import { useCallback, useMemo, useRef, useState } from 'react';
 
 import { isFunction } from '../../functions/isFunction';
 import { useLiveRef } from '../useLiveRef';
-
 import { UseRefStateDispatch, UseRefStateReturn } from './types';
 
 /**

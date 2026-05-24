@@ -26,13 +26,15 @@ function useDebounceState<State>(
 ```
 
 **Parameters**
+
 - `initialState` — initial value or lazy initializer (optional).
 - `delayMs` — debounce delay in milliseconds.
 
 **Returns**
+
 - Tuple `[state, setDebounceState]`:
-   - `state` — current state value.
-   - `setDebounceState(next)` — debounced setter (stable reference).
+  - `state` — current state value.
+  - `setDebounceState(next)` — debounced setter (stable reference).
 
 ---
 
@@ -74,9 +76,7 @@ import { useDebounceState } from '@webeach/react-hooks/useDebounceState';
 export function Counter() {
   const [count, setCount] = useDebounceState(0, 200);
 
-  return (
-    <button onClick={() => setCount((x) => x + 1)}>+1 (debounced)</button>
-  );
+  return <button onClick={() => setCount((x) => x + 1)}>+1 (debounced)</button>;
 }
 ```
 
@@ -134,14 +134,14 @@ export function Adjustable() {
 **Exported types**
 
 - `UseDebounceStateSetAction<State>`
-   - Either a direct value `State`.
-   - Or a functional updater: `(prev: State) => State`.
+  - Either a direct value `State`.
+  - Or a functional updater: `(prev: State) => State`.
 
 - `UseDebounceStateDispatch<State>`
-   - Debounced state setter: `(action: UseDebounceStateSetAction<State>) => void`.
+  - Debounced state setter: `(action: UseDebounceStateSetAction<State>) => void`.
 
 - `UseDebounceStateReturn<State>`
-   - Tuple: `[state: State, setDebounceState: UseDebounceStateDispatch<State>]`.
+  - Tuple: `[state: State, setDebounceState: UseDebounceStateDispatch<State>]`.
 
 ---
 

@@ -4,7 +4,7 @@
 
 `useResizeObserver` is a hook for observing **element size changes** via the native `ResizeObserver`. It subscribes to the element from a `ref`, can invoke a **callback** on each change, and exposes a **lazily‑activated** `currentEntry` field with the observer’s latest record.
 
-The hook returns a *hybrid* structure: you can destructure it as a **tuple** (`[currentEntry]`) or as an **object** (`{ currentEntry }`).
+The hook returns a _hybrid_ structure: you can destructure it as a **tuple** (`[currentEntry]`) or as an **object** (`{ currentEntry }`).
 
 ---
 
@@ -18,11 +18,11 @@ function useResizeObserver<ElementType extends Element | null>(
 ```
 
 - **Parameters**
-   - `ref` — a ref object to the element whose size should be tracked.
-   - `callback?` — a function called on each change; receives the current `ResizeObserverEntry`.
+  - `ref` — a ref object to the element whose size should be tracked.
+  - `callback?` — a function called on each change; receives the current `ResizeObserverEntry`.
 
 - **Returns**: `UseResizeObserverReturn`
-   - A hybrid object/tuple with `currentEntry: ResizeObserverEntry | null` — the latest observer record (updated as changes occur; re‑renders are **enabled after the first external access** to this field).
+  - A hybrid object/tuple with `currentEntry: ResizeObserverEntry | null` — the latest observer record (updated as changes occur; re‑renders are **enabled after the first external access** to this field).
 
 ---
 
@@ -40,7 +40,11 @@ export function BoxInfo() {
 
   useEffect(() => {
     if (currentEntry) {
-      console.log('size:', currentEntry.contentRect.width, currentEntry.contentRect.height);
+      console.log(
+        'size:',
+        currentEntry.contentRect.width,
+        currentEntry.contentRect.height,
+      );
     }
   }, [currentEntry]);
 
@@ -61,7 +65,7 @@ export function SyncCssVar() {
     // We don’t use currentEntry → no extra re‑renders
     entry.target.setAttribute(
       'style',
-      `--w:${entry.contentRect.width}px; --h:${entry.contentRect.height}px;`
+      `--w:${entry.contentRect.width}px; --h:${entry.contentRect.height}px;`,
     );
   });
 
@@ -85,7 +89,13 @@ export function ResponsiveGrid() {
   }, [entry]);
 
   return (
-    <div ref={ref} style={{ display: 'grid', gridTemplateColumns: `repeat(${columns}, 1fr)` }}>
+    <div
+      ref={ref}
+      style={{
+        display: 'grid',
+        gridTemplateColumns: `repeat(${columns}, 1fr)`,
+      }}
+    >
       {/* ...items */}
     </div>
   );
@@ -155,10 +165,10 @@ export function ResponsiveGrid() {
 ## Typing
 
 - **Exported types**
-   - `UseResizeObserverCallback` — `(entry: ResizeObserverEntry) => void`.
-   - `UseResizeObserverReturn` — hybrid form (object **and** tuple).
-   - `UseResizeObserverReturnObject` — `{ currentEntry: ResizeObserverEntry | null }`.
-   - `UseResizeObserverReturnTuple` — `[currentEntry: ResizeObserverEntry | null]`.
+  - `UseResizeObserverCallback` — `(entry: ResizeObserverEntry) => void`.
+  - `UseResizeObserverReturn` — hybrid form (object **and** tuple).
+  - `UseResizeObserverReturnObject` — `{ currentEntry: ResizeObserverEntry | null }`.
+  - `UseResizeObserverReturnTuple` — `[currentEntry: ResizeObserverEntry | null]`.
 
 ---
 

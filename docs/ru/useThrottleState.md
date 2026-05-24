@@ -28,10 +28,12 @@ function useThrottleState<State>(
 ```
 
 **Параметры**
+
 - `initialState` — начальное значение или ленивый инициализатор (опционально).
 - `delayMs` — окно троттлинга в миллисекундах.
 
 **Возвращает**
+
 - Кортеж `[state, setThrottleState]`:
   - `state` — текущее значение состояния;
   - `setThrottleState(next)` — троттлинг‑сеттер (стабильная ссылка), принимает значение или функциональный апдейтер.
@@ -41,6 +43,7 @@ function useThrottleState<State>(
 ## Примеры
 
 ### 1) Поле ввода c «быстрым первым» и финализацией
+
 ```tsx
 import { useThrottleState } from '@webeach/react-hooks/useThrottleState';
 
@@ -57,6 +60,7 @@ export function SearchBox() {
 ```
 
 ### 2) Частые события (resize/scroll/drag)
+
 ```tsx
 const [pos, setPos] = useThrottleState({ x: 0, y: 0 }, 100);
 
@@ -68,15 +72,17 @@ useEffect(() => {
 ```
 
 ### 3) Функциональные обновления
+
 ```tsx
 const [count, setCount] = useThrottleState(0, 250);
 
 // первая попытка после простоя сразу применит +1,
 // все последующие клики в течение окна схлопнутся в одно финальное +1
-<button onClick={() => setCount((x) => x + 1)}>+1 (throttled)</button>
+<button onClick={() => setCount((x) => x + 1)}>+1 (throttled)</button>;
 ```
 
 ### 4) Регулируемый интервал
+
 ```tsx
 const [delay, setDelay] = useState(300);
 const [text, setText] = useThrottleState('', delay);
@@ -115,15 +121,14 @@ const [text, setText] = useThrottleState('', delay);
 **Экспортируемые типы**
 
 - `UseThrottleStateSetAction<State>`
-   - Прямое значение: `State`.
-   - Или функциональный апдейтер: `(prev: State) => State`.
+  - Прямое значение: `State`.
+  - Или функциональный апдейтер: `(prev: State) => State`.
 
 - `UseThrottleStateDispatch<State>`
-   - Сеттер состояния с троттлингом: `(action: UseThrottleStateSetAction<State>) => void`.
+  - Сеттер состояния с троттлингом: `(action: UseThrottleStateSetAction<State>) => void`.
 
 - `UseThrottleStateReturn<State>`
-   - Кортеж: `[state: State, setThrottleState: UseThrottleStateDispatch<State>]`.
-
+  - Кортеж: `[state: State, setThrottleState: UseThrottleStateDispatch<State>]`.
 
 ---
 

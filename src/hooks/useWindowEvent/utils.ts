@@ -1,5 +1,4 @@
 import { shallowCompareArrays } from '../../functions/shallowCompareArrays';
-
 import { DEFAULT_EVENT_OPTIONS } from './constants';
 import { EventArgs, UseWindowEventMap, UseWindowEventType } from './types';
 

@@ -34,13 +34,13 @@ function useMemoCompare<ValueType>(
 ```
 
 - **Parameters**
-   - `factory` — a function that returns the memoized value; it must be pure and have no side effects.
-   - `deps` — a dependencies array; compared **shallowly** by index (`===`).
-   - `compare` — a comparator function that must return `true` when values are **equal** (no change) and `false` when they **differ** (there is a change).
-   - `comparedValue` — the value to be compared by the custom comparator.
+  - `factory` — a function that returns the memoized value; it must be pure and have no side effects.
+  - `deps` — a dependencies array; compared **shallowly** by index (`===`).
+  - `compare` — a comparator function that must return `true` when values are **equal** (no change) and `false` when they **differ** (there is a change).
+  - `comparedValue` — the value to be compared by the custom comparator.
 
 - **Returns**
-   - The memoized value of type `ValueType`.
+  - The memoized value of type `ValueType`.
 
 ---
 
@@ -53,12 +53,22 @@ import { useMemoCompare } from '@webeach/react-hooks/useMemoCompare';
 
 type Item = { title: string; price: number };
 
-function Products({ items, query, sort }: { items: Item[]; query: string; sort: 'asc' | 'desc' }) {
+function Products({
+  items,
+  query,
+  sort,
+}: {
+  items: Item[];
+  query: string;
+  sort: 'asc' | 'desc';
+}) {
   const filtered = useMemoCompare(
     () =>
       items
         .filter((p) => p.title.includes(query))
-        .sort((a, b) => (sort === 'asc' ? a.price - b.price : b.price - a.price)),
+        .sort((a, b) =>
+          sort === 'asc' ? a.price - b.price : b.price - a.price,
+        ),
     [items, query, sort],
   );
 
@@ -71,7 +81,11 @@ function Products({ items, query, sort }: { items: Item[]; query: string; sort: 
 ```tsx
 import { useMemoCompare } from '@webeach/react-hooks/useMemoCompare';
 
-function UserBadge({ user }: { user: { id: string; name: string; role: string } | null }) {
+function UserBadge({
+  user,
+}: {
+  user: { id: string; name: string; role: string } | null;
+}) {
   const view = useMemoCompare(
     () => buildUserView(user),
     (prev, next) => prev?.id === next?.id, // recompute only if the id changed

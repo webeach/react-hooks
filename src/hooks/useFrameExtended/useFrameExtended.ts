@@ -2,7 +2,6 @@ import { useCallback, useMemo, useRef } from 'react';
 
 import { useIsomorphicLayoutEffect } from '../useIsomorphicLayoutEffect';
 import { useLiveRef } from '../useLiveRef';
-
 import { UseFrameExtendedCallback, UseFrameExtendedReturn } from './types';
 
 /**

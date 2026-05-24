@@ -29,11 +29,11 @@ function useSessionStorage<ValueType>(
 ```
 
 - **Параметры**
-   - `key` — ключ в `sessionStorage`.
-   - `initialValue?` — начальное значение или фабрика. Используется, если в хранилище нет валидной строки.
-   - `options?` — настройки сериализации:
-     - `serializer?: (key, value) => string` — преобразует значение в строку перед записью.
-     - `deserializer?: (key, raw) => Value | undefined` — парсит строку из хранилища. Верните `undefined`, чтобы считать, что значения нет.
+  - `key` — ключ в `sessionStorage`.
+  - `initialValue?` — начальное значение или фабрика. Используется, если в хранилище нет валидной строки.
+  - `options?` — настройки сериализации:
+    - `serializer?: (key, value) => string` — преобразует значение в строку перед записью.
+    - `deserializer?: (key, raw) => Value | undefined` — парсит строку из хранилища. Верните `undefined`, чтобы считать, что значения нет.
 
 - **Возвращает**: `UseSessionStorageReturn<Value>` — кортеж `[value, setValue]`.
 
@@ -42,6 +42,7 @@ function useSessionStorage<ValueType>(
 ## Примеры
 
 ### 1) Параметр страницы на время сессии
+
 ```tsx
 const [step, setStep] = useSessionStorage<number>('wizard:step', 1);
 
@@ -49,6 +50,7 @@ const next = () => setStep((prev) => (prev ?? 1) + 1);
 ```
 
 ### 2) Удаление значения (сброс ключа)
+
 ```tsx
 const [draft, setDraft] = useSessionStorage<string | undefined>('form:draft');
 
@@ -57,10 +59,12 @@ setDraft(undefined);
 ```
 
 ### 3) Кастомные сериализаторы
+
 ```tsx
 type Filter = { q: string; page: number };
 
-const serializer = (_key: string, value: Filter) => JSON.stringify({ root: value });
+const serializer = (_key: string, value: Filter) =>
+  JSON.stringify({ root: value });
 const deserializer = (_key: string, rawValue: string): Filter | undefined => {
   const parsed = JSON.parse(rawValue);
   return parsed?.root;

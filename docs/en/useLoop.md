@@ -12,10 +12,7 @@ If you need a **single‑shot** timer with extended controls — see `useTimeout
 
 ```ts
 // Overload 1: fixed duration
-function useLoop(
-  callback: UseLoopCallback,
-  durationMs: number,
-): UseLoopReturn;
+function useLoop(callback: UseLoopCallback, durationMs: number): UseLoopReturn;
 
 // Overload 2: full configuration
 function useLoop(
@@ -25,13 +22,15 @@ function useLoop(
 ```
 
 **Parameters**
+
 - `callback` — called on each tick. Receives `{ actualTime, resume }`:
-   - `actualTime` — the **actual elapsed time** (ms) for the current interval;
-   - `resume()` — continue the loop (useful when `manual: true`).
+  - `actualTime` — the **actual elapsed time** (ms) for the current interval;
+  - `resume()` — continue the loop (useful when `manual: true`).
 - `durationMs` — interval duration in ms for the short overload.
 - `options` — full configuration (see below).
 
 **Returns**
+
 - A control function `run()` — start or resume the loop with the current options.
 
 > The return supports **tuple/object** forms (via `useDemandStructure`), but practically you use a **single `run()` function**.
@@ -59,8 +58,8 @@ function useLoop(
 - **`manual: true`** — runs **one tick** and then pauses. To continue, call `resume()` **inside** the `callback` or `run()` **from outside**.
 - **`disabled`** — pauses the loop; switching it back to `false` resumes the loop.
 - **`resetElapsedOnResume`**:
-   - `false` — continue with the **remaining** time of the current interval;
-   - `true` — next interval starts **from zero** with full duration.
+  - `false` — continue with the **remaining** time of the current interval;
+  - `true` — next interval starts **from zero** with full duration.
 
 ---
 
@@ -96,12 +95,15 @@ export function Example() {
 import { useLoop } from '@webeach/react-hooks/useLoop';
 
 export function Example() {
-  const [run] = useLoop(({ actualTime }) => {
-    // runs roughly every ~500ms
-  }, {
-    durationMs: 500,
-    autorun: true,
-  });
+  const [run] = useLoop(
+    ({ actualTime }) => {
+      // runs roughly every ~500ms
+    },
+    {
+      durationMs: 500,
+      autorun: true,
+    },
+  );
 
   return <button onClick={run}>Restart</button>;
 }
@@ -113,15 +115,18 @@ export function Example() {
 import { useLoop } from '@webeach/react-hooks/useLoop';
 
 export function Example() {
-  const [run] = useLoop(({ actualTime, resume }) => {
-    doWork();
-    if (shouldContinue()) {
-      resume(); // continue the next tick right from the callback
-    }
-  }, {
-    durationMs: 800,
-    manual: true,
-  });
+  const [run] = useLoop(
+    ({ actualTime, resume }) => {
+      doWork();
+      if (shouldContinue()) {
+        resume(); // continue the next tick right from the callback
+      }
+    },
+    {
+      durationMs: 800,
+      manual: true,
+    },
+  );
 
   return <button onClick={run}>Tick</button>;
 }
@@ -135,13 +140,16 @@ import { useLoop } from '@webeach/react-hooks/useLoop';
 
 export function Example() {
   const [paused, setPaused] = useState(false);
-  const [run] = useLoop(() => {
-    // ...
-  }, {
-    durationMs: 1000,
-    autorun: true,
-    disabled: paused,
-  });
+  const [run] = useLoop(
+    () => {
+      // ...
+    },
+    {
+      durationMs: 1000,
+      autorun: true,
+      disabled: paused,
+    },
+  );
 
   return (
     <>
@@ -161,7 +169,11 @@ import { useLoop } from '@webeach/react-hooks/useLoop';
 
 export function Example() {
   const [ms, setMs] = useState(1000);
-  const run = useLoop(() => {}, { durationMs: ms, autorun: true, resetElapsedOnResume: false });
+  const run = useLoop(() => {}, {
+    durationMs: ms,
+    autorun: true,
+    resetElapsedOnResume: false,
+  });
 
   return (
     <>

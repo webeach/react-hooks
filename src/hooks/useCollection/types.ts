@@ -20,10 +20,8 @@ import type {
 export type UseCollectionReturn<
   PrimaryKey extends string = 'key',
   PrimaryKeyType = CollectionDefaultKeyType,
-  ItemData extends CollectionBaseItemData<
-    PrimaryKey,
-    PrimaryKeyType
-  > = CollectionBaseItemData<PrimaryKey, PrimaryKeyType>,
+  ItemData extends CollectionBaseItemData<PrimaryKey, PrimaryKeyType> =
+    CollectionBaseItemData<PrimaryKey, PrimaryKeyType>,
 > = readonly [
   /**
    * Reactive array of items in the collection.

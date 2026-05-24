@@ -39,14 +39,14 @@ function useDOMEvent<El extends Element | null>(
 ```
 
 - **Параметры**
-   - `ref` — ссылка на DOM‑элемент для навешивания слушателей.
-   - `eventType` — строка DOM‑события (например, `'click'`, `'keydown'`).
-   - `eventHandler` — обработчик события; тип события выводится автоматически.
-   - `eventOptions?` — опции слушателя (`capture`, `once`, `passive`).
-   - `eventsMap` — объект вида `{ type: handler | [handler, options] }`.
+  - `ref` — ссылка на DOM‑элемент для навешивания слушателей.
+  - `eventType` — строка DOM‑события (например, `'click'`, `'keydown'`).
+  - `eventHandler` — обработчик события; тип события выводится автоматически.
+  - `eventOptions?` — опции слушателя (`capture`, `once`, `passive`).
+  - `eventsMap` — объект вида `{ type: handler | [handler, options] }`.
 
 - **Возвращает**
-   - В формах с автoref — кортеж `[ref]`. В формах с переданным `ref` — `void`.
+  - В формах с автoref — кортеж `[ref]`. В формах с переданным `ref` — `void`.
 
 ---
 
@@ -78,11 +78,19 @@ export function InputOnEnter() {
 import { useDOMEvent } from '@webeach/react-hooks/useDOMEvent';
 
 export function ScrollLogger() {
-  const [ref] = useDOMEvent<HTMLDivElement>('scroll', (event) => {
-    console.log('scrollTop =', event.target.scrollTop);
-  }, { passive: true });
+  const [ref] = useDOMEvent<HTMLDivElement>(
+    'scroll',
+    (event) => {
+      console.log('scrollTop =', event.target.scrollTop);
+    },
+    { passive: true },
+  );
 
-  return <div ref={ref} style={{ overflow: 'auto', maxHeight: 200 }}>…content…</div>;
+  return (
+    <div ref={ref} style={{ overflow: 'auto', maxHeight: 200 }}>
+      …content…
+    </div>
+  );
 }
 ```
 
@@ -97,7 +105,10 @@ export function HoverAndClick() {
 
   useDOMEvent(ref, {
     mouseenter: (event) => console.log('x', event.clientX), // MouseEvent
-    click: [(event) => console.log('clicked', event.button), { capture: false }],
+    click: [
+      (event) => console.log('clicked', event.button),
+      { capture: false },
+    ],
   });
 
   return <button ref={ref}>Hover or Click</button>;
@@ -164,19 +175,19 @@ export function HoverAndClick() {
 **Экспортируемые типы**
 
 - `UseDOMEventHandler<EventType>`
-   - `(event: UseDOMEventInstance<EventType>) => void` — типобезопасный обработчик; тип события выводится из имени (`'click'` → `MouseEvent`, `'keydown'` → `KeyboardEvent`).
+  - `(event: UseDOMEventInstance<EventType>) => void` — типобезопасный обработчик; тип события выводится из имени (`'click'` → `MouseEvent`, `'keydown'` → `KeyboardEvent`).
 
 - `UseDOMEventInstance<EventType>`
-   - Соответствующий объект события из `GlobalEventHandlersEventMap[EventType]`.
+  - Соответствующий объект события из `GlobalEventHandlersEventMap[EventType]`.
 
 - `UseDOMEventMap`
-   - Сопоставление `{ [type]: handler | [handler, options] }` для навешивания нескольких событий одним вызовом.
+  - Сопоставление `{ [type]: handler | [handler, options] }` для навешивания нескольких событий одним вызовом.
 
 - `UseDOMEventOptions`
-   - Опции слушателя без `signal`: `{ capture?: boolean; once?: boolean; passive?: boolean }`.
+  - Опции слушателя без `signal`: `{ capture?: boolean; once?: boolean; passive?: boolean }`.
 
 - `UseDOMEventType`
-   - Объединение всех ключей `GlobalEventHandlersEventMap` (например, `'click'`, `'keydown'`).
+  - Объединение всех ключей `GlobalEventHandlersEventMap` (например, `'click'`, `'keydown'`).
 
 ---
 

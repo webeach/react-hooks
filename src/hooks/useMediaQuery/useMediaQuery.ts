@@ -4,7 +4,6 @@ import { isServer } from '../../constants/common';
 import { buildMediaQuery } from '../../functions/buildMediaQuery';
 import { useIsomorphicLayoutEffect } from '../useIsomorphicLayoutEffect';
 import { useMemoCompare } from '../useMemoCompare';
-
 import { compareRules } from './handlers';
 import {
   UseMediaQueryReturn,

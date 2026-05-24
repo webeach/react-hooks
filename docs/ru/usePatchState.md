@@ -15,12 +15,12 @@ function usePatchState<ObjectType extends PlainObject>(
 ```
 
 - **Параметры**
-   - `initialState` — полный начальный объект состояния или функция‑инициализатор для ленивой инициализации.
+  - `initialState` — полный начальный объект состояния или функция‑инициализатор для ленивой инициализации.
 
 - **Возвращает**
-   - Кортеж `[state, patch]`:
-      - `state: ObjectType` — текущее состояние;
-      - `patch(partial | updater): void` — частично обновляет состояние (см. ниже).
+  - Кортеж `[state, patch]`:
+    - `state: ObjectType` — текущее состояние;
+    - `patch(partial | updater): void` — частично обновляет состояние (см. ниже).
 
 ---
 
@@ -104,7 +104,8 @@ export function SettingsPanel() {
   }));
 
   // Важно: патч — поверхностный. Для вложенных полей создавайте новый вложенный объект или используйте хук usePatchDeepState
-  const setDark = () => patch((prev) => ({ theme: { ...prev.theme, mode: 'dark' } }));
+  const setDark = () =>
+    patch((prev) => ({ theme: { ...prev.theme, mode: 'dark' } }));
   const addTag = (t: string) => patch((prev) => ({ tags: [...prev.tags, t] }));
 
   return (
@@ -181,12 +182,12 @@ export function SettingsPanel() {
 **Экспортируемые типы**
 
 - `UsePatchStateFunction<ObjectType extends PlainObject = PlainObject>`
-   - Функция для частичного обновления состояния-объекта.
-   - Принимает:
-     - Частичный объект: `Partial<ObjectType>`.
-     - Или функциональный апдейтер: `(currentState: ObjectType) => Partial<ObjectType>`.
-   - Обновление выполняется поверхностным (shallow) объединением.
-   - Возвращает `void`.
+  - Функция для частичного обновления состояния-объекта.
+  - Принимает:
+    - Частичный объект: `Partial<ObjectType>`.
+    - Или функциональный апдейтер: `(currentState: ObjectType) => Partial<ObjectType>`.
+  - Обновление выполняется поверхностным (shallow) объединением.
+  - Возвращает `void`.
 
 ---
 

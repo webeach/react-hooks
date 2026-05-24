@@ -2,7 +2,6 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { useDemandStructure } from '../useDemandStructure';
 import { useLiveRef } from '../useLiveRef';
-
 import { UseControlledReturn } from './types';
 
 /**

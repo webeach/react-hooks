@@ -51,12 +51,22 @@ function useMemoCompare<ValueType>(
 ```tsx
 import { useMemoCompare } from '@webeach/react-hooks/useMemoCompare';
 
-function Products({ items, query, sort }: { items: Item[]; query: string; sort: 'asc' | 'desc' }) {
+function Products({
+  items,
+  query,
+  sort,
+}: {
+  items: Item[];
+  query: string;
+  sort: 'asc' | 'desc';
+}) {
   const filtered = useMemoCompare(
     () =>
       items
         .filter((p) => p.title.includes(query))
-        .sort((a, b) => (sort === 'asc' ? a.price - b.price : b.price - a.price)),
+        .sort((a, b) =>
+          sort === 'asc' ? a.price - b.price : b.price - a.price,
+        ),
     [items, query, sort],
   );
 
@@ -69,7 +79,11 @@ function Products({ items, query, sort }: { items: Item[]; query: string; sort: 
 ```tsx
 import { useMemoCompare } from '@webeach/react-hooks/useMemoCompare';
 
-function UserBadge({ user }: { user: { id: string; name: string; role: string } | null }) {
+function UserBadge({
+  user,
+}: {
+  user: { id: string; name: string; role: string } | null;
+}) {
   const view = useMemoCompare(
     () => buildUserView(user),
     (prev, next) => prev?.id === next?.id, // пересчитываем только если id сменился

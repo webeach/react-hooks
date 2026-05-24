@@ -15,18 +15,26 @@ Supports multiple call forms: single rule, multiple rules, with or without an ex
 function useMediaQuery(rule: UseMediaQueryRule): UseMediaQueryReturn;
 
 // Overload 2: multiple rules (OR) with default type "all"
-function useMediaQuery(rules: ReadonlyArray<UseMediaQueryRule>): UseMediaQueryReturn;
+function useMediaQuery(
+  rules: ReadonlyArray<UseMediaQueryRule>,
+): UseMediaQueryReturn;
 
 // Overload 3: explicit type + single rule
-function useMediaQuery(type: UseMediaQueryType, rule: UseMediaQueryRule): UseMediaQueryReturn;
+function useMediaQuery(
+  type: UseMediaQueryType,
+  rule: UseMediaQueryRule,
+): UseMediaQueryReturn;
 
 // Overload 4: explicit type + multiple rules (OR)
-function useMediaQuery(type: UseMediaQueryType, rules: ReadonlyArray<UseMediaQueryRule>): UseMediaQueryReturn;
+function useMediaQuery(
+  type: UseMediaQueryType,
+  rules: ReadonlyArray<UseMediaQueryRule>,
+): UseMediaQueryReturn;
 ```
 
 - **Parameters**
-   - `type?: UseMediaQueryType` — media query type (`all`, `screen`, `print`). Default is `all`.
-   - `rule | rules` — condition object(s) of type `UseMediaQueryRule` (e.g., `minWidth`, `orientation`, `prefersColorScheme`).
+  - `type?: UseMediaQueryType` — media query type (`all`, `screen`, `print`). Default is `all`.
+  - `rule | rules` — condition object(s) of type `UseMediaQueryRule` (e.g., `minWidth`, `orientation`, `prefersColorScheme`).
 
 - **Returns**: `UseMediaQueryReturn` — a tuple `[isMatch: boolean]` where `isMatch` reflects the current state.
 

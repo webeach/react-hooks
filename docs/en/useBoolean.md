@@ -3,7 +3,7 @@
 ## Description
 
 `useBoolean` is a hook for managing a boolean state with convenient callbacks `setTrue` and `setFalse`.
-The hook returns a *hybrid* structure that supports both **tuple** and **object** destructuring:
+The hook returns a _hybrid_ structure that supports both **tuple** and **object** destructuring:
 
 - Tuple: `[value, setTrue, setFalse]`
 - Object: `{ value, setTrue, setFalse }`
@@ -19,13 +19,13 @@ function useBoolean(initialValue?: boolean): UseBooleanReturn;
 ```
 
 - **Parameters**
-   - `initialValue?: boolean` — initial state value, defaults to `false`.
+  - `initialValue?: boolean` — initial state value, defaults to `false`.
 
 - **Returns**: `UseBooleanReturn` — a hybrid structure with both tuple and object forms:
-   - `value: boolean` — current state value.
-   - `setTrue(): void` — sets the state to `true`.
-   - `setFalse(): void` — sets the state to `false`.
-   - Tuple access: `[value, setTrue, setFalse]`.
+  - `value: boolean` — current state value.
+  - `setTrue(): void` — sets the state to `true`.
+  - `setFalse(): void` — sets the state to `false`.
+  - Tuple access: `[value, setTrue, setFalse]`.
 
 ---
 
@@ -143,13 +143,13 @@ export function LiveSubscription() {
 **Exported types**
 
 - `UseBooleanReturn`
-   - Hybrid: tuple `[boolean, () => void, () => void]` **and** object `{ value: boolean; setTrue: () => void; setFalse: () => void }`.
+  - Hybrid: tuple `[boolean, () => void, () => void]` **and** object `{ value: boolean; setTrue: () => void; setFalse: () => void }`.
 
 - `UseBooleanReturnObject`
-   - Object form: `{ value: boolean; setTrue: () => void; setFalse: () => void }`.
+  - Object form: `{ value: boolean; setTrue: () => void; setFalse: () => void }`.
 
 - `UseBooleanReturnTuple`
-   - Tuple form: `[boolean, () => void, () => void]`.
+  - Tuple form: `[boolean, () => void, () => void]`.
 
 ---
 

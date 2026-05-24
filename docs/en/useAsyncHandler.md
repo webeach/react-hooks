@@ -4,7 +4,8 @@
 
 `useAsyncHandler` is a hook that **automatically executes** an asynchronous function on mount and every time its dependency list (`deps`) changes. It provides the current execution state through `status` (`isPending`, `isSuccess`, `isError`, `error`). Internally, it uses `useAsyncCallback`, so status updates are **lazy** — re-renders start only after the first time you read `status`.
 
-The hook returns a *hybrid* structure that supports both tuple and object destructuring:
+The hook returns a _hybrid_ structure that supports both tuple and object destructuring:
+
 - Tuple: `[status]`
 - Object: `{ status }`
 
@@ -20,11 +21,11 @@ function useAsyncHandler(
 ```
 
 - **Parameters**
-   - `handler` — an asynchronous function without arguments that will be executed automatically.
-   - `deps` — a dependency array (like in the second argument of `useEffect`); whenever dependencies change, `handler` is executed again.
+  - `handler` — an asynchronous function without arguments that will be executed automatically.
+  - `deps` — a dependency array (like in the second argument of `useEffect`); whenever dependencies change, `handler` is executed again.
 
 - **Returns**: `UseAsyncHandlerReturn` — a hybrid structure containing:
-   - `status` — includes `isPending`, `isSuccess`, `isError`, and `error`.
+  - `status` — includes `isPending`, `isSuccess`, `isError`, and `error`.
 
 ---
 
@@ -73,7 +74,9 @@ export function Search(props: SearchProps) {
   const { query, page } = props;
 
   const { status } = useAsyncHandler(async () => {
-    const res = await fetch(`/api/search?q=${encodeURIComponent(query)}&page=${page}`);
+    const res = await fetch(
+      `/api/search?q=${encodeURIComponent(query)}&page=${page}`,
+    );
 
     if (!res.ok) {
       throw new Error('Failed to load');
@@ -120,7 +123,7 @@ export function Search(props: SearchProps) {
 
 - Automatically trigger async operations on mount and when dependencies change.
 - Pages or widgets that need to fetch data whenever route/locale/filter params change.
-- Simple flows: *request → loading → success/error* without manual retries.
+- Simple flows: _request → loading → success/error_ without manual retries.
 
 ---
 
@@ -153,16 +156,16 @@ export function Search(props: SearchProps) {
 **Exported types**
 
 - `UseAsyncHandlerFunction`
-   - Asynchronous function without arguments: `() => Promise<void>`.
+  - Asynchronous function without arguments: `() => Promise<void>`.
 
 - `UseAsyncHandlerReturn`
-   - Hybrid return type: tuple `[status]` **and** object `{ status }`.
+  - Hybrid return type: tuple `[status]` **and** object `{ status }`.
 
 - `UseAsyncHandlerReturnObject`
-   - Object form: `{ status: StatusStateMapTuple & StatusStateMap }`.
+  - Object form: `{ status: StatusStateMapTuple & StatusStateMap }`.
 
 - `UseAsyncHandlerReturnTuple`
-   - Tuple form: `[status: StatusStateMapTuple & StatusStateMap]`.
+  - Tuple form: `[status: StatusStateMapTuple & StatusStateMap]`.
 
 ---
 

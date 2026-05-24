@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 
 import { useIsomorphicLayoutEffect } from '../useIsomorphicLayoutEffect';
-
 import { TitleHistoryItem } from './types';
 
 const titleHistoryList: TitleHistoryItem[] = [];

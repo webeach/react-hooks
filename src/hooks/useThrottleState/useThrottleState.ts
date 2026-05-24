@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 import { useThrottleCallback } from '../useThrottleCallback';
-
 import { UseThrottleStateReturn } from './types';
 
 /**

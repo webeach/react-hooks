@@ -5,14 +5,16 @@
 `useIsomorphicLayoutEffect` is a safe drop‑in replacement for `useLayoutEffect` that automatically **falls back to `useEffect` during SSR** (server‑side rendering).
 
 - In the **browser**, it behaves exactly like `useLayoutEffect`.
-- On the **server**, it uses `useEffect`, preventing the React warning: *"useLayoutEffect does nothing on the server"*.
+- On the **server**, it uses `useEffect`, preventing the React warning: _"useLayoutEffect does nothing on the server"_.
 
 ---
 
 ## Signature
 
 ```ts
-export const useIsomorphicLayoutEffect: typeof useLayoutEffect | typeof useEffect;
+export const useIsomorphicLayoutEffect:
+  | typeof useLayoutEffect
+  | typeof useEffect;
 ```
 
 ---

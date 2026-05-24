@@ -21,13 +21,13 @@ function useWindowEvent(eventsMap: UseWindowEventMap): void;
 ```
 
 - **Parameters**
-   - `eventType` — window event name (`'resize'`, `'scroll'`, `'keydown'`, etc.).
-   - `eventHandler` — listener; the event type is inferred automatically.
-   - `eventOptions?` — listener options (`capture`, `once`, `passive`).
-   - `eventsMap` — an object of the form `{ type: handler | [handler, options] }`.
+  - `eventType` — window event name (`'resize'`, `'scroll'`, `'keydown'`, etc.).
+  - `eventHandler` — listener; the event type is inferred automatically.
+  - `eventOptions?` — listener options (`capture`, `once`, `passive`).
+  - `eventsMap` — an object of the form `{ type: handler | [handler, options] }`.
 
 - **Returns**
-   - `void`.
+  - `void`.
 
 ---
 
@@ -61,7 +61,7 @@ type ConfirmLeaveProps = {
 
 export function ConfirmLeave(props: ConfirmLeaveProps) {
   const { enabled } = props;
-  
+
   useWindowEvent('beforeunload', (event) => {
     if (!enabled) {
       return;
@@ -163,19 +163,19 @@ export function ScrollAndHotkey() {
 **Exported types**
 
 - `UseWindowEventHandler<EventType>`
-   - `(event: UseWindowEventInstance<EventType>) => void` — type‑safe handler; the event type is inferred from the name (`'keydown'` → `KeyboardEvent`, `'resize'` → `UIEvent`/`Event`).
+  - `(event: UseWindowEventInstance<EventType>) => void` — type‑safe handler; the event type is inferred from the name (`'keydown'` → `KeyboardEvent`, `'resize'` → `UIEvent`/`Event`).
 
 - `UseWindowEventInstance<EventType>`
-   - The corresponding event object from `WindowEventMap[EventType]`.
+  - The corresponding event object from `WindowEventMap[EventType]`.
 
 - `UseWindowEventMap`
-   - Mapping `{ [type]: handler | [handler, options] }` to attach several listeners in one call.
+  - Mapping `{ [type]: handler | [handler, options] }` to attach several listeners in one call.
 
 - `UseWindowEventOptions`
-   - Listener options without `signal`: `{ capture?: boolean; once?: boolean; passive?: boolean }`.
+  - Listener options without `signal`: `{ capture?: boolean; once?: boolean; passive?: boolean }`.
 
 - `UseWindowEventType`
-   - Union of all keys of `WindowEventMap`.
+  - Union of all keys of `WindowEventMap`.
 
 ---
 

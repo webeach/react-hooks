@@ -28,6 +28,14 @@ class TestMediaQueryList extends EventTarget implements MediaQueryList {
 }
 
 describe('useViewportBreakpoint hook', () => {
+  beforeAll(() => {
+    vi.stubGlobal('matchMedia', vi.fn());
+  });
+
+  afterAll(() => {
+    vi.unstubAllGlobals();
+  });
+
   afterEach(() => {
     vi.restoreAllMocks();
   });

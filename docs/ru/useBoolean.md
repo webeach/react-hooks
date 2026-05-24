@@ -3,7 +3,7 @@
 ## Описание
 
 `useBoolean` — хук для управления булевым состоянием с удобными колбэками `setTrue` и `setFalse`.
-Хук возвращает *гибридную* структуру, поддерживающую как **кортежную** (tuple) деструктуризацию, так и **объектную**:
+Хук возвращает _гибридную_ структуру, поддерживающую как **кортежную** (tuple) деструктуризацию, так и **объектную**:
 
 - Кортеж: `[value, setTrue, setFalse]`
 - Объект: `{ value, setTrue, setFalse }`
@@ -19,13 +19,13 @@ function useBoolean(initialValue?: boolean): UseBooleanReturn;
 ```
 
 - **Параметры**
-   - `initialValue?: boolean` — начальное значение, по умолчанию `false`.
+  - `initialValue?: boolean` — начальное значение, по умолчанию `false`.
 
 - **Возвращает**: `UseBooleanReturn` — гибридная структура с полями и позициями:
-   - `value: boolean` — текущее значение;
-   - `setTrue(): void` — установить `true`;
-   - `setFalse(): void` — установить `false`;
-   - кортежный доступ: `[value, setTrue, setFalse]`.
+  - `value: boolean` — текущее значение;
+  - `setTrue(): void` — установить `true`;
+  - `setFalse(): void` — установить `false`;
+  - кортежный доступ: `[value, setTrue, setFalse]`.
 
 ---
 
@@ -141,11 +141,11 @@ export function LiveSubscription() {
 **Экспортируемые типы**
 
 - `UseBooleanReturn`
-   - Гибрид: кортеж `[boolean, () => void, () => void]` **и** объект `{ value: boolean; setTrue: () => void; setFalse: () => void }`.
+  - Гибрид: кортеж `[boolean, () => void, () => void]` **и** объект `{ value: boolean; setTrue: () => void; setFalse: () => void }`.
 - `UseBooleanReturnObject`
-   - Объектная форма: `{ value: boolean; setTrue: () => void; setFalse: () => void }`.
+  - Объектная форма: `{ value: boolean; setTrue: () => void; setFalse: () => void }`.
 - `UseBooleanReturnTuple`
-   - Кортежная форма: `[boolean, () => void, () => void]`.
+  - Кортежная форма: `[boolean, () => void, () => void]`.
 
 ---
 

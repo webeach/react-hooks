@@ -20,9 +20,9 @@ function useOutsideEvent<
 ```
 
 - **Параметры**
-   - `ref` — ссылка на целевой DOM‑элемент, для которого нужно детектировать «внешние» события.
-   - `eventType` — тип DOM‑события, например `'click' | 'mousedown' | 'pointerdown' | 'touchstart'` и т.д.
-   - `handler` — колбэк, вызываемый **только когда событие произошло вне** `ref.current`.
+  - `ref` — ссылка на целевой DOM‑элемент, для которого нужно детектировать «внешние» события.
+  - `eventType` — тип DOM‑события, например `'click' | 'mousedown' | 'pointerdown' | 'touchstart'` и т.д.
+  - `handler` — колбэк, вызываемый **только когда событие произошло вне** `ref.current`.
 
 - **Возвращает**: `void`.
 
@@ -31,6 +31,7 @@ function useOutsideEvent<
 ## Примеры
 
 ### 1) Закрытие дропдауна кликом снаружи
+
 ```tsx
 const ref = useRef<HTMLDivElement>(null);
 const [open, setOpen] = useState(false);
@@ -41,13 +42,17 @@ return (
   <div>
     <button onClick={() => setOpen((v) => !v)}>Toggle</button>
     {open && (
-      <div ref={ref} role="menu"> ... </div>
+      <div ref={ref} role="menu">
+        {' '}
+        ...{' '}
+      </div>
     )}
   </div>
 );
 ```
 
 ### 2) Реакция на «ранние» взаимодействия
+
 ```tsx
 // Сработает во время нажатия, ещё до click
 useOutsideEvent(ref, 'mousedown', onOutsidePress);
@@ -56,6 +61,7 @@ useOutsideEvent(ref, 'touchstart', onOutsideTouch);
 ```
 
 ### 3) Несколько типов событий
+
 ```tsx
 useOutsideEvent(ref, 'pointerdown', onOutside);
 useOutsideEvent(ref, 'keydown', (e) => {
@@ -119,12 +125,12 @@ useOutsideEvent(ref, 'keydown', (e) => {
 **Экспортируемые типы**
 
 - `UseOutsideEventHandler<EventType extends UseOutsideEventType = UseOutsideEventType>`
-   - Колбэк, вызываемый при срабатывании указанного DOM-события:  
+  - Колбэк, вызываемый при срабатывании указанного DOM-события:  
     `(event: GlobalEventHandlersEventMap[EventType]) => void`.
 
 - `UseOutsideEventType`
-   - Объединение всех стандартных DOM-событий (`keyof GlobalEventHandlersEventMap`).
-   - Ограничивает список событий, доступных для использования в `useOutsideEvent`.
+  - Объединение всех стандартных DOM-событий (`keyof GlobalEventHandlersEventMap`).
+  - Ограничивает список событий, доступных для использования в `useOutsideEvent`.
 
 ---
 

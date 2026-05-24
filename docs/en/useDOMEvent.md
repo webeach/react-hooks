@@ -39,15 +39,15 @@ function useDOMEvent<El extends Element | null>(
 ```
 
 - **Parameters**
-   - `ref` — a React ref pointing to the DOM element where listeners should be attached.
-   - `eventType` — a DOM event name (e.g., `'click'`, `'keydown'`).
-   - `eventHandler` — event handler; the event type is inferred automatically.
-   - `eventOptions?` — listener options (`capture`, `once`, `passive`).
-   - `eventsMap` — object of the form `{ type: handler | [handler, options] }`.
+  - `ref` — a React ref pointing to the DOM element where listeners should be attached.
+  - `eventType` — a DOM event name (e.g., `'click'`, `'keydown'`).
+  - `eventHandler` — event handler; the event type is inferred automatically.
+  - `eventOptions?` — listener options (`capture`, `once`, `passive`).
+  - `eventsMap` — object of the form `{ type: handler | [handler, options] }`.
 
 - **Returns**
-   - In forms with auto-ref — a tuple `[ref]`.
-   - In forms with an explicit `ref` — `void`.
+  - In forms with auto-ref — a tuple `[ref]`.
+  - In forms with an explicit `ref` — `void`.
 
 ---
 
@@ -79,11 +79,19 @@ export function InputOnEnter() {
 import { useDOMEvent } from '@webeach/react-hooks/useDOMEvent';
 
 export function ScrollLogger() {
-  const [ref] = useDOMEvent<HTMLDivElement>('scroll', (event) => {
-    console.log('scrollTop =', (event.target as HTMLDivElement).scrollTop);
-  }, { passive: true });
+  const [ref] = useDOMEvent<HTMLDivElement>(
+    'scroll',
+    (event) => {
+      console.log('scrollTop =', (event.target as HTMLDivElement).scrollTop);
+    },
+    { passive: true },
+  );
 
-  return <div ref={ref} style={{ overflow: 'auto', maxHeight: 200 }}>…content…</div>;
+  return (
+    <div ref={ref} style={{ overflow: 'auto', maxHeight: 200 }}>
+      …content…
+    </div>
+  );
 }
 ```
 
@@ -98,7 +106,10 @@ export function HoverAndClick() {
 
   useDOMEvent(ref, {
     mouseenter: (event) => console.log('x', event.clientX), // MouseEvent
-    click: [(event) => console.log('clicked', event.button), { capture: false }],
+    click: [
+      (event) => console.log('clicked', event.button),
+      { capture: false },
+    ],
   });
 
   return <button ref={ref}>Hover or Click</button>;
@@ -163,16 +174,16 @@ export function HoverAndClick() {
 **Exported types**
 
 - `UseDOMEventHandler<EventType>`
-   - `(event: GlobalEventHandlersEventMap[EventType]) => void` — type-safe event handler, inferred from the event type.
+  - `(event: GlobalEventHandlersEventMap[EventType]) => void` — type-safe event handler, inferred from the event type.
 
 - `UseDOMEventType`
-   - Union of all standard `GlobalEventHandlersEventMap` event names (e.g., `'click'`, `'keydown'`).
+  - Union of all standard `GlobalEventHandlersEventMap` event names (e.g., `'click'`, `'keydown'`).
 
 - `UseDOMEventMap`
-   - Mapping `{ [type]: handler | [handler, options] }` for multiple events.
+  - Mapping `{ [type]: handler | [handler, options] }` for multiple events.
 
 - `UseDOMEventOptions`
-   - Listener options without `signal`: `{ capture?: boolean; once?: boolean; passive?: boolean }`.
+  - Listener options without `signal`: `{ capture?: boolean; once?: boolean; passive?: boolean }`.
 
 ---
 

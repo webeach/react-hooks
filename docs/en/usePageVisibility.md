@@ -2,7 +2,7 @@
 
 ## Description
 
-`usePageVisibility` tracks the **page visibility** state (`visible`/`hidden`) via the `visibilitychange` event. It returns a *hybrid* structure with the current `isVisible` flag and (optionally) invokes a callback on every visibility change.
+`usePageVisibility` tracks the **page visibility** state (`visible`/`hidden`) via the `visibilitychange` event. It returns a _hybrid_ structure with the current `isVisible` flag and (optionally) invokes a callback on every visibility change.
 
 - Tuple: `[isVisible]`
 - Object: `{ isVisible }`
@@ -18,7 +18,7 @@ function usePageVisibility(
 ```
 
 - **Parameters**
-   - `callback?` — a function called on each visibility change: `(isVisible: boolean) => void`.
+  - `callback?` — a function called on each visibility change: `(isVisible: boolean) => void`.
 
 - **Returns**: `UsePageVisibilityReturn` — a hybrid structure with `isVisible: boolean` as property/tuple element.
 
@@ -104,16 +104,16 @@ export function Spinner() {
 **Exported types**
 
 - `UsePageVisibilityCallback`
-   - Callback invoked on document visibility changes: `(isVisible: boolean) => void`.
+  - Callback invoked on document visibility changes: `(isVisible: boolean) => void`.
 
 - `UsePageVisibilityReturn`
-   - Hybrid type: tuple `[isVisible]` **and** object `{ isVisible }`.
+  - Hybrid type: tuple `[isVisible]` **and** object `{ isVisible }`.
 
 - `UsePageVisibilityReturnObject`
-   - Object form: `{ isVisible: boolean }`.
+  - Object form: `{ isVisible: boolean }`.
 
 - `UsePageVisibilityReturnTuple`
-   - Tuple form: `[isVisible: boolean]`.
+  - Tuple form: `[isVisible: boolean]`.
 
 ---
 

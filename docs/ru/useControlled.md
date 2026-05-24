@@ -2,7 +2,7 @@
 
 ## Описание
 
-`useControlled` — хук для управления значением в двух режимах: **контролируемом** (от внешнего `value`) и **неконтролируемом** (внутреннее состояние на базе `defaultValue`). Хук возвращает *гибридную* структуру, поддерживающую **кортежную** и **объектную** деструктуризацию:
+`useControlled` — хук для управления значением в двух режимах: **контролируемом** (от внешнего `value`) и **неконтролируемом** (внутреннее состояние на базе `defaultValue`). Хук возвращает _гибридную_ структуру, поддерживающую **кортежную** и **объектную** деструктуризацию:
 
 - Кортеж: `[value, setValue, isControlled]`
 - Объект: `{ value, setValue, isControlled }`
@@ -44,7 +44,7 @@ export type ToggleProps = {
 
 export function Toggle(props: ToggleProps) {
   const { value, defaultValue, onChange } = props;
-  
+
   const state = useControlled<boolean>(defaultValue, value);
 
   const handleClick = () => {
@@ -67,8 +67,8 @@ import { type ReactNode } from 'react';
 import { useControlled } from '@webeach/react-hooks/useControlled';
 
 export type ModalProps = {
-  visible?: boolean;           // контролируемый режим, если задано
-  defaultVisible?: boolean;    // стартовое значение для неконтролируемого режима
+  visible?: boolean; // контролируемый режим, если задано
+  defaultVisible?: boolean; // стартовое значение для неконтролируемого режима
   onVisibleChange?: (v: boolean) => void;
   title?: string;
   children?: ReactNode;
@@ -76,7 +76,7 @@ export type ModalProps = {
 
 export function Modal(props: ModalProps) {
   const { children, visible, defaultVisible, onVisibleChange } = props;
-  
+
   const visibilityState = useControlled<boolean>(defaultVisible, visible);
 
   const setVisible = (next: boolean) => {
@@ -94,7 +94,9 @@ export function Modal(props: ModalProps) {
       <div className="modal">
         <header className="modal__header">
           <h2 className="modal__title">{props.title}</h2>
-          <button aria-label="Close" onClick={() => setVisible(false)}>×</button>
+          <button aria-label="Close" onClick={() => setVisible(false)}>
+            ×
+          </button>
         </header>
         <div className="modal__body">{children}</div>
       </div>
@@ -160,7 +162,7 @@ export function Modal(props: ModalProps) {
    - В контролируемом режиме `setValue` — no‑op. Изменения инициируются внешним пропом (например, через `onChange`).
 
 2. **Смешение `null` и `undefined`**
-   - Режим определяется строго по `value !== undefined`. Значение `null` трактуется как *контролируемое*. Если нужен неконтролируемый режим, передавайте `value: undefined`.
+   - Режим определяется строго по `value !== undefined`. Значение `null` трактуется как _контролируемое_. Если нужен неконтролируемый режим, передавайте `value: undefined`.
 
 3. **Дерганый переход между режимами**
    - Частое переключение controlled/uncontrolled усложняет логику и UX. Предпочтительнее фиксировать режим на время жизни компонента.
@@ -184,7 +186,7 @@ export function Modal(props: ModalProps) {
   - Объектная форма: `{ value: ValueType | undefined; setValue: (next: ValueType) => void; isControlled: boolean }`.
 
 - `UseControlledReturnTuple<ValueType>`
-  - Кортежная форма: `[value: ValueType | undefined, setValue: (next: ValueType) => void, isControlled: boolean]`. 
+  - Кортежная форма: `[value: ValueType | undefined, setValue: (next: ValueType) => void, isControlled: boolean]`.
 
 ---
 

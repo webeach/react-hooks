@@ -1,16 +1,14 @@
 import { MutableRefObject, useMemo, useRef } from 'react';
 
 import { useLiveRef } from '../useLiveRef';
-
-import { createIterableObjectDescriptor } from './utils/createIterableObjectDescriptor';
-import { createObjectDescriptor } from './utils/createObjectDescriptor';
-
 import { $DemandStructureUsingSymbol } from './constants';
 import {
   UseDemandStructureAccessor,
   UseDemandStructureAccessorWithAlias,
   UseDemandStructureReturnBase,
 } from './types';
+import { createIterableObjectDescriptor } from './utils/createIterableObjectDescriptor';
+import { createObjectDescriptor } from './utils/createObjectDescriptor';
 
 /**
  * Creates a structure with properties that compute their values on each access.

@@ -4,7 +4,6 @@ import { safeSessionStorage } from '../../factories/safeSessionStorage';
 import { storageDefaultDeserializer } from '../../functions/storageDefaultDeserializer';
 import { storageDefaultSerializer } from '../../functions/storageDefaultSerializer';
 import { useLiveRef } from '../useLiveRef';
-
 import {
   UseSessionStorageOptions,
   UseSessionStorageReturn,

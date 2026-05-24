@@ -17,12 +17,12 @@ function usePatchDeepState<ObjectType extends PlainObject>(
 ```
 
 - **Параметры**
-   - `initialState` — начальный объект состояния или функция‑инициализатор (ленивая инициализация).
+  - `initialState` — начальный объект состояния или функция‑инициализатор (ленивая инициализация).
 
 - **Возвращает**
-   - Кортеж `[state, patch]`:
-      - `state: ObjectType` — текущее состояние;
-      - `patch(partial | updater): void` — глубокий патч состояния (см. поведение).
+  - Кортеж `[state, patch]`:
+    - `state: ObjectType` — текущее состояние;
+    - `patch(partial | updater): void` — глубокий патч состояния (см. поведение).
 
 ---
 
@@ -44,7 +44,7 @@ export function Profile() {
       name: 'Alice',
       meta: {
         age: 25,
-      }
+      },
     },
     ui: {
       theme: {
@@ -84,7 +84,10 @@ export function Profile() {
 ```tsx
 import { usePatchDeepState } from '@webeach/react-hooks/usePatchDeepState';
 
-type Basket = { items: Array<{ id: string; qty: number }>; meta: { total: number } };
+type Basket = {
+  items: Array<{ id: string; qty: number }>;
+  meta: { total: number };
+};
 
 export function Cart() {
   const [state, patch] = usePatchDeepState<Basket>(() => ({
@@ -105,7 +108,9 @@ export function Cart() {
 
   const increment = (id: string) => {
     patch((prev) => ({
-      items: prev.items.map((x) => (x.id === id ? {...x, qty: x.qty + 1} : x)),
+      items: prev.items.map((x) =>
+        x.id === id ? { ...x, qty: x.qty + 1 } : x,
+      ),
       meta: {
         total: prev.meta.total + 1,
       },
@@ -138,7 +143,7 @@ type SettingsSyncProps = {
 
 export function SettingsSync(props: SettingsSyncProps) {
   const { fetchPatch } = props;
-  
+
   const [settings, patch] = usePatchDeepState<Settings>({
     flags: { beta: false, analytics: true },
     profile: { name: 'Anon', contacts: {} },
@@ -227,11 +232,11 @@ export function SettingsSync(props: SettingsSyncProps) {
 **Экспортируемые типы**
 
 - `UsePatchDeepStateFunction<ObjectType extends PlainObject = PlainObject>`
-   - Функция для глубокого обновления состояния-объекта.
-   - Принимает:
-     - Частичный объект: `Partial<ObjectType>`.
-     - Или функциональный апдейтер: `(currentState: ObjectType) => Partial<ObjectType>`.
-   - Возвращает `void`.
+  - Функция для глубокого обновления состояния-объекта.
+  - Принимает:
+    - Частичный объект: `Partial<ObjectType>`.
+    - Или функциональный апдейтер: `(currentState: ObjectType) => Partial<ObjectType>`.
+  - Возвращает `void`.
 
 ---
 

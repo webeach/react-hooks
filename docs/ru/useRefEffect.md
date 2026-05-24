@@ -41,9 +41,9 @@ function useRefEffect<RefValue>(
 ```
 
 - **Параметры**
-   - `ref` — наблюдаемый `ref`; обработчик запустится, когда `ref.current` станет не `null/undefined`.
-   - `handler(current)` — функция, получающая актуальное значение `ref.current`; может вернуть `cleanup`.
-   - `deps` | `compare` | `comparedValue` — опциональные триггеры повторного вызова обработчика.
+  - `ref` — наблюдаемый `ref`; обработчик запустится, когда `ref.current` станет не `null/undefined`.
+  - `handler(current)` — функция, получающая актуальное значение `ref.current`; может вернуть `cleanup`.
+  - `deps` | `compare` | `comparedValue` — опциональные триггеры повторного вызова обработчика.
 
 - **Возвращает**: `void`.
 
@@ -79,16 +79,20 @@ type ThemeBoxProps = {
 
 export function ThemedBox(props: ThemeBoxProps) {
   const { theme } = props;
-  
+
   const boxRef = useRef<HTMLDivElement>(null);
 
-  useRefEffect(boxRef, (element) => {
-    element.dataset.theme = theme;
+  useRefEffect(
+    boxRef,
+    (element) => {
+      element.dataset.theme = theme;
 
-    return () => {
-      delete element.dataset.theme;
-    };
-  }, [theme]);
+      return () => {
+        delete element.dataset.theme;
+      };
+    },
+    [theme],
+  );
 
   return <div ref={boxRef} />;
 }
@@ -101,7 +105,7 @@ import { useRefEffect } from '@webeach/react-hooks/useRefEffect';
 
 type User = {
   id: string;
-  name: string
+  name: string;
 };
 
 type UserBadgeProps = {
@@ -110,12 +114,17 @@ type UserBadgeProps = {
 
 export function UserBadge(props: UserBadgeProps) {
   const { user } = props;
-  
+
   const ref = useRef<HTMLDivElement>(null);
 
-  useRefEffect(ref, (element) => {
-    element.textContent = `User: ${user.name}`;
-  }, (prev, next) => prev.id === next.id, user);
+  useRefEffect(
+    ref,
+    (element) => {
+      element.textContent = `User: ${user.name}`;
+    },
+    (prev, next) => prev.id === next.id,
+    user,
+  );
 
   return <div ref={ref} />;
 }
@@ -186,8 +195,8 @@ export function UserBadge(props: UserBadgeProps) {
 **Экспортируемые типы**
 
 - `UseRefEffectHandler<RefValue>`
-   - Обработчик эффекта для значения рефа: `(current: RefValue) => void | (() => void)`.
-   - Может вернуть функцию очистки, аналогично `useEffect`.)
+  - Обработчик эффекта для значения рефа: `(current: RefValue) => void | (() => void)`.
+  - Может вернуть функцию очистки, аналогично `useEffect`.)
 
 ---
 

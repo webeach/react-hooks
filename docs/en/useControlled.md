@@ -3,7 +3,7 @@
 ## Description
 
 `useControlled` is a hook for managing a value in two modes: **controlled** (driven by an external `value`) and **uncontrolled** (using internal state initialized with `defaultValue`).
-The hook returns a *hybrid* structure that supports both **tuple** and **object** destructuring:
+The hook returns a _hybrid_ structure that supports both **tuple** and **object** destructuring:
 
 - Tuple: `[value, setValue, isControlled]`
 - Object: `{ value, setValue, isControlled }`
@@ -20,13 +20,13 @@ function useControlled<ValueType>(
 ```
 
 - **Parameters**
-   - `defaultValue` — initial value for the **uncontrolled** mode. Can also be a lazy initializer function.
-   - `value` — the **controlled** value. If `value !== undefined`, the hook works in controlled mode.
+  - `defaultValue` — initial value for the **uncontrolled** mode. Can also be a lazy initializer function.
+  - `value` — the **controlled** value. If `value !== undefined`, the hook works in controlled mode.
 
 - **Returns**: `UseControlledReturn<ValueType>` — a hybrid structure:
-   - `value: ValueType | undefined` — current value (external or internal).
-   - `setValue(nextValue: ValueType): void` — updates the value **only** in uncontrolled mode (no-op in controlled mode).
-   - `isControlled: boolean` — indicates whether the hook is currently in controlled mode.
+  - `value: ValueType | undefined` — current value (external or internal).
+  - `setValue(nextValue: ValueType): void` — updates the value **only** in uncontrolled mode (no-op in controlled mode).
+  - `isControlled: boolean` — indicates whether the hook is currently in controlled mode.
 
 ---
 
@@ -68,8 +68,8 @@ import { type ReactNode, useState } from 'react';
 import { useControlled } from '@webeach/react-hooks/useControlled';
 
 export type ModalProps = {
-  visible?: boolean;           // controlled mode if defined
-  defaultVisible?: boolean;    // initial value for uncontrolled mode
+  visible?: boolean; // controlled mode if defined
+  defaultVisible?: boolean; // initial value for uncontrolled mode
   onVisibleChange?: (v: boolean) => void;
   title?: string;
   children?: ReactNode;
@@ -94,7 +94,9 @@ export function Modal(props: ModalProps) {
       <div className="modal">
         <header className="modal__header">
           <h2 className="modal__title">{props.title}</h2>
-          <button aria-label="Close" onClick={() => setVisible(false)}>×</button>
+          <button aria-label="Close" onClick={() => setVisible(false)}>
+            ×
+          </button>
         </header>
         <div className="modal__body">{children}</div>
       </div>
@@ -162,7 +164,7 @@ export function Modal(props: ModalProps) {
    - In controlled mode, `setValue` is ignored. You must use the parent’s `onChange` to update the value.
 
 2. **Confusing `null` vs `undefined`**
-   - Passing `null` means *controlled* mode with `null` value. To use uncontrolled mode, pass `undefined`.
+   - Passing `null` means _controlled_ mode with `null` value. To use uncontrolled mode, pass `undefined`.
 
 3. **Switching modes too often**
    - Rapidly toggling between controlled/uncontrolled can complicate state management. It’s better to stick to one mode during a component’s lifecycle.
@@ -177,13 +179,13 @@ export function Modal(props: ModalProps) {
 **Exported types**
 
 - `UseControlledReturn<ValueType>`
-   - Hybrid: tuple `[value: ValueType | undefined, setValue: (next: ValueType) => void, isControlled: boolean]` **and** object `{ value: ValueType | undefined; setValue: (next: ValueType) => void; isControlled: boolean }`.
+  - Hybrid: tuple `[value: ValueType | undefined, setValue: (next: ValueType) => void, isControlled: boolean]` **and** object `{ value: ValueType | undefined; setValue: (next: ValueType) => void; isControlled: boolean }`.
 
 - `UseControlledReturnObject<ValueType>`
-   - Object form: `{ value: ValueType | undefined; setValue: (next: ValueType) => void; isControlled: boolean }`.
+  - Object form: `{ value: ValueType | undefined; setValue: (next: ValueType) => void; isControlled: boolean }`.
 
 - `UseControlledReturnTuple<ValueType>`
-   - Tuple form: `[value: ValueType | undefined, setValue: (next: ValueType) => void, isControlled: boolean]`.
+  - Tuple form: `[value: ValueType | undefined, setValue: (next: ValueType) => void, isControlled: boolean]`.
 
 ---
 

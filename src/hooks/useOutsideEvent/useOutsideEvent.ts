@@ -2,7 +2,6 @@ import { RefObject } from 'react';
 
 import { useLiveRef } from '../useLiveRef';
 import { useRefEffect } from '../useRefEffect';
-
 import { UseOutsideEventHandler, UseOutsideEventType } from './types';
 
 /**

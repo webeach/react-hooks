@@ -3,7 +3,6 @@ import { RefObject } from 'react';
 import { useDemandStructure } from '../useDemandStructure';
 import { useIsomorphicLayoutEffect } from '../useIsomorphicLayoutEffect';
 import { useRefState } from '../useRefState';
-
 import { UseResizeObserverCallback, UseResizeObserverReturn } from './types';
 
 /**

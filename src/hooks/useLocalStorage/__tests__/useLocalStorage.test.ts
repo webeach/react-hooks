@@ -139,13 +139,14 @@ describe('useLocalStorage hook', () => {
     expect(value).toBe('seed');
 
     act(() => {
-      window.dispatchEvent(
-        new StorageEvent('storage', {
-          key,
-          newValue: null,
-          storageArea: window.localStorage,
-        }),
-      );
+      const storageEvent = new StorageEvent('storage', {
+        key,
+        newValue: null,
+      });
+      Object.defineProperty(storageEvent, 'storageArea', {
+        value: window.localStorage,
+      });
+      window.dispatchEvent(storageEvent);
     });
 
     [value] = result.current;
@@ -165,13 +166,14 @@ describe('useLocalStorage hook', () => {
 
     // dispatch a storage event that would normally update the state
     act(() => {
-      window.dispatchEvent(
-        new StorageEvent('storage', {
-          key,
-          newValue: 'beta',
-          storageArea: window.localStorage,
-        }),
-      );
+      const storageEvent = new StorageEvent('storage', {
+        key,
+        newValue: 'beta',
+      });
+      Object.defineProperty(storageEvent, 'storageArea', {
+        value: window.localStorage,
+      });
+      window.dispatchEvent(storageEvent);
     });
 
     // no changes expected because watch=false

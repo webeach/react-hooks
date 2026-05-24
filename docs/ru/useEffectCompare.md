@@ -34,13 +34,13 @@ function useEffectCompare(
 ```
 
 - **Параметры**
-   - `effect` — функция эффекта; может вернуть функцию очистки (как в `useEffect`).
-   - `deps` — массив зависимостей; сравнивается **поверхностно** по индексам (`===`).
-   - `compare` — функция сравнения, которая должна вернуть `true`, если значения **равны** (изменения **нет**), и `false`, если **различаются** (изменение **есть**).
-   - `comparedValue` — значение для сравнения пользовательским компаратором.
+  - `effect` — функция эффекта; может вернуть функцию очистки (как в `useEffect`).
+  - `deps` — массив зависимостей; сравнивается **поверхностно** по индексам (`===`).
+  - `compare` — функция сравнения, которая должна вернуть `true`, если значения **равны** (изменения **нет**), и `false`, если **различаются** (изменение **есть**).
+  - `comparedValue` — значение для сравнения пользовательским компаратором.
 
 - **Возвращает**
-   - `void` — как и `useEffect`.
+  - `void` — как и `useEffect`.
 
 ---
 
@@ -51,7 +51,15 @@ function useEffectCompare(
 ```tsx
 import { useEffectCompare } from '@webeach/react-hooks/useEffectCompare';
 
-function Search({ query, page, pageSize }: { query: string; page: number; pageSize: number }) {
+function Search({
+  query,
+  page,
+  pageSize,
+}: {
+  query: string;
+  page: number;
+  pageSize: number;
+}) {
   useEffectCompare(() => {
     // Выполнится только при реальном изменении значений query/page/pageSize
     fetchResults({ query, page, pageSize });

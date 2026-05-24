@@ -41,10 +41,8 @@ import { UseCollectionReturn } from './types';
 function useCollection<
   PrimaryKey extends string = 'key',
   PrimaryKeyType = CollectionDefaultKeyType,
-  ItemData extends CollectionBaseItemData<
-    PrimaryKey,
-    PrimaryKeyType
-  > = CollectionBaseItemData<PrimaryKey, PrimaryKeyType>,
+  ItemData extends CollectionBaseItemData<PrimaryKey, PrimaryKeyType> =
+    CollectionBaseItemData<PrimaryKey, PrimaryKeyType>,
 >(
   options?: CollectionOptions<
     CollectionPrimaryKeyWithDefault<PrimaryKey>,
@@ -80,10 +78,8 @@ function useCollection<
 function useCollection<
   PrimaryKey extends string = 'key',
   PrimaryKeyType = CollectionDefaultKeyType,
-  ItemData extends CollectionBaseItemData<
-    PrimaryKey,
-    PrimaryKeyType
-  > = CollectionBaseItemData<PrimaryKey, PrimaryKeyType>,
+  ItemData extends CollectionBaseItemData<PrimaryKey, PrimaryKeyType> =
+    CollectionBaseItemData<PrimaryKey, PrimaryKeyType>,
 >(
   initialItems?: ReadonlyArray<
     CollectionItem<
@@ -97,10 +93,8 @@ function useCollection<
 function useCollection<
   PrimaryKey extends string = 'key',
   PrimaryKeyType = CollectionDefaultKeyType,
-  ItemData extends CollectionBaseItemData<
-    PrimaryKey,
-    PrimaryKeyType
-  > = CollectionBaseItemData<PrimaryKey, PrimaryKeyType>,
+  ItemData extends CollectionBaseItemData<PrimaryKey, PrimaryKeyType> =
+    CollectionBaseItemData<PrimaryKey, PrimaryKeyType>,
 >(
   optionsOrInitialItems?:
     | CollectionOptions<PrimaryKey, PrimaryKeyType, ItemData>

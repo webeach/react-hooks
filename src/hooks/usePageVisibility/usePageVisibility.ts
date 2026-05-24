@@ -7,7 +7,6 @@ import {
 } from '../useDemandStructure';
 import { useForceUpdate } from '../useForceUpdate';
 import { useLiveRef } from '../useLiveRef';
-
 import { UsePageVisibilityCallback, UsePageVisibilityReturn } from './types';
 
 function checkDocumentIsVisible(): boolean {

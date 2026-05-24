@@ -4,7 +4,7 @@
 
 `useResizeObserver` — хук для наблюдения за изменениями размеров DOM‑элемента через `ResizeObserver`. Подписывается на элемент из `ref`, по каждому изменению может вызывать **колбэк**, а также предоставляет **лениво‑активируемое** поле `currentEntry` c последней записью наблюдателя.
 
-Хук возвращает *гибридную* структуру: её можно деструктурировать как **кортеж** (`[currentEntry]`) или как **объект** (`{ currentEntry }`).
+Хук возвращает _гибридную_ структуру: её можно деструктурировать как **кортеж** (`[currentEntry]`) или как **объект** (`{ currentEntry }`).
 
 ---
 
@@ -18,11 +18,11 @@ function useResizeObserver<ElementType extends Element | null>(
 ```
 
 - **Параметры**
-   - `ref` — ссылочный объект на элемент, размеры которого нужно отслеживать.
-   - `callback?` — функция, вызываемая при каждом изменении; принимает актуальный `ResizeObserverEntry`.
+  - `ref` — ссылочный объект на элемент, размеры которого нужно отслеживать.
+  - `callback?` — функция, вызываемая при каждом изменении; принимает актуальный `ResizeObserverEntry`.
 
 - **Возвращает**: `UseResizeObserverReturn`
-   - Объект/кортеж с полем `currentEntry: ResizeObserverEntry | null` — последняя запись наблюдателя (обновляется по мере изменений; ререндеры включаются **после первого доступа** к этому полю).
+  - Объект/кортеж с полем `currentEntry: ResizeObserverEntry | null` — последняя запись наблюдателя (обновляется по мере изменений; ререндеры включаются **после первого доступа** к этому полю).
 
 ---
 
@@ -40,7 +40,11 @@ export function BoxInfo() {
 
   useEffect(() => {
     if (currentEntry) {
-      console.log('size:', currentEntry.contentRect.width, currentEntry.contentRect.height);
+      console.log(
+        'size:',
+        currentEntry.contentRect.width,
+        currentEntry.contentRect.height,
+      );
     }
   }, [currentEntry]);
 
@@ -61,7 +65,7 @@ export function SyncCssVar() {
     // не используем currentEntry → лишних ререндеров нет
     entry.target.setAttribute(
       'style',
-      `--w:${entry.contentRect.width}px; --h:${entry.contentRect.height}px;`
+      `--w:${entry.contentRect.width}px; --h:${entry.contentRect.height}px;`,
     );
   });
 
@@ -85,7 +89,13 @@ export function ResponsiveGrid() {
   }, [entry]);
 
   return (
-    <div ref={ref} style={{ display: 'grid', gridTemplateColumns: `repeat(${columns}, 1fr)` }}>
+    <div
+      ref={ref}
+      style={{
+        display: 'grid',
+        gridTemplateColumns: `repeat(${columns}, 1fr)`,
+      }}
+    >
       {/* ...items */}
     </div>
   );
@@ -155,11 +165,10 @@ export function ResponsiveGrid() {
 ## Типизация
 
 - **Экспортируемые типы**
-
-   - `UseResizeObserverCallback` — `(entry: ResizeObserverEntry) => void`.
-   - `UseResizeObserverReturn` — гибридная форма (объект **и** кортеж).
-   - `UseResizeObserverReturnObject` — `{ currentEntry: ResizeObserverEntry | null }`.
-   - `UseResizeObserverReturnTuple` — `[currentEntry: ResizeObserverEntry | null]`.
+  - `UseResizeObserverCallback` — `(entry: ResizeObserverEntry) => void`.
+  - `UseResizeObserverReturn` — гибридная форма (объект **и** кортеж).
+  - `UseResizeObserverReturnObject` — `{ currentEntry: ResizeObserverEntry | null }`.
+  - `UseResizeObserverReturnTuple` — `[currentEntry: ResizeObserverEntry | null]`.
 
 ---
 

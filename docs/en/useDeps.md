@@ -4,10 +4,10 @@
 
 `useDeps` is a hook that returns a **stable identifier** (`id`) and increments it whenever a given set of dependencies is considered changed. It supports multiple usage forms (overloads):
 
-1) No arguments — `id` **never changes** (always `0`).
-2) With a dependency array — change is detected using **shallow index-based comparison** (`===`).
-3) With a comparator function and a value — change is detected by a **custom comparator**.
-4) With only a comparator function — change is detected by **custom logic** inside the comparator (e.g., using a closure).
+1. No arguments — `id` **never changes** (always `0`).
+2. With a dependency array — change is detected using **shallow index-based comparison** (`===`).
+3. With a comparator function and a value — change is detected by a **custom comparator**.
+4. With only a comparator function — change is detected by **custom logic** inside the comparator (e.g., using a closure).
 
 `id` works as a convenient **signal** to restart effects, reset caches, or reinitialize logic when equality rules are more complex than simple reference checks.
 
@@ -33,9 +33,9 @@ function useDeps(compare: () => boolean): [id: number]; // return true if EQUAL 
 ```
 
 - **Parameters**
-   - `deps?: unknown[]` — dependency array for shallow comparison.
-   - `compare?: (prev, next) => boolean` — comparator that returns **`true` if values are equal (no change)**, or **`false` if they differ** (increment `id`).
-   - `comparedValue?: unknown` — value passed to the custom comparator.
+  - `deps?: unknown[]` — dependency array for shallow comparison.
+  - `compare?: (prev, next) => boolean` — comparator that returns **`true` if values are equal (no change)**, or **`false` if they differ** (increment `id`).
+  - `comparedValue?: unknown` — value passed to the custom comparator.
 
 - **Returns**: `[id: number]` — a tuple containing the current stable identifier.
 

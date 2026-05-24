@@ -2,9 +2,10 @@
 
 ## Описание
 
-`useDemandStructure` — «системный» хук для **ленивой оценки** значений и **треккинга факта доступа** к ним. Он строит объект/кортеж, где каждое поле — это *getter*, вызывающий соответствующий `accessor` **при каждом чтении**. Дополнительно к результату прикрепляется служебный символ `$DemandStructureUsingSymbol` с картой использованных полей.
+`useDemandStructure` — «системный» хук для **ленивой оценки** значений и **треккинга факта доступа** к ним. Он строит объект/кортеж, где каждое поле — это _getter_, вызывающий соответствующий `accessor` **при каждом чтении**. Дополнительно к результату прикрепляется служебный символ `$DemandStructureUsingSymbol` с картой использованных полей.
 
 Хук в первую очередь предназначен для **реализации других хуков** (как инфраструктурная деталь): например, чтобы
+
 - формировать гибридный результат (и кортеж, и объект с алиасами),
 - включать реактивность **только если** конкретное поле реально читали.
 
@@ -15,37 +16,58 @@
 ```ts
 // A) Массив аксессоров (кортеж без имён)
 function useDemandStructure<
-  const AccessorArray extends readonly UseDemandStructureAccessor<any>[]
+  const AccessorArray extends readonly UseDemandStructureAccessor<any>[],
 >(
   accessors: readonly [...AccessorArray],
 ): UseDemandStructureReturnBase<{
-  [Key in keyof AccessorArray]: AccessorArray[Key] extends UseDemandStructureAccessor<infer R> ? R : never;
+  [Key in keyof AccessorArray]: AccessorArray[Key] extends UseDemandStructureAccessor<
+    infer R
+  >
+    ? R
+    : never;
 }>;
 
 // B) Массив с алиасами (гибрид: индексы + имена)
 function useDemandStructure<
-  const AccessorArray extends ReadonlyArray<UseDemandStructureAccessorWithAlias<any>>
+  const AccessorArray extends ReadonlyArray<
+    UseDemandStructureAccessorWithAlias<any>
+  >,
 >(
   accessors: AccessorArray,
 ): UseDemandStructureReturnBase<
-  { [I in keyof AccessorArray]: AccessorArray[I] extends UseDemandStructureAccessorWithAlias<infer V> ? V : never } &
-  { readonly [Item in AccessorArray[number] as Item['alias']]: Item extends UseDemandStructureAccessorWithAlias<infer V> ? V : never }
+  {
+    [I in keyof AccessorArray]: AccessorArray[I] extends UseDemandStructureAccessorWithAlias<
+      infer V
+    >
+      ? V
+      : never;
+  } & {
+    readonly [Item in AccessorArray[number] as Item['alias']]: Item extends UseDemandStructureAccessorWithAlias<
+      infer V
+    >
+      ? V
+      : never;
+  }
 >;
 
 // C) Объект аксессоров (только имена)
 function useDemandStructure<
-  const AccessorObject extends { readonly [key: string]: UseDemandStructureAccessor }
+  const AccessorObject extends {
+    readonly [key: string]: UseDemandStructureAccessor;
+  },
 >(
   accessors: AccessorObject,
-): UseDemandStructureReturnBase<{ [K in keyof AccessorObject]: ReturnType<AccessorObject[K]> }>;
+): UseDemandStructureReturnBase<{
+  [K in keyof AccessorObject]: ReturnType<AccessorObject[K]>;
+}>;
 ```
 
 - **Параметры**
-   - `accessors` — набор функций (или `{ alias, accessor }`), которые вычисляют значения «по требованию».
+  - `accessors` — набор функций (или `{ alias, accessor }`), которые вычисляют значения «по требованию».
 
 - **Возвращает**: `UseDemandStructureReturnBase<…>` — лениво вычисляемую структуру:
-   - числовые индексы и/или именованные свойства (в зависимости от формы);
-   - служебный символ `$DemandStructureUsingSymbol` с картой использованных ключей.
+  - числовые индексы и/или именованные свойства (в зависимости от формы);
+  - служебный символ `$DemandStructureUsingSymbol` с картой использованных ключей.
 
 ---
 
@@ -58,11 +80,11 @@ import { useDemandStructure } from '@webeach/react-hooks/useDemandStructure';
 
 type DemoHybridProps = {
   count: number;
-}
+};
 
 export function DemoHybrid(props: DemoHybridProps) {
   const { count } = props;
-  
+
   const result = useDemandStructure([
     {
       alias: 'value',
@@ -80,7 +102,11 @@ export function DemoHybrid(props: DemoHybridProps) {
   // Доступ по алиасу
   const x2 = result.double; // == count * 2
 
-  return <div>{first} → {x2}</div>;
+  return (
+    <div>
+      {first} → {x2}
+    </div>
+  );
 }
 ```
 

@@ -15,18 +15,26 @@
 function useMediaQuery(rule: UseMediaQueryRule): UseMediaQueryReturn;
 
 // Перегрузка 2: несколько правил (OR) с типом по умолчанию "all"
-function useMediaQuery(rules: ReadonlyArray<UseMediaQueryRule>): UseMediaQueryReturn;
+function useMediaQuery(
+  rules: ReadonlyArray<UseMediaQueryRule>,
+): UseMediaQueryReturn;
 
 // Перегрузка 3: явный тип + одно правило
-function useMediaQuery(type: UseMediaQueryType, rule: UseMediaQueryRule): UseMediaQueryReturn;
+function useMediaQuery(
+  type: UseMediaQueryType,
+  rule: UseMediaQueryRule,
+): UseMediaQueryReturn;
 
 // Перегрузка 4: явный тип + несколько правил (OR)
-function useMediaQuery(type: UseMediaQueryType, rules: ReadonlyArray<UseMediaQueryRule>): UseMediaQueryReturn;
+function useMediaQuery(
+  type: UseMediaQueryType,
+  rules: ReadonlyArray<UseMediaQueryRule>,
+): UseMediaQueryReturn;
 ```
 
 - **Параметры**
-   - `type?: UseMediaQueryType` — тип медиа-запроса (`all`, `screen`, `print`). По умолчанию — `all`.
-   - `rule | rules` — объект(ы) условий `UseMediaQueryRule` (например, `minWidth`, `orientation`, `prefersColorScheme`).
+  - `type?: UseMediaQueryType` — тип медиа-запроса (`all`, `screen`, `print`). По умолчанию — `all`.
+  - `rule | rules` — объект(ы) условий `UseMediaQueryRule` (например, `minWidth`, `orientation`, `prefersColorScheme`).
 
 - **Возвращает**: `UseMediaQueryReturn` — кортеж `[isMatch: boolean]`, где `isMatch` отражает текущее состояние.
 
@@ -134,13 +142,13 @@ export function DesktopLandscape() {
 **Экспортируемые типы**
 
 - `UseMediaQueryReturn`
-   - Кортеж `[isMatch: boolean]`.
+  - Кортеж `[isMatch: boolean]`.
 
 - `UseMediaQueryRule`
-   - Объект условий: `minWidth`, `maxWidth`, `orientation`, `prefersColorScheme` и др.
+  - Объект условий: `minWidth`, `maxWidth`, `orientation`, `prefersColorScheme` и др.
 
 - `UseMediaQueryType`
-   - Тип медиа-запроса: `'all' | 'screen' | 'print'`.
+  - Тип медиа-запроса: `'all' | 'screen' | 'print'`.
 
 ---
 

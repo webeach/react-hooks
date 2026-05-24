@@ -4,7 +4,6 @@ import { __DEVELOPMENT__ } from '../../constants/common';
 import { mapStatusStateToDemandStructure } from '../../functions/mapStatusStateToDemandStructure';
 import { useDemandStructure } from '../useDemandStructure';
 import { useStatus } from '../useStatus';
-
 import { UseImageLoaderReturn } from './types';
 
 /**

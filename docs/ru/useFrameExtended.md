@@ -3,6 +3,7 @@
 ## Описание
 
 `useFrameExtended` — хук, который организует **расширенный кадровый цикл** на базе `requestAnimationFrame` и предоставляет методы управления: `start`, `stop`, `restart`. Колбэк вызывается на **каждом кадре** и получает тайминги:
+
 - `frame` — номер кадра, начиная с `1` после `start()`/`restart()`;
 - `deltaTime` — миллисекунды с предыдущего кадра;
 - `timeSinceLastStart` — миллисекунды с момента последнего `start()`/`restart()`;
@@ -13,16 +14,18 @@
 ## Сигнатура
 
 ```ts
-function useFrameExtended(callback: UseFrameExtendedCallback): UseFrameExtendedReturn;
+function useFrameExtended(
+  callback: UseFrameExtendedCallback,
+): UseFrameExtendedReturn;
 ```
 
 - **Параметры**
-   - `callback` — функция, вызываемая на каждом кадре с объектом таймингов.
+  - `callback` — функция, вызываемая на каждом кадре с объектом таймингов.
 
 - **Возвращает**: `UseFrameExtendedReturn` — объект управления циклом:
-   - `start(): void` — запуск цикла (если вызван до маунта, запуск отложится до маунта);
-   - `stop(): void` — остановка текущего цикла;
-   - `restart(): void` — остановка, сброс счётчиков и новый запуск.
+  - `start(): void` — запуск цикла (если вызван до маунта, запуск отложится до маунта);
+  - `stop(): void` — остановка текущего цикла;
+  - `restart(): void` — остановка, сброс счётчиков и новый запуск.
 
 ---
 
@@ -37,7 +40,16 @@ import { useFrameExtended } from '@webeach/react-hooks/useFrameExtended';
 export function Logger() {
   const { start } = useFrameExtended(({ frame, deltaTime, timeSinceStart }) => {
     if (frame % 60 === 0) {
-      console.log('frame', frame, 'Δ', deltaTime.toFixed(2), 'ms', 'total', timeSinceStart.toFixed(1), 'ms');
+      console.log(
+        'frame',
+        frame,
+        'Δ',
+        deltaTime.toFixed(2),
+        'ms',
+        'total',
+        timeSinceStart.toFixed(1),
+        'ms',
+      );
     }
   });
 
@@ -74,9 +86,11 @@ export function Controls() {
 import { useFrameExtended } from '@webeach/react-hooks/useFrameExtended';
 
 export function Restartable() {
-  const { start, stop, restart } = useFrameExtended(({ frame, timeSinceLastStart }) => {
-    // frame снова начнётся с 1 после restart
-  });
+  const { start, stop, restart } = useFrameExtended(
+    ({ frame, timeSinceLastStart }) => {
+      // frame снова начнётся с 1 после restart
+    },
+  );
 
   return (
     <div>
@@ -152,16 +166,16 @@ export function Restartable() {
 **Экспортируемые типы**
 
 - `UseFrameExtendedReturn`
-   - Объект управления циклом: `{ start(): void; stop(): void; restart(): void }`.
+  - Объект управления циклом: `{ start(): void; stop(): void; restart(): void }`.
 
 - `UseFrameExtendedCallback`
-   - `(info: UseFrameExtendedCallbackOptions) => void` — вызывается на каждом кадре.
+  - `(info: UseFrameExtendedCallbackOptions) => void` — вызывается на каждом кадре.
 
 - `UseFrameExtendedCallbackOptions`
-   - `frame: number` — номер кадра, начиная с `1` после `start()`/`restart()`;
-   - `deltaTime: number` — миллисекунды с предыдущего кадра;
-   - `timeSinceLastStart: number` — миллисекунды с последнего `start()`/`restart()`;
-   - `timeSinceStart: number` — миллисекунды с первого запуска (сбрасывается `restart()`).
+  - `frame: number` — номер кадра, начиная с `1` после `start()`/`restart()`;
+  - `deltaTime: number` — миллисекунды с предыдущего кадра;
+  - `timeSinceLastStart: number` — миллисекунды с последнего `start()`/`restart()`;
+  - `timeSinceStart: number` — миллисекунды с первого запуска (сбрасывается `restart()`).
 
 ---
 

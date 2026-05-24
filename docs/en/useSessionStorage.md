@@ -29,11 +29,11 @@ function useSessionStorage<ValueType>(
 ```
 
 - **Parameters**
-   - `key` — the key in `sessionStorage`.
-   - `initialValue?` — initial value or factory. Used if storage does not contain a valid string.
-   - `options?` — serialization settings:
-      - `serializer?: (key, value) => string` — converts a value to a string before writing.
-      - `deserializer?: (key, raw) => Value | undefined` — parses a string from storage. Return `undefined` to treat as “no value”.
+  - `key` — the key in `sessionStorage`.
+  - `initialValue?` — initial value or factory. Used if storage does not contain a valid string.
+  - `options?` — serialization settings:
+    - `serializer?: (key, value) => string` — converts a value to a string before writing.
+    - `deserializer?: (key, raw) => Value | undefined` — parses a string from storage. Return `undefined` to treat as “no value”.
 
 - **Returns**: `UseSessionStorageReturn<Value>` — tuple `[value, setValue]`.
 
@@ -42,6 +42,7 @@ function useSessionStorage<ValueType>(
 ## Examples
 
 ### 1) Page parameter for the lifetime of a session
+
 ```tsx
 const [step, setStep] = useSessionStorage<number>('wizard:step', 1);
 
@@ -49,6 +50,7 @@ const next = () => setStep((prev) => (prev ?? 1) + 1);
 ```
 
 ### 2) Deleting a value (resetting the key)
+
 ```tsx
 const [draft, setDraft] = useSessionStorage<string | undefined>('form:draft');
 
@@ -57,10 +59,12 @@ setDraft(undefined);
 ```
 
 ### 3) Custom serializers
+
 ```tsx
 type Filter = { q: string; page: number };
 
-const serializer = (_key: string, value: Filter) => JSON.stringify({ root: value });
+const serializer = (_key: string, value: Filter) =>
+  JSON.stringify({ root: value });
 const deserializer = (_key: string, rawValue: string): Filter | undefined => {
   const parsed = JSON.parse(rawValue);
   return parsed?.root;

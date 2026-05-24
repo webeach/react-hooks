@@ -15,7 +15,8 @@
 function useCollection<
   PrimaryKey extends string = 'key',
   PrimaryKeyType = CollectionDefaultKeyType,
-  ItemData extends CollectionBaseItemData<PrimaryKey, PrimaryKeyType> = CollectionBaseItemData<PrimaryKey, PrimaryKeyType>,
+  ItemData extends CollectionBaseItemData<PrimaryKey, PrimaryKeyType> =
+    CollectionBaseItemData<PrimaryKey, PrimaryKeyType>,
 >(
   options?: CollectionOptions<
     CollectionPrimaryKeyWithDefault<PrimaryKey>,
@@ -28,7 +29,8 @@ function useCollection<
 function useCollection<
   PrimaryKey extends string = 'key',
   PrimaryKeyType = CollectionDefaultKeyType,
-  ItemData extends CollectionBaseItemData<PrimaryKey, PrimaryKeyType> = CollectionBaseItemData<PrimaryKey, PrimaryKeyType>,
+  ItemData extends CollectionBaseItemData<PrimaryKey, PrimaryKeyType> =
+    CollectionBaseItemData<PrimaryKey, PrimaryKeyType>,
 >(
   initialItems?: ReadonlyArray<
     CollectionItem<
@@ -41,12 +43,12 @@ function useCollection<
 ```
 
 - **Параметры**
-   - `options?` — опции `Collection` (включая `initialItems`, настройки первичного ключа и прочие параметры `@webeach/collection`).
-   - `initialItems?` — массив стартовых элементов, если не нужны прочие опции.
+  - `options?` — опции `Collection` (включая `initialItems`, настройки первичного ключа и прочие параметры `@webeach/collection`).
+  - `initialItems?` — массив стартовых элементов, если не нужны прочие опции.
 
 - **Возвращает**: `UseCollectionReturn<PrimaryKey, PrimaryKeyType, ItemData>` — кортеж
-   - `state` — `ReadonlyArray<CollectionItem<…>>`, реактивный **снимок** текущего содержимого коллекции;
-   - `instance` — `Collection<…>`, **стабильный** экземпляр коллекции для вызова методов.
+  - `state` — `ReadonlyArray<CollectionItem<…>>`, реактивный **снимок** текущего содержимого коллекции;
+  - `instance` — `Collection<…>`, **стабильный** экземпляр коллекции для вызова методов.
 
 ---
 
@@ -55,7 +57,10 @@ function useCollection<
 ### 1) Базовое использование: список задач
 
 ```tsx
-import { useCollection, type CollectionItem } from '@webeach/react-hooks/useCollection';
+import {
+  useCollection,
+  type CollectionItem,
+} from '@webeach/react-hooks/useCollection';
 
 type TaskData = {
   key: string;
@@ -74,14 +79,14 @@ export function TodoList() {
       key: crypto.randomUUID(),
       title: 'New task',
     });
-  }
-  
+  };
+
   const toggle = (item: CollectionItem<'key', string, TaskData>) => {
     tasksCollection.patchItem(item.key, { done: !item.done });
-  }
+  };
   const remove = (key: string) => {
     tasksCollection.removeItem(key);
-  }
+  };
 
   return (
     <div>
@@ -114,7 +119,7 @@ import { useCollection } from '@webeach/react-hooks/useCollection';
 type UserData = {
   id: number;
   name: string;
-}
+};
 
 export function Users() {
   const [users, usersCollection] = useCollection<'id', number, UserData>({
@@ -128,9 +133,11 @@ export function Users() {
   const rename = (id: number, name: string) => {
     usersCollection.patchItem(id, { name });
   };
-  
+
   const reloadAll = async () => {
-    const result = await fetch('/api/users').then((response) => response.json());
+    const result = await fetch('/api/users').then((response) =>
+      response.json(),
+    );
     usersCollection.setItems(next); // полная замена содержимого
   };
 
@@ -204,12 +211,12 @@ export function Users() {
 **Экспортируемые типы**
 
 - `UseCollectionReturn<PrimaryKey, PrimaryKeyType, ItemData>`
-   - Кортеж `[state, instance]`, где `state` — `ReadonlyArray<CollectionItem<…>>`, а `instance` — `Collection<…>`.
+  - Кортеж `[state, instance]`, где `state` — `ReadonlyArray<CollectionItem<…>>`, а `instance` — `Collection<…>`.
 
 - Параметры дженериков
-   - `PrimaryKey extends string = 'key'` — имя поля первичного ключа в данных.
-   - `PrimaryKeyType = CollectionDefaultKeyType` — тип значения первичного ключа (обычно `string | number`).
-   - `ItemData extends CollectionBaseItemData<PrimaryKey, PrimaryKeyType>` — форма данных элемента.
+  - `PrimaryKey extends string = 'key'` — имя поля первичного ключа в данных.
+  - `PrimaryKeyType = CollectionDefaultKeyType` — тип значения первичного ключа (обычно `string | number`).
+  - `ItemData extends CollectionBaseItemData<PrimaryKey, PrimaryKeyType>` — форма данных элемента.
 
 ---
 

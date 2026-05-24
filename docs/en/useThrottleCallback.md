@@ -5,6 +5,7 @@
 `useThrottleCallback` returns a **throttled** function that limits how often `callback` can run within a `delayMs` window.
 
 Default semantics are **leading + trailing**:
+
 - **leading**: the first call after a quiet period runs **immediately**;
 - **trailing**: subsequent calls within the window don’t invoke `callback` right away, but **one** deferred call will run at the end of the window with the **latest** arguments.
 
@@ -24,10 +25,12 @@ function useThrottleCallback<Args extends any[]>(
 ```
 
 **Parameters**
+
 - `callback` — the function to throttle. May run immediately (leading) and at most once at the end of the window (trailing) with the latest arguments.
 - `delayMs` — the minimum interval (ms) between consecutive executions.
 
 **Returns**
+
 - A throttled function `(...args) => void` with a **stable** identity.
 
 ---

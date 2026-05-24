@@ -13,7 +13,7 @@ function useForceUpdate(): (onBeforeUpdate?: () => void) => void;
 ```
 
 - **Returns**
-   - A function `forceUpdate(onBeforeUpdate?)` that triggers a re-render. If `onBeforeUpdate` is provided, it is called synchronously **before** the re-render is scheduled.
+  - A function `forceUpdate(onBeforeUpdate?)` that triggers a re-render. If `onBeforeUpdate` is provided, it is called synchronously **before** the re-render is scheduled.
 
 ---
 
@@ -31,14 +31,10 @@ export function RefCounter() {
 
   const increment = () => {
     countRef.current += 1; // imperative mutation outside React state
-    forceUpdate();         // trigger re-render to show the new value
+    forceUpdate(); // trigger re-render to show the new value
   };
 
-  return (
-    <button onClick={increment}>
-      count = {countRef.current}
-    </button>
-  );
+  return <button onClick={increment}>count = {countRef.current}</button>;
 }
 ```
 
@@ -108,7 +104,7 @@ export function WithCallback() {
 **Exported types**
 
 - `UseForceUpdateReturn`
-   - Function signature: `(onBeforeUpdate?: () => void) => void`.
+  - Function signature: `(onBeforeUpdate?: () => void) => void`.
 
 ---
 

@@ -15,7 +15,8 @@ The hook supports two forms of usage: with **options** or with **initial items**
 function useCollection<
   PrimaryKey extends string = 'key',
   PrimaryKeyType = CollectionDefaultKeyType,
-  ItemData extends CollectionBaseItemData<PrimaryKey, PrimaryKeyType> = CollectionBaseItemData<PrimaryKey, PrimaryKeyType>,
+  ItemData extends CollectionBaseItemData<PrimaryKey, PrimaryKeyType> =
+    CollectionBaseItemData<PrimaryKey, PrimaryKeyType>,
 >(
   options?: CollectionOptions<
     CollectionPrimaryKeyWithDefault<PrimaryKey>,
@@ -28,7 +29,8 @@ function useCollection<
 function useCollection<
   PrimaryKey extends string = 'key',
   PrimaryKeyType = CollectionDefaultKeyType,
-  ItemData extends CollectionBaseItemData<PrimaryKey, PrimaryKeyType> = CollectionBaseItemData<PrimaryKey, PrimaryKeyType>,
+  ItemData extends CollectionBaseItemData<PrimaryKey, PrimaryKeyType> =
+    CollectionBaseItemData<PrimaryKey, PrimaryKeyType>,
 >(
   initialItems?: ReadonlyArray<
     CollectionItem<
@@ -41,12 +43,12 @@ function useCollection<
 ```
 
 - **Parameters**
-   - `options?` — `Collection` options (including `initialItems`, primary key settings, and other `@webeach/collection` options).
-   - `initialItems?` — an array of initial items if you don’t need other options.
+  - `options?` — `Collection` options (including `initialItems`, primary key settings, and other `@webeach/collection` options).
+  - `initialItems?` — an array of initial items if you don’t need other options.
 
 - **Returns**: `UseCollectionReturn<PrimaryKey, PrimaryKeyType, ItemData>` — a tuple:
-   - `state` — `ReadonlyArray<CollectionItem<…>>`, the reactive **snapshot** of the current collection contents.
-   - `instance` — `Collection<…>`, the **stable instance** used to perform mutations.
+  - `state` — `ReadonlyArray<CollectionItem<…>>`, the reactive **snapshot** of the current collection contents.
+  - `instance` — `Collection<…>`, the **stable instance** used to perform mutations.
 
 ---
 
@@ -55,7 +57,10 @@ function useCollection<
 ### 1) Basic usage: todo list
 
 ```tsx
-import { useCollection, type CollectionItem } from '@webeach/react-hooks/useCollection';
+import {
+  useCollection,
+  type CollectionItem,
+} from '@webeach/react-hooks/useCollection';
 
 type TaskData = {
   key: string;
@@ -205,14 +210,14 @@ export function Users() {
 **Exported types**
 
 - `UseCollectionReturn<PrimaryKey, PrimaryKeyType, ItemData>`
-   - Tuple `[state, instance]`, where:
-      - `state` — `ReadonlyArray<CollectionItem<…>>`, reactive snapshot of current items.
-      - `instance` — `Collection<…>`, the stable collection instance.
+  - Tuple `[state, instance]`, where:
+    - `state` — `ReadonlyArray<CollectionItem<…>>`, reactive snapshot of current items.
+    - `instance` — `Collection<…>`, the stable collection instance.
 
 - **Generic parameters**
-   - `PrimaryKey extends string = 'key'` — the field name used as the primary key.
-   - `PrimaryKeyType = CollectionDefaultKeyType` — the type of the primary key value (usually `string | number`).
-   - `ItemData extends CollectionBaseItemData<PrimaryKey, PrimaryKeyType>` — the item data shape.
+  - `PrimaryKey extends string = 'key'` — the field name used as the primary key.
+  - `PrimaryKeyType = CollectionDefaultKeyType` — the type of the primary key value (usually `string | number`).
+  - `ItemData extends CollectionBaseItemData<PrimaryKey, PrimaryKeyType>` — the item data shape.
 
 ---
 

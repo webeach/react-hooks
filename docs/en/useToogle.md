@@ -2,9 +2,10 @@
 
 ## Description
 
-`useToggle` is a hook for managing a boolean state with a single `toggle` method. It returns a *hybrid* structure that supports both **tuple** and **object** destructuring.
+`useToggle` is a hook for managing a boolean state with a single `toggle` method. It returns a _hybrid_ structure that supports both **tuple** and **object** destructuring.
 
 `toggle` semantics:
+
 - without an argument — **flips** the current value `true ⇄ false`;
 - with `true`/`false` — **forces** the provided value.
 
@@ -17,12 +18,12 @@ function useToggle(initialValue?: boolean): UseToggleReturn;
 ```
 
 - **Parameters**
-   - `initialValue?: boolean` — initial value; defaults to `false`.
+  - `initialValue?: boolean` — initial value; defaults to `false`.
 
 - **Returns**: `UseToggleReturn` — a hybrid structure with fields/positions:
-   - `value: boolean` — current value;
-   - `toggle(force?: boolean): void` — flip the value or set it explicitly;
-   - tuple access: `[value, toggle]`.
+  - `value: boolean` — current value;
+  - `toggle(force?: boolean): void` — flip the value or set it explicitly;
+  - tuple access: `[value, toggle]`.
 
 ---
 
@@ -77,8 +78,8 @@ export function KeyboardControlled() {
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 't') toggle();      // flip
-      if (e.key === '1') toggle(true);  // force on
+      if (e.key === 't') toggle(); // flip
+      if (e.key === '1') toggle(true); // force on
       if (e.key === '0') toggle(false); // force off
     };
     window.addEventListener('keydown', onKey);
@@ -140,18 +141,18 @@ export function KeyboardControlled() {
 **Exported types**
 
 - `UseToggleFunction`
-   - Boolean state updater: `(force?: boolean) => void`.
-      - No argument — inverts the current value.
-      - `true`/`false` — sets the value explicitly.
+  - Boolean state updater: `(force?: boolean) => void`.
+    - No argument — inverts the current value.
+    - `true`/`false` — sets the value explicitly.
 
 - `UseToggleReturn`
-   - Hybrid: tuple `[value, toggle]` **and** object `{ value, toggle }`.
+  - Hybrid: tuple `[value, toggle]` **and** object `{ value, toggle }`.
 
 - `UseToggleReturnObject`
-   - Object form: `{ value: boolean; toggle: UseToggleFunction }`.
+  - Object form: `{ value: boolean; toggle: UseToggleFunction }`.
 
 - `UseToggleReturnTuple`
-   - Tuple form: `[value: boolean, toggle: UseToggleFunction]`.
+  - Tuple form: `[value: boolean, toggle: UseToggleFunction]`.
 
 ---
 

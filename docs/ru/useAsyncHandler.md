@@ -4,7 +4,8 @@
 
 `useAsyncHandler` — хук, который **автоматически** выполняет асинхронную функцию при маунте и каждый раз, когда меняются зависимости (`deps`), и предоставляет текущее состояние выполнения через `status` (`isPending`, `isSuccess`, `isError`, `error`). Внутри использует `useAsyncCallback`, поэтому обновления статуса **ленивые**: перерисовки начинаются только после первого обращения к `status`.
 
-Хук возвращает *гибридную* структуру, поддерживающую **кортежную** и **объектную** деструктуризацию:
+Хук возвращает _гибридную_ структуру, поддерживающую **кортежную** и **объектную** деструктуризацию:
+
 - Кортеж: `[status]`
 - Объект: `{ status }`
 
@@ -20,11 +21,11 @@ function useAsyncHandler(
 ```
 
 - **Параметры**
-   - `handler` — асинхронная функция без аргументов, которую нужно автоматически вызывать.
-   - `deps` — список зависимостей (как во втором аргументе `useEffect`), при изменении которых `handler` будет вызываться повторно.
+  - `handler` — асинхронная функция без аргументов, которую нужно автоматически вызывать.
+  - `deps` — список зависимостей (как во втором аргументе `useEffect`), при изменении которых `handler` будет вызываться повторно.
 
 - **Возвращает**: `UseAsyncHandlerReturn` — гибридная структура со статусом:
-   - `status` — содержит `isPending`, `isSuccess`, `isError` и `error`.
+  - `status` — содержит `isPending`, `isSuccess`, `isError` и `error`.
 
 ---
 
@@ -51,11 +52,11 @@ export function DataLoader() {
   if (status.isPending) {
     return <div>Loading…</div>;
   }
-  
+
   if (status.isError) {
     return <div role="alert">{status.error?.message}</div>;
   }
-  
+
   return <div>Done</div>;
 }
 ```
@@ -72,10 +73,12 @@ type SearchProps = {
 
 export function Search(props: SearchProps) {
   const { query, page } = props;
-  
+
   const { status } = useAsyncHandler(async () => {
-    const res = await fetch(`/api/search?q=${encodeURIComponent(query)}&page=${page}`);
-    
+    const res = await fetch(
+      `/api/search?q=${encodeURIComponent(query)}&page=${page}`,
+    );
+
     if (!res.ok) {
       throw new Error('Failed to load');
     }
@@ -155,16 +158,16 @@ export function Search(props: SearchProps) {
 **Экспортируемые типы**
 
 - `UseAsyncHandlerFunction`
-   - Асинхронная функция без аргументов: `() => Promise<void>`.
+  - Асинхронная функция без аргументов: `() => Promise<void>`.
 
 - `UseAsyncHandlerReturn`
-   - Гибрид: кортеж `[status]` **и** объект `{ status }`.
- 
+  - Гибрид: кортеж `[status]` **и** объект `{ status }`.
+
 - `UseAsyncHandlerReturnObject`
-   - Объектная форма: `{ status: StatusStateMapTuple & StatusStateMap }`.
+  - Объектная форма: `{ status: StatusStateMapTuple & StatusStateMap }`.
 
 - `UseAsyncHandlerReturnTuple`
-   - Кортежная форма: `[status: StatusStateMapTuple & StatusStateMap]`.
+  - Кортежная форма: `[status: StatusStateMapTuple & StatusStateMap]`.
 
 ---
 

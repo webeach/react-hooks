@@ -3,6 +3,7 @@
 ## Description
 
 `useFrame` is a hook that calls your callback **on every animation frame** using `requestAnimationFrame`. The callback receives useful timing information:
+
 - `frame` — the frame number, starting at `1`;
 - `deltaTime` — milliseconds elapsed since the previous frame;
 - `timeSinceStart` — milliseconds elapsed since the first frame.
@@ -18,10 +19,10 @@ function useFrame(callback: UseFrameCallback): void;
 ```
 
 - **Parameters**
-   - `callback` — function called on each `requestAnimationFrame` with timing info.
+  - `callback` — function called on each `requestAnimationFrame` with timing info.
 
 - **Returns**
-   - `void` — no direct value; the hook only subscribes/unsubscribes to frames.
+  - `void` — no direct value; the hook only subscribes/unsubscribes to frames.
 
 ---
 
@@ -35,7 +36,16 @@ import { useFrame } from '@webeach/react-hooks/useFrame';
 export function Logger() {
   useFrame(({ frame, deltaTime, timeSinceStart }) => {
     if (frame % 60 === 0) {
-      console.log('frame', frame, 'Δ', deltaTime.toFixed(2), 'ms', 'total', timeSinceStart.toFixed(2), 'ms');
+      console.log(
+        'frame',
+        frame,
+        'Δ',
+        deltaTime.toFixed(2),
+        'ms',
+        'total',
+        timeSinceStart.toFixed(2),
+        'ms',
+      );
     }
   });
   return null;
@@ -59,7 +69,12 @@ export function BoxMover() {
     }
   });
 
-  return <div ref={boxRef} style={{ width: 40, height: 40, backgroundColor: 'green' }} />;
+  return (
+    <div
+      ref={boxRef}
+      style={{ width: 40, height: 40, backgroundColor: 'green' }}
+    />
+  );
 }
 ```
 
@@ -125,13 +140,13 @@ export function Clock() {
 ## Common mistakes
 
 1. **Heavy logic inside the callback**
-    - Long tasks increase `deltaTime` and make animations stutter. Keep frame logic lightweight.
+   - Long tasks increase `deltaTime` and make animations stutter. Keep frame logic lightweight.
 
 2. **Assuming fixed 60fps**
-    - Actual frame rate depends on the device and system load. Always use `deltaTime` for consistent animations.
+   - Actual frame rate depends on the device and system load. Always use `deltaTime` for consistent animations.
 
 3. **Mutating refs without re-render**
-    - Updating a plain variable won’t re-render the component. Use `useState` if UI needs to react.
+   - Updating a plain variable won’t re-render the component. Use `useState` if UI needs to react.
 
 ---
 
@@ -140,7 +155,7 @@ export function Clock() {
 **Exported types**
 
 - `UseFrameCallback`
-   - `(info: { frame: number; deltaTime: number; timeSinceStart: number }) => void` — function called on each frame with timing info.
+  - `(info: { frame: number; deltaTime: number; timeSinceStart: number }) => void` — function called on each frame with timing info.
 
 ---
 

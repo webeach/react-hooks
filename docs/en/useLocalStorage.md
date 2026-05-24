@@ -28,12 +28,12 @@ function useLocalStorage<ValueType>(
 ```
 
 - **Parameters**
-   - `key` — the key in `localStorage`.
-   - `initialValue?` — initial value or factory. Used if storage does not contain a valid string.
-   - `options?` — serialization and behavior settings:
-    - `serializer?: (key, value) => string` — converts a value to a string before writing.
-    - `deserializer?: (key, raw) => Value | undefined` — parses a string from storage. Return `undefined` to treat as “no value”.
-    - `watch?: boolean` — whether to update state when this key changes in other tabs.
+  - `key` — the key in `localStorage`.
+  - `initialValue?` — initial value or factory. Used if storage does not contain a valid string.
+  - `options?` — serialization and behavior settings:
+  - `serializer?: (key, value) => string` — converts a value to a string before writing.
+  - `deserializer?: (key, raw) => Value | undefined` — parses a string from storage. Return `undefined` to treat as “no value”.
+  - `watch?: boolean` — whether to update state when this key changes in other tabs.
 
 - **Returns**: `UseLocalStorageReturn<Value>` — tuple `[value, setValue]`.
 
@@ -42,6 +42,7 @@ function useLocalStorage<ValueType>(
 ## Examples
 
 ### 1) Basic preference persistence
+
 ```tsx
 const [theme, setTheme] = useLocalStorage<'light' | 'dark'>(
   'ui:theme',
@@ -53,6 +54,7 @@ setTheme('dark');
 ```
 
 ### 2) Counter with a functional updater
+
 ```tsx
 const [count, setCount] = useLocalStorage<number>('app:count', 0);
 
@@ -61,6 +63,7 @@ const reset = () => setCount(0);
 ```
 
 ### 3) Deleting a value (resetting the key)
+
 ```tsx
 const [token, setToken] = useLocalStorage<string | undefined>('auth:token');
 
@@ -69,10 +72,12 @@ setToken(undefined);
 ```
 
 ### 4) Custom serializers
+
 ```tsx
 type Profile = { id: number; name: string };
 
-const serializer = (_key: string, value: Profile) => JSON.stringify({ root: value });
+const serializer = (_key: string, value: Profile) =>
+  JSON.stringify({ root: value });
 const deserializer = (_key: string, rawValue: string): Profile | undefined => {
   const parsed = JSON.parse(rawValue);
   return parsed?.root;
@@ -86,6 +91,7 @@ const [profile, setProfile] = useLocalStorage<Profile>(
 ```
 
 ### 5) Cross‑tab synchronization
+
 ```tsx
 const [filter, setFilter] = useLocalStorage<string>('list:filter', '', {
   watch: true,

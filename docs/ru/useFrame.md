@@ -3,6 +3,7 @@
 ## Описание
 
 `useFrame` — хук, который вызывает ваш колбэк **на каждом кадре анимации** (`requestAnimationFrame`). Колбэк получает полезные тайминги:
+
 - `frame` — номер кадра, начиная с `1`;
 - `deltaTime` — миллисекунды с предыдущего кадра;
 - `timeSinceStart` — миллисекунды с первого кадра.
@@ -18,10 +19,10 @@ function useFrame(callback: UseFrameCallback): void;
 ```
 
 - **Параметры**
-   - `callback` — функция, вызываемая на каждом `requestAnimationFrame` с объектом таймингов.
+  - `callback` — функция, вызываемая на каждом `requestAnimationFrame` с объектом таймингов.
 
 - **Возвращает**
-   - `void` — побочных значений нет; хук лишь подписывает/отписывает кадры.
+  - `void` — побочных значений нет; хук лишь подписывает/отписывает кадры.
 
 ---
 
@@ -35,7 +36,16 @@ import { useFrame } from '@webeach/react-hooks/useFrame';
 export function Logger() {
   useFrame(({ frame, deltaTime, timeSinceStart }) => {
     if (frame % 60 === 0) {
-      console.log('frame', frame, 'Δ', deltaTime.toFixed(2), 'ms', 'total', timeSinceStart.toFixed(2), 'ms');
+      console.log(
+        'frame',
+        frame,
+        'Δ',
+        deltaTime.toFixed(2),
+        'ms',
+        'total',
+        timeSinceStart.toFixed(2),
+        'ms',
+      );
     }
   });
   return null;
@@ -59,7 +69,12 @@ export function BoxMover() {
     }
   });
 
-  return <div ref={boxRef} style={{ width: 40, height: 40, backgroundColor: 'green' }} />;
+  return (
+    <div
+      ref={boxRef}
+      style={{ width: 40, height: 40, backgroundColor: 'green' }}
+    />
+  );
 }
 ```
 
@@ -84,7 +99,9 @@ export function Clock() {
   return (
     <div>
       <output>{ms.toFixed(0)} ms</output>
-      <button onClick={() => togglePaused()}>{paused ? 'Resume' : 'Pause'}</button>
+      <button onClick={() => togglePaused()}>
+        {paused ? 'Resume' : 'Pause'}
+      </button>
     </div>
   );
 }
@@ -144,7 +161,7 @@ export function Clock() {
 **Экспортируемые типы**
 
 - `UseFrameCallback`
-   - `(info: { frame: number; deltaTime: number; timeSinceStart: number }) => void` — функция, вызываемая на каждом кадре с таймингами.
+  - `(info: { frame: number; deltaTime: number; timeSinceStart: number }) => void` — функция, вызываемая на каждом кадре с таймингами.
 
 ---
 

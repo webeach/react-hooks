@@ -4,7 +4,6 @@ import { safeLocalStorage } from '../../factories/safeLocalStorage';
 import { storageDefaultDeserializer } from '../../functions/storageDefaultDeserializer';
 import { storageDefaultSerializer } from '../../functions/storageDefaultSerializer';
 import { useLiveRef } from '../useLiveRef';
-
 import {
   UseLocalStorageOptions,
   UseLocalStorageReturn,

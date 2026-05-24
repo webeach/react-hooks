@@ -26,13 +26,15 @@ function useDebounceState<State>(
 ```
 
 **Параметры**
+
 - `initialState` — начальное значение или ленивый инициализатор (опционально).
 - `delayMs` — задержка обновления в миллисекундах.
 
 **Возвращает**
+
 - Кортеж `[state, setDebounceState]`:
-   - `state` — текущее значение состояния;
-   - `setDebounceState(next)` — дебаунс‑сеттер (стабильная ссылка).
+  - `state` — текущее значение состояния;
+  - `setDebounceState(next)` — дебаунс‑сеттер (стабильная ссылка).
 
 ---
 
@@ -72,9 +74,7 @@ import { useDebounceState } from '@webeach/react-hooks/useDebounceState';
 
 export function Counter() {
   const [count, setCount] = useDebounceState(0, 200);
-  return (
-    <button onClick={() => setCount((x) => x + 1)}>+1 (debounced)</button>
-  );
+  return <button onClick={() => setCount((x) => x + 1)}>+1 (debounced)</button>;
 }
 ```
 
@@ -127,14 +127,14 @@ export function Adjustable() {
 **Экспортируемые типы**
 
 - `UseDebounceStateSetAction<State>`
-   - Либо прямое значение `State`.
-   - Либо функциональный апдейтер: `(prev: State) => State`.
+  - Либо прямое значение `State`.
+  - Либо функциональный апдейтер: `(prev: State) => State`.
 
 - `UseDebounceStateDispatch<State>`
-   - Сеттер состояния с дебаунсом: `(action: UseDebounceStateSetAction<State>) => void`.
+  - Сеттер состояния с дебаунсом: `(action: UseDebounceStateSetAction<State>) => void`.
 
 - `UseDebounceStateReturn<State>`
-   - Кортеж: `[state: State, setDebounceState: UseDebounceStateDispatch<State>]`.
+  - Кортеж: `[state: State, setDebounceState: UseDebounceStateDispatch<State>]`.
 
 ---
 

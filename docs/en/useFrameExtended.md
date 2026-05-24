@@ -3,6 +3,7 @@
 ## Description
 
 `useFrameExtended` is a hook that sets up an **extended frame loop** based on `requestAnimationFrame` and provides control methods: `start`, `stop`, `restart`. The callback is executed on **every frame** and receives a timing object:
+
 - `frame` — frame number, starting from `1` after `start()`/`restart()`;
 - `deltaTime` — milliseconds since the previous frame;
 - `timeSinceLastStart` — milliseconds since the last `start()`/`restart()`;
@@ -13,16 +14,18 @@
 ## Signature
 
 ```ts
-function useFrameExtended(callback: UseFrameExtendedCallback): UseFrameExtendedReturn;
+function useFrameExtended(
+  callback: UseFrameExtendedCallback,
+): UseFrameExtendedReturn;
 ```
 
 - **Parameters**
-   - `callback` — a function called on each frame with the timing object.
+  - `callback` — a function called on each frame with the timing object.
 
 - **Returns**: `UseFrameExtendedReturn` — a control object for the loop:
-   - `start(): void` — starts the loop (if called before mount, it will be deferred until mount);
-   - `stop(): void` — stops the current loop;
-   - `restart(): void` — stops, resets counters, and starts again.
+  - `start(): void` — starts the loop (if called before mount, it will be deferred until mount);
+  - `stop(): void` — stops the current loop;
+  - `restart(): void` — stops, resets counters, and starts again.
 
 ---
 
@@ -37,7 +40,16 @@ import { useFrameExtended } from '@webeach/react-hooks/useFrameExtended';
 export function Logger() {
   const { start } = useFrameExtended(({ frame, deltaTime, timeSinceStart }) => {
     if (frame % 60 === 0) {
-      console.log('frame', frame, 'Δ', deltaTime.toFixed(2), 'ms', 'total', timeSinceStart.toFixed(1), 'ms');
+      console.log(
+        'frame',
+        frame,
+        'Δ',
+        deltaTime.toFixed(2),
+        'ms',
+        'total',
+        timeSinceStart.toFixed(1),
+        'ms',
+      );
     }
   });
 
@@ -74,9 +86,11 @@ export function Controls() {
 import { useFrameExtended } from '@webeach/react-hooks/useFrameExtended';
 
 export function Restartable() {
-  const { start, stop, restart } = useFrameExtended(({ frame, timeSinceLastStart }) => {
-    // frame will start from 1 again after restart
-  });
+  const { start, stop, restart } = useFrameExtended(
+    ({ frame, timeSinceLastStart }) => {
+      // frame will start from 1 again after restart
+    },
+  );
 
   return (
     <div>
@@ -159,10 +173,10 @@ export function Restartable() {
 - `UseFrameExtendedCallback` — `(info: UseFrameExtendedCallbackOptions) => void`, executed on every frame.
 
 - `UseFrameExtendedCallbackOptions`
-   - `frame: number` — frame index, starting at `1` after `start()`/`restart()`;
-   - `deltaTime: number` — milliseconds since the last frame;
-   - `timeSinceLastStart: number` — milliseconds since the last `start()`/`restart()`;
-   - `timeSinceStart: number` — milliseconds since the very first start (resets on `restart()`).
+  - `frame: number` — frame index, starting at `1` after `start()`/`restart()`;
+  - `deltaTime: number` — milliseconds since the last frame;
+  - `timeSinceLastStart: number` — milliseconds since the last `start()`/`restart()`;
+  - `timeSinceStart: number` — milliseconds since the very first start (resets on `restart()`).
 
 ---
 
