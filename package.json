@@ -1,7 +1,7 @@
 {
   "name": "@webeach/react-hooks",
   "version": "0.2.0",
-  "description": "A set of smart React hooks for performant UIs (React 18+)",
+  "description": "A set of smart React hooks for performant UIs",
   "keywords": [
     "ahooks",
     "custom-hooks",
@@ -501,6 +501,9 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
+    "docs:dev": "vitepress dev docs --port 6190",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs --port 6190",
     "lint": "oxlint .",
     "lint:fix": "oxlint --fix .",
     "fmt": "oxfmt",
@@ -542,6 +545,8 @@
     "tsup": "^8",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3",
+    "vite": "^6",
+    "vitepress": "^1",
     "vitest": "^4.1.7"
   },
   "peerDependencies": {

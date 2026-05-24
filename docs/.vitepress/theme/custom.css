@@ -1,0 +1,11 @@
+.VPNavBar .VPNavBarTitle .logo {
+  width: 90%;
+  height: auto;
+  max-width: 200px;
+}
+
+@media (max-width: 768px) {
+  .VPNavBar .VPNavBarTitle .logo {
+    max-width: 160px;
+  }
+}

@@ -13,7 +13,10 @@
     </a>
   </p>
   <p><a href="./README.md">🇺🇸 English version</a> | <a href="./README.ru.md">🇷🇺 Русская версия</a></p>
-  <p>Набор умных React‑хуков для производительных интерфейсов (React 18+)</p>
+  <p>
+    <a href="https://react-hooks.webea.ch">📖 Документация</a>
+  </p>
+  <p>Набор умных React‑хуков для производительных интерфейсов</p>
 </div>
 
 ---
@@ -70,142 +73,65 @@ import {
 
 ### По алфавиту
 
-- [useAsyncCallback](./docs/ru/useAsyncCallback.md)
-- [useAsyncHandler](./docs/ru/useAsyncHandler.md)
-- [useBoolean](./docs/ru/useBoolean.md)
-- [useCallbackCompare](./docs/ru/useCallbackCompare.md)
-- [useCollection](./docs/ru/useCollection.md)
-- [useControlled](./docs/ru/useControlled.md)
-- [useDebounceCallback](./docs/ru/useDebounceCallback.md)
-- [useDebounceState](./docs/ru/useDebounceState.md)
-- [useDemandStructure](./docs/ru/useDemandStructure.md)
-- [useDeps](./docs/ru/useDeps.md)
-- [useDOMEvent](./docs/ru/useDOMEvent.md)
-- [useEffectCompare](./docs/ru/useEffectCompare.md)
-- [useForceUpdate](./docs/ru/useForceUpdate.md)
-- [useFrame](./docs/ru/useFrame.md)
-- [useFrameExtended](./docs/ru/useFrameExtended.md)
-- [useImageLoader](./docs/ru/useImageLoader.md)
-- [useIntersectionObserver](./docs/ru/useIntersectionObserver.md)
-- [useIsomorphicLayoutEffect](./docs/ru/useIsomorphicLayoutEffect.md)
-- [useLayoutEffectСompare](./docs/ru/useLayoutEffectСompare.md)
-- [useLiveRef](./docs/ru/useLiveRef.md)
-- [useLocalStorage](./docs/ru/useLocalStorage.md)
-- [useLoop](./docs/ru/useLoop.md)
-- [useMap](./docs/ru/useMap.md)
-- [useMediaQuery](./docs/ru/useMediaQuery.md)
-- [useMemoCompare](./docs/ru/useMemoCompare.md)
-- [useNumber](./docs/ru/useNumber.md)
-- [useOutsideEvent](./docs/ru/useOutsideEvent.md)
-- [usePageTitle](./docs/ru/usePageTitle.md)
-- [usePageVisibility](./docs/ru/usePageVisibility.md)
-- [usePatchDeepState](./docs/ru/usePatchDeepState.md)
-- [usePatchState](./docs/ru/usePatchState.md)
-- [useRefEffect](./docs/ru/useRefEffect.md)
-- [useRefState](./docs/ru/useRefState.md)
-- [useResizeObserver](./docs/ru/useResizeObserver.md)
-- [useSessionStorage](./docs/ru/useSessionStorage.md)
-- [useSet](./docs/ru/useSet.md)
-- [useStatus](./docs/ru/useStatus.md)
-- [useThrottleCallback](./docs/ru/useThrottleCallback.md)
-- [useThrottleState](./docs/ru/useThrottleState.md)
-- [useTimeout](./docs/ru/useTimeout.md)
-- [useTimeoutExtended](./docs/ru/useTimeoutExtended.md)
-- [useToggle](./docs/ru/useToggle.md)
-- [useUnmount](./docs/ru/useUnmount.md)
-- [useViewportBreakpoint](./docs/ru/useViewportBreakpoint.md)
-- [useWindowEvent](./docs/ru/useWindowEvent.md)
+[useAsyncCallback](https://react-hooks.webea.ch/ru/hooks/useAsyncCallback.html), [useAsyncHandler](https://react-hooks.webea.ch/ru/hooks/useAsyncHandler.html), [useBoolean](https://react-hooks.webea.ch/ru/hooks/useBoolean.html), [useCallbackCompare](https://react-hooks.webea.ch/ru/hooks/useCallbackCompare.html), [useCollection](https://react-hooks.webea.ch/ru/hooks/useCollection.html), [useControlled](https://react-hooks.webea.ch/ru/hooks/useControlled.html), [useDebounceCallback](https://react-hooks.webea.ch/ru/hooks/useDebounceCallback.html), [useDebounceState](https://react-hooks.webea.ch/ru/hooks/useDebounceState.html), [useDemandStructure](https://react-hooks.webea.ch/ru/hooks/useDemandStructure.html), [useDeps](https://react-hooks.webea.ch/ru/hooks/useDeps.html), [useDOMEvent](https://react-hooks.webea.ch/ru/hooks/useDOMEvent.html), [useEffectCompare](https://react-hooks.webea.ch/ru/hooks/useEffectCompare.html), [useForceUpdate](https://react-hooks.webea.ch/ru/hooks/useForceUpdate.html), [useFrame](https://react-hooks.webea.ch/ru/hooks/useFrame.html), [useFrameExtended](https://react-hooks.webea.ch/ru/hooks/useFrameExtended.html), [useImageLoader](https://react-hooks.webea.ch/ru/hooks/useImageLoader.html), [useIntersectionObserver](https://react-hooks.webea.ch/ru/hooks/useIntersectionObserver.html), [useIsomorphicLayoutEffect](https://react-hooks.webea.ch/ru/hooks/useIsomorphicLayoutEffect.html), [useLayoutEffectCompare](https://react-hooks.webea.ch/ru/hooks/useLayoutEffectCompare.html), [useLiveRef](https://react-hooks.webea.ch/ru/hooks/useLiveRef.html), [useLocalStorage](https://react-hooks.webea.ch/ru/hooks/useLocalStorage.html), [useLoop](https://react-hooks.webea.ch/ru/hooks/useLoop.html), [useMap](https://react-hooks.webea.ch/ru/hooks/useMap.html), [useMediaQuery](https://react-hooks.webea.ch/ru/hooks/useMediaQuery.html), [useMemoCompare](https://react-hooks.webea.ch/ru/hooks/useMemoCompare.html), [useNumber](https://react-hooks.webea.ch/ru/hooks/useNumber.html), [useOutsideEvent](https://react-hooks.webea.ch/ru/hooks/useOutsideEvent.html), [usePageTitle](https://react-hooks.webea.ch/ru/hooks/usePageTitle.html), [usePageVisibility](https://react-hooks.webea.ch/ru/hooks/usePageVisibility.html), [usePatchDeepState](https://react-hooks.webea.ch/ru/hooks/usePatchDeepState.html), [usePatchState](https://react-hooks.webea.ch/ru/hooks/usePatchState.html), [useRefEffect](https://react-hooks.webea.ch/ru/hooks/useRefEffect.html), [useRefState](https://react-hooks.webea.ch/ru/hooks/useRefState.html), [useResizeObserver](https://react-hooks.webea.ch/ru/hooks/useResizeObserver.html), [useSessionStorage](https://react-hooks.webea.ch/ru/hooks/useSessionStorage.html), [useSet](https://react-hooks.webea.ch/ru/hooks/useSet.html), [useStatus](https://react-hooks.webea.ch/ru/hooks/useStatus.html), [useThrottleCallback](https://react-hooks.webea.ch/ru/hooks/useThrottleCallback.html), [useThrottleState](https://react-hooks.webea.ch/ru/hooks/useThrottleState.html), [useTimeout](https://react-hooks.webea.ch/ru/hooks/useTimeout.html), [useTimeoutExtended](https://react-hooks.webea.ch/ru/hooks/useTimeoutExtended.html), [useToggle](https://react-hooks.webea.ch/ru/hooks/useToggle.html), [useUnmount](https://react-hooks.webea.ch/ru/hooks/useUnmount.html), [useViewportBreakpoint](https://react-hooks.webea.ch/ru/hooks/useViewportBreakpoint.html), [useWindowEvent](https://react-hooks.webea.ch/ru/hooks/useWindowEvent.html)
 
 ### По категориям
 
 #### Состояние — простые примитивы
 
-- [useControlled](./docs/ru/useControlled.md)
-- [useBoolean](./docs/ru/useBoolean.md)
-- [useNumber](./docs/ru/useNumber.md)
-- [useToggle](./docs/ru/useToggle.md)
-- [useStatus](./docs/ru/useStatus.md)
+[useControlled](https://react-hooks.webea.ch/ru/hooks/useControlled.html), [useBoolean](https://react-hooks.webea.ch/ru/hooks/useBoolean.html), [useNumber](https://react-hooks.webea.ch/ru/hooks/useNumber.html), [useToggle](https://react-hooks.webea.ch/ru/hooks/useToggle.html), [useStatus](https://react-hooks.webea.ch/ru/hooks/useStatus.html)
 
 #### Состояние — объектные паттерны
 
-- [usePatchDeepState](./docs/ru/usePatchDeepState.md)
-- [usePatchState](./docs/ru/usePatchState.md)
+[usePatchDeepState](https://react-hooks.webea.ch/ru/hooks/usePatchDeepState.html), [usePatchState](https://react-hooks.webea.ch/ru/hooks/usePatchState.html)
 
 #### Состояние — коллекции
 
-- [useCollection](./docs/ru/useCollection.md)
-- [useMap](./docs/ru/useMap.md)
-- [useSet](./docs/ru/useSet.md)
+[useCollection](https://react-hooks.webea.ch/ru/hooks/useCollection.html), [useMap](https://react-hooks.webea.ch/ru/hooks/useMap.html), [useSet](https://react-hooks.webea.ch/ru/hooks/useSet.html)
 
 #### Состояние — хранилища (персистентность)
 
-- [useLocalStorage](./docs/ru/useLocalStorage.md)
-- [useSessionStorage](./docs/ru/useSessionStorage.md)
+[useLocalStorage](https://react-hooks.webea.ch/ru/hooks/useLocalStorage.html), [useSessionStorage](https://react-hooks.webea.ch/ru/hooks/useSessionStorage.html)
 
 #### Таймеры, циклы и кадры
 
-- [useFrame](./docs/ru/useFrame.md)
-- [useFrameExtended](./docs/ru/useFrameExtended.md)
-- [useLoop](./docs/ru/useLoop.md)
-- [useTimeout](./docs/ru/useTimeout.md)
-- [useTimeoutExtended](./docs/ru/useTimeoutExtended.md)
+[useFrame](https://react-hooks.webea.ch/ru/hooks/useFrame.html), [useFrameExtended](https://react-hooks.webea.ch/ru/hooks/useFrameExtended.html), [useLoop](https://react-hooks.webea.ch/ru/hooks/useLoop.html), [useTimeout](https://react-hooks.webea.ch/ru/hooks/useTimeout.html), [useTimeoutExtended](https://react-hooks.webea.ch/ru/hooks/useTimeoutExtended.html)
 
 #### Ограничение частоты (throttle/debounce)
 
-- [useDebounceCallback](./docs/ru/useDebounceCallback.md)
-- [useDebounceState](./docs/ru/useDebounceState.md)
-- [useThrottleCallback](./docs/ru/useThrottleCallback.md)
-- [useThrottleState](./docs/ru/useThrottleState.md)
+[useDebounceCallback](https://react-hooks.webea.ch/ru/hooks/useDebounceCallback.html), [useDebounceState](https://react-hooks.webea.ch/ru/hooks/useDebounceState.html), [useThrottleCallback](https://react-hooks.webea.ch/ru/hooks/useThrottleCallback.html), [useThrottleState](https://react-hooks.webea.ch/ru/hooks/useThrottleState.html)
 
 #### Асинхронные операции
 
-- [useAsyncCallback](./docs/ru/useAsyncCallback.md)
-- [useAsyncHandler](./docs/ru/useAsyncHandler.md)
-- [useImageLoader](./docs/ru/useImageLoader.md)
+[useAsyncCallback](https://react-hooks.webea.ch/ru/hooks/useAsyncCallback.html), [useAsyncHandler](https://react-hooks.webea.ch/ru/hooks/useAsyncHandler.html), [useImageLoader](https://react-hooks.webea.ch/ru/hooks/useImageLoader.html)
 
 #### Оптимизация зависимостей
 
-- [useDeps](./docs/ru/useDeps.md)
-- [useCallbackCompare](./docs/ru/useCallbackCompare.md)
-- [useEffectCompare](./docs/ru/useEffectCompare.md)
-- [useLayoutEffectCompare](./docs/ru/useLayoutEffectCompare.md)
-- [useMemoCompare](./docs/ru/useMemoCompare.md)
-- [useIsomorphicLayoutEffect](./docs/ru/useIsomorphicLayoutEffect.md)
+[useDeps](https://react-hooks.webea.ch/ru/hooks/useDeps.html), [useCallbackCompare](https://react-hooks.webea.ch/ru/hooks/useCallbackCompare.html), [useEffectCompare](https://react-hooks.webea.ch/ru/hooks/useEffectCompare.html), [useLayoutEffectCompare](https://react-hooks.webea.ch/ru/hooks/useLayoutEffectCompare.html), [useMemoCompare](https://react-hooks.webea.ch/ru/hooks/useMemoCompare.html), [useIsomorphicLayoutEffect](https://react-hooks.webea.ch/ru/hooks/useIsomorphicLayoutEffect.html)
 
 #### Жизненный цикл
 
-- [useEffectCompare](./docs/ru/useEffectCompare.md)
-- [useLayoutEffectCompare](./docs/ru/useLayoutEffectCompare.md)
-- [useUnmount](./docs/ru/useUnmount.md)
+[useEffectCompare](https://react-hooks.webea.ch/ru/hooks/useEffectCompare.html), [useLayoutEffectCompare](https://react-hooks.webea.ch/ru/hooks/useLayoutEffectCompare.html), [useUnmount](https://react-hooks.webea.ch/ru/hooks/useUnmount.html)
 
 #### Рефы
 
-- [useLiveRef](./docs/ru/useLiveRef.md)
-- [useRefEffect](./docs/ru/useRefEffect.md)
+[useLiveRef](https://react-hooks.webea.ch/ru/hooks/useLiveRef.html), [useRefEffect](https://react-hooks.webea.ch/ru/hooks/useRefEffect.html)
 
 #### События
 
-- [useDOMEvent](./docs/ru/useDOMEvent.md)
-- [useWindowEvent](./docs/ru/useWindowEvent.md)
-- [useOutsideEvent](./docs/ru/useOutsideEvent.md)
+[useDOMEvent](https://react-hooks.webea.ch/ru/hooks/useDOMEvent.html), [useWindowEvent](https://react-hooks.webea.ch/ru/hooks/useWindowEvent.html), [useOutsideEvent](https://react-hooks.webea.ch/ru/hooks/useOutsideEvent.html)
 
 #### Наблюдатели (Observers)
 
-- [useIntersectionObserver](./docs/ru/useIntersectionObserver.md)
-- [useResizeObserver](./docs/ru/useResizeObserver.md)
+[useIntersectionObserver](https://react-hooks.webea.ch/ru/hooks/useIntersectionObserver.html), [useResizeObserver](https://react-hooks.webea.ch/ru/hooks/useResizeObserver.html)
 
 #### Страница/документ
 
-- [useMediaQuery](./docs/ru/useMediaQuery.md)
-- [usePageTitle](./docs/ru/usePageTitle.md)
-- [usePageVisibility](./docs/ru/usePageVisibility.md)
-- [useViewportBreakpoint](./docs/ru/useViewportBreakpoint.md)
+[useMediaQuery](https://react-hooks.webea.ch/ru/hooks/useMediaQuery.html), [usePageTitle](https://react-hooks.webea.ch/ru/hooks/usePageTitle.html), [usePageVisibility](https://react-hooks.webea.ch/ru/hooks/usePageVisibility.html), [useViewportBreakpoint](https://react-hooks.webea.ch/ru/hooks/useViewportBreakpoint.html)
 
 #### Служебные
 
-- [useDemandStructure](./docs/ru/useDemandStructure.md)
-- [useForceUpdate](./docs/ru/useForceUpdate.md)
-- [useRefState](./docs/ru/useRefState.md)
+[useDemandStructure](https://react-hooks.webea.ch/ru/hooks/useDemandStructure.html), [useForceUpdate](https://react-hooks.webea.ch/ru/hooks/useForceUpdate.html), [useRefState](https://react-hooks.webea.ch/ru/hooks/useRefState.html)
 
 ---
 
@@ -213,7 +139,7 @@ import {
 
 Библиотека имеет **единственную внешнюю зависимость** — [@webeach/collection](https://github.com/webeach/collection).
 
-- Эта зависимость используется **только** хуком [`useCollection`](./docs/ru/useCollection.md).
+- Эта зависимость используется **только** хуком [`useCollection`](https://react-hooks.webea.ch/ru/hooks/useCollection.html).
 - Прочие хуки не импортируют и не требуют `collection`.
 
 ---

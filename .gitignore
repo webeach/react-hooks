@@ -35,3 +35,7 @@ node_modules
 
 # draft code
 /src/hooks/_draft/
+
+# VitePress
+docs/.vitepress/dist
+docs/.vitepress/cache
