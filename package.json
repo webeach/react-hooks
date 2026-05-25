@@ -512,6 +512,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "release": "semantic-release",
+    "scan": "dist-guard",
     "generate-exports": "tsx ./scripts/generate-exports.ts",
     "prepare": "is-ci || husky"
   },
@@ -533,6 +534,7 @@
     "@types/node": "^25.9.1",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@webeach/dist-guard": "^0.2.1",
     "husky": "^9.1.7",
     "is-ci": "^4.1.0",
     "jsdom": "^29.1.1",
@@ -558,7 +560,7 @@
       "oxlint --fix",
       "oxfmt"
     ],
-    "**/*.json": [
+    "**/*.{md,mdc,mdx,json,jsonc}": [
       "oxfmt"
     ]
   },
