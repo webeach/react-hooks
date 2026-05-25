@@ -30,7 +30,7 @@ import { UseAsyncHandlerFunction, UseAsyncHandlerReturn } from './types';
  * if (status.isError) return <Error message={status.error?.message} />;
  * return <DataView />;
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useAsyncHandler.md
+ * @see https://react-hooks.webea.ch/hooks/useAsyncHandler.html
  */
 export function useAsyncHandler(
   handler: UseAsyncHandlerFunction,
