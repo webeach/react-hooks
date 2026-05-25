@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@webeach/collection':
-        specifier: ^1.1.0
-        version: 1.1.0
+        specifier: ^1.3.0
+        version: 1.3.0
     devDependencies:
       '@commitlint/cli':
         specifier: ^21.0.1
@@ -1707,9 +1707,9 @@ packages:
   '@vueuse/shared@12.8.2':
     resolution: {integrity: sha512-dznP38YzxZoNloI0qpEfpkms8knDtaoQ6Y/sfS0L7Yki4zh40LFHEhur0odJC6xTHG5dxWVPiUWBXn+wCG2s5w==}
 
-  '@webeach/collection@1.1.0':
-    resolution: {integrity: sha512-31IM4BgaDEgW/KvbSfQzsl1YJNu4B7nM3Nxh8VFcOIrvKzkBCIDDpgZNzwQyc5Gz4rtOmsq6Lc+hgVrYTkrh+w==}
-    engines: {node: 22.15.0}
+  '@webeach/collection@1.3.0':
+    resolution: {integrity: sha512-3OFocYr+EzmiQDKvubxzowzzEji4h7JkFi5seeanO6pih/Gk2fG7K6KjJpVFJuwctYLpxiGh86c5JXQxz/4e8Q==}
+    engines: {node: '>=18.0.0', pnpm: ^10}
 
   acorn@8.16.0:
     resolution: {integrity: sha512-UVJyE9MttOsBQIDKw1skb9nAwQuR5wuGD3+82K6JgJlm/Y+KI92oNsMNGZCYdDsVtRHSak0pcV5Dno5+4jh9sw==}
@@ -4916,7 +4916,7 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@webeach/collection@1.1.0': {}
+  '@webeach/collection@1.3.0': {}
 
   acorn@8.16.0: {}
 

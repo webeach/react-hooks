@@ -1,14 +1,13 @@
-import { render, screen, within } from '@testing-library/react';
+import { render, renderHook, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { CollectionItem } from '@webeach/collection';
 import { useEffect, useMemo, useRef } from 'react';
 
 import { useCollection } from '../useCollection';
 
+type Item = { readonly key: string; label: string };
+
 /** Test helpers */
-function makeInitialItems(): ReadonlyArray<
-  CollectionItem<'key', string, { key: string; label: string }>
-> {
+function makeInitialItems(): ReadonlyArray<Item> {
   return [
     { key: 'a1', label: 'Alpha' },
     { key: 'b2', label: 'Beta' },
@@ -16,13 +15,7 @@ function makeInitialItems(): ReadonlyArray<
   ] as const;
 }
 
-function ListView({
-  items,
-}: {
-  items: ReadonlyArray<
-    CollectionItem<'key', string, { key: string; label: string }>
-  >;
-}) {
+function ListView({ items }: { items: ReadonlyArray<Item> }) {
   return (
     <ul aria-label="Items" role="list">
       {items.map((item) => (
@@ -338,5 +331,86 @@ describe('useCollection hook', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Append New' }));
     const newNodes = screen.getAllByRole('listitem', { name: 'New' });
     expect(newNodes.length).toBe(1);
+  });
+
+  it('accepts a bare factory and invokes it only once', () => {
+    const factory = vi.fn(
+      () =>
+        [
+          { key: 'a', label: 'A' },
+          { key: 'b', label: 'B' },
+        ] as const,
+    );
+
+    const { result, rerender } = renderHook(() => useCollection(factory));
+
+    expect(factory).toHaveBeenCalledTimes(1);
+    expect(result.current[0].map((item) => item.key)).toEqual(['a', 'b']);
+
+    rerender();
+    rerender();
+
+    // Factory must not be invoked again across rerenders.
+    expect(factory).toHaveBeenCalledTimes(1);
+  });
+
+  it('accepts a factory inside options and invokes it only once', () => {
+    const factory = vi.fn(() => [{ key: 'x', label: 'X' }] as const);
+
+    const { result, rerender } = renderHook(() =>
+      useCollection({ initialItems: factory }),
+    );
+
+    expect(factory).toHaveBeenCalledTimes(1);
+    expect(result.current[0].map((item) => item.key)).toEqual(['x']);
+
+    rerender();
+    expect(factory).toHaveBeenCalledTimes(1);
+  });
+
+  it('factory inside options coexists with custom primaryKey', () => {
+    const factory = vi.fn(() => [
+      { id: 1, label: 'One' },
+      { id: 2, label: 'Two' },
+    ]);
+
+    const { result } = renderHook(() =>
+      useCollection<'id', number, { id: number; label: string }>({
+        primaryKey: 'id',
+        initialItems: factory,
+      }),
+    );
+
+    expect(factory).toHaveBeenCalledTimes(1);
+    expect(result.current[0].map((item) => item.id)).toEqual([1, 2]);
+  });
+
+  it('infers item shape from a bare array argument', () => {
+    const { result } = renderHook(() =>
+      useCollection([{ key: 'foo', value: 123 }]),
+    );
+
+    // Compile-time contract: items[0].value must be `number`.
+    const value: number = result.current[0][0]!.value;
+    expect(value).toBe(123);
+  });
+
+  it('infers item shape from a bare factory argument', () => {
+    const { result } = renderHook(() =>
+      useCollection(() => [{ key: 'foo', value: 123 }] as const),
+    );
+
+    // With `as const` literal types survive — `value` is `123`, a subtype of number.
+    const value: number = result.current[0][0]!.value;
+    expect(value).toBe(123);
+  });
+
+  it('infers item shape from a factory inside options', () => {
+    const { result } = renderHook(() =>
+      useCollection({ initialItems: () => [{ key: 'foo', label: 'F' }] }),
+    );
+
+    const label: string = result.current[0][0]!.label;
+    expect(label).toBe('F');
   });
 });
