@@ -13,8 +13,10 @@ import { useDeps } from '../useDeps';
  *
  * @example
  * const handleClick = useCallbackCompare(() => doSomething(a, b), [a, b]);
+ *
+ * @see https://react-hooks.webea.ch/hooks/useCallbackCompare.html
  */
-function useCallbackCompare<CallbackType extends (...args: any) => any>(
+function useCallbackCompare<CallbackType extends (...args: never[]) => unknown>(
   callback: CallbackType,
   deps: unknown[],
 ): CallbackType;
@@ -36,10 +38,10 @@ function useCallbackCompare<CallbackType extends (...args: any) => any>(
  *   user
  * );
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useCallbackCompare.md
+ * @see https://react-hooks.webea.ch/hooks/useCallbackCompare.html
  */
 function useCallbackCompare<
-  CallbackType extends (...args: any) => any,
+  CallbackType extends (...args: never[]) => unknown,
   ComparedValue,
 >(
   callback: CallbackType,
@@ -56,17 +58,17 @@ function useCallbackCompare<
  * @param compare - A comparison function with internally managed state.
  * @returns A memoized callback, stable unless the comparison returns `false`.
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useCallbackCompare.md
+ * @see https://react-hooks.webea.ch/hooks/useCallbackCompare.html
  */
-function useCallbackCompare<CallbackType extends (...args: any) => any>(
+function useCallbackCompare<CallbackType extends (...args: never[]) => unknown>(
   callback: CallbackType,
   compare: () => boolean,
 ): CallbackType;
 
 function useCallbackCompare<
-  CallbackType extends (...args: any) => any,
+  CallbackType extends (...args: never[]) => unknown,
   ComparedValue,
->(callback: () => CallbackType, ...compareArgs: unknown[]) {
+>(callback: CallbackType, ...compareArgs: unknown[]) {
   const [depId] = useDeps(
     ...(compareArgs as Parameters<typeof useDeps<ComparedValue>>),
   );

@@ -22,7 +22,7 @@ import {
  * @param {UseSessionStorageOptions<ValueType>} [options] Optional serializer/deserializer.
  * @returns {UseSessionStorageReturn<ValueType | undefined>} `[value, setValue]` where `value` may be `undefined`.
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useSessionStorage.md
+ * @see https://react-hooks.webea.ch/hooks/useSessionStorage.html
  */
 function useSessionStorage<ValueType = undefined>(
   key: string,
@@ -42,7 +42,7 @@ function useSessionStorage<ValueType = undefined>(
  * @param {UseSessionStorageOptions<ValueType>} [options] Optional serializer/deserializer.
  * @returns {UseSessionStorageReturn<ValueType>} `[value, setValue]` where `value` is always defined.
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useSessionStorage.md
+ * @see https://react-hooks.webea.ch/hooks/useSessionStorage.html
  */
 function useSessionStorage<ValueType>(
   key: string,

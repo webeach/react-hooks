@@ -19,7 +19,7 @@ import { UsePatchDeepStateFunction } from './types';
  * const [state, patch] = usePatchDeepState({ user: { name: 'Alice' } });
  * patch({ user: { age: 30 } }); // → merges deeply into state
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/usePatchDeepState.md
+ * @see https://react-hooks.webea.ch/hooks/usePatchDeepState.html
  */
 export function usePatchDeepState<ObjectType extends PlainObject>(
   initialState: ObjectType | (() => ObjectType),

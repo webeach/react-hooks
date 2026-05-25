@@ -22,7 +22,7 @@ import {
  * @param {UseLocalStorageOptions<ValueType>} [options] Optional serializer/deserializer and `watch`.
  * @returns {UseLocalStorageReturn<ValueType | undefined>} `[value, setValue]` where `value` may be `undefined`.
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useLocalStorage.md
+ * @see https://react-hooks.webea.ch/hooks/useLocalStorage.html
  */
 function useLocalStorage<ValueType = undefined>(
   key: string,
@@ -42,7 +42,7 @@ function useLocalStorage<ValueType = undefined>(
  * @param {UseLocalStorageOptions<ValueType>} [options] Optional serializer/deserializer and `watch`.
  * @returns {UseLocalStorageReturn<ValueType>} `[value, setValue]` where `value` is always defined.
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useLocalStorage.md
+ * @see https://react-hooks.webea.ch/hooks/useLocalStorage.html
  */
 function useLocalStorage<ValueType>(
   key: string,

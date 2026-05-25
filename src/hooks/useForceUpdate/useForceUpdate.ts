@@ -27,7 +27,7 @@ import { useCallback, useState } from 'react';
  *
  * @returns A function that triggers a re-render when called.
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useForceUpdate.md
+ * @see https://react-hooks.webea.ch/hooks/useForceUpdate.html
  */
 export function useForceUpdate() {
   const [, setState] = useState<object>();

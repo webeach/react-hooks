@@ -12,7 +12,7 @@ import { shallowCompareArrays } from '../../functions/shallowCompareArrays';
  * @example
  * const [id] = useDeps(); // id will always be 0
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useDeps.md
+ * @see https://react-hooks.webea.ch/hooks/useDeps.html
  */
 function useDeps(): [id: number];
 
@@ -27,7 +27,7 @@ function useDeps(): [id: number];
  * @example
  * const [id] = useDeps([a, b, c]);
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useDeps.md
+ * @see https://react-hooks.webea.ch/hooks/useDeps.html
  */
 function useDeps(deps: unknown[]): [id: number];
 
@@ -43,7 +43,7 @@ function useDeps(deps: unknown[]): [id: number];
  * @example
  * const [id] = useDeps((prev, next) => prev.id === next.id, currentUser);
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useDeps.md
+ * @see https://react-hooks.webea.ch/hooks/useDeps.html
  */
 function useDeps<ValueType>(
   compare: (prev: ValueType, next: ValueType) => boolean,
@@ -59,7 +59,7 @@ function useDeps<ValueType>(
  *
  * @returns A tuple containing the current stable `id`.
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useDeps.md
+ * @see https://react-hooks.webea.ch/hooks/useDeps.html
  */
 function useDeps(compare: () => boolean): [id: number];
 

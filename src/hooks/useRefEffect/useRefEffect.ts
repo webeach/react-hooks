@@ -20,7 +20,7 @@ import { makeRefObservable } from './utils/makeRefObservable';
  *   el.focus();
  * });
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useRefEffect.md
+ * @see https://react-hooks.webea.ch/hooks/useRefEffect.html
  */
 function useRefEffect<RefValue>(
   ref: RefObject<RefValue | null | undefined>,
@@ -39,7 +39,7 @@ function useRefEffect<RefValue>(
  * @example
  * useRefEffect(ref, handler, [theme, locale]);
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useRefEffect.md
+ * @see https://react-hooks.webea.ch/hooks/useRefEffect.html
  */
 function useRefEffect<RefValue>(
   ref: RefObject<RefValue | null | undefined>,
@@ -58,7 +58,7 @@ function useRefEffect<RefValue>(
  * @example
  * useRefEffect(ref, handler, (a, b) => a.id === b.id, user);
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useRefEffect.md
+ * @see https://react-hooks.webea.ch/hooks/useRefEffect.html
  */
 function useRefEffect<RefValue, ComparedValue>(
   ref: RefObject<RefValue | null | undefined>,
@@ -77,7 +77,7 @@ function useRefEffect<RefValue, ComparedValue>(
  * @example
  * useRefEffect(ref, handler, () => false); // always triggers
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useRefEffect.md
+ * @see https://react-hooks.webea.ch/hooks/useRefEffect.html
  */
 function useRefEffect<RefValue>(
   ref: RefObject<RefValue | null | undefined>,

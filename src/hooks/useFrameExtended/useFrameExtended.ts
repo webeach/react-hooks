@@ -23,7 +23,7 @@ import { UseFrameExtendedCallback, UseFrameExtendedReturn } from './types';
  * }, []);
  * ```
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useFrameExtended.md
+ * @see https://react-hooks.webea.ch/hooks/useFrameExtended.html
  */
 export function useFrameExtended(callback: UseFrameExtendedCallback) {
   // Store the latest version of the callback to avoid stale closures

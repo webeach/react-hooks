@@ -30,7 +30,7 @@ import {
  * @param delayMs  - Default delay (ms) used by `start()` when no override is provided.
  * @returns Combined state & methods object: `{ isPending, isDone, start, restart, cancel }`.
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useTimeoutExtended.md
+ * @see https://react-hooks.webea.ch/hooks/useTimeoutExtended.html
  */
 function useTimeoutExtended(
   callback: UseTimeoutExtendedCallback,
@@ -50,7 +50,7 @@ function useTimeoutExtended(
  * @param callback - Called after completion with the measured elapsed time (ms).
  * @returns Combined state & methods object where `start(delayMs)` requires an argument.
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useTimeoutExtended.md
+ * @see https://react-hooks.webea.ch/hooks/useTimeoutExtended.html
  */
 function useTimeoutExtended(
   callback: UseTimeoutExtendedCallback,

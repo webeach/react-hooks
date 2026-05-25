@@ -39,7 +39,7 @@ import { UseImageLoaderReturn } from './types';
  *   console.error('Failed to load image:', error?.message);
  * }
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useImageLoader.md
+ * @see https://react-hooks.webea.ch/hooks/useImageLoader.html
  */
 export function useImageLoader(imageUrl: string) {
   const statusState = useStatus();

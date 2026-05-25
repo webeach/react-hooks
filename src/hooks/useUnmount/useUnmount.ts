@@ -20,7 +20,7 @@ import { UseUnmountCallback } from './types';
  *   controller.abort();
  * });
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useUnmount.md
+ * @see https://react-hooks.webea.ch/hooks/useUnmount.html
  */
 export function useUnmount(callback: UseUnmountCallback) {
   const callbackLiveRef = useLiveRef(callback);

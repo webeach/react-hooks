@@ -25,7 +25,7 @@ import { UsePatchStateFunction } from './types';
  * patchForm(prev => ({ age: prev.age + 1 })); // ✅ functional update
  * ```
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/usePatchState.md
+ * @see https://react-hooks.webea.ch/hooks/usePatchState.html
  */
 export function usePatchState<ObjectType extends PlainObject>(
   initialState: ObjectType | (() => ObjectType),

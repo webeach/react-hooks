@@ -9,7 +9,7 @@ import { useIsomorphicLayoutEffect } from '../useIsomorphicLayoutEffect';
  * @param effect - The layout effect callback.
  * @param deps - Dependency array to track.
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useLayoutEffectCompare.md
+ * @see https://react-hooks.webea.ch/hooks/useLayoutEffectCompare.html
  */
 function useLayoutEffectCompare(
   effect: () => void | (() => void),
@@ -25,7 +25,7 @@ function useLayoutEffectCompare(
  * @param compare - A function comparing the previous and next value.
  * @param comparedValue - The current value to compare.
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useLayoutEffectCompare.md
+ * @see https://react-hooks.webea.ch/hooks/useLayoutEffectCompare.html
  */
 function useLayoutEffectCompare<ComparedValue>(
   effect: () => void | (() => void),
@@ -41,7 +41,7 @@ function useLayoutEffectCompare<ComparedValue>(
  * @param effect - The layout effect callback.
  * @param compare - A comparison function with manually tracked state.
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useLayoutEffectCompare.md
+ * @see https://react-hooks.webea.ch/hooks/useLayoutEffectCompare.html
  */
 function useLayoutEffectCompare(
   effect: () => void | (() => void),

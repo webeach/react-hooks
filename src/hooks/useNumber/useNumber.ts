@@ -29,7 +29,7 @@ import type { UseNumberReturn } from './types';
  * counter.increment();
  * console.log(counter.value); // 1
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useNumber.md
+ * @see https://react-hooks.webea.ch/hooks/useNumber.html
  */
 export function useNumber(initialValue: number = 0): UseNumberReturn {
   const [value, setValue] = useState(initialValue);

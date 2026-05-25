@@ -31,7 +31,7 @@ import { UseToggleFunction, UseToggleReturn } from './types';
  * state.toggle();      // true → false
  * console.log(state.value); // false
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useToggle.md
+ * @see https://react-hooks.webea.ch/hooks/useToggle.html
  */
 export function useToggle(initialValue: boolean = false): UseToggleReturn {
   const [currentValue, setCurrentValue] = useState(initialValue);

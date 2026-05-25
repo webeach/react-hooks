@@ -39,7 +39,7 @@ import { useUnmount } from '../useUnmount';
  *
  * window.addEventListener('resize', recompute);
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useDebounceCallback.md
+ * @see https://react-hooks.webea.ch/hooks/useDebounceCallback.html
  */
 export function useDebounceCallback<CallbackArgs extends any[]>(
   callback: (...args: CallbackArgs) => unknown,

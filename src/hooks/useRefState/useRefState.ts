@@ -26,7 +26,7 @@ import { UseRefStateDispatch, UseRefStateReturn } from './types';
  * const [ref, setRef, { disableUpdate, enableUpdate }] = useRefState<number>();
  * ```
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useRefState.md
+ * @see https://react-hooks.webea.ch/hooks/useRefState.html
  */
 function useRefState<ValueType = undefined>(): UseRefStateReturn<
   ValueType | undefined
@@ -53,7 +53,7 @@ function useRefState<ValueType = undefined>(): UseRefStateReturn<
  * const [ref, setRef] = useRefState(() => expensiveInit(), false);
  * ```
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useRefState.md
+ * @see https://react-hooks.webea.ch/hooks/useRefState.html
  */
 function useRefState<ValueType>(
   initialValue: ValueType | (() => ValueType),

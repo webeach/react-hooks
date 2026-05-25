@@ -31,7 +31,7 @@ import { UseLoopCallback, UseLoopOptions, UseLoopReturn } from './types';
  * @param durationMs Timeout duration in milliseconds for each tick.
  * @returns A stable control API that includes `run()` (tuple/object form depends on `useDemandStructure`).
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useLoop.md
+ * @see https://react-hooks.webea.ch/hooks/useLoop.html
  */
 function useLoop(callback: UseLoopCallback, durationMs: number): UseLoopReturn;
 
@@ -63,7 +63,7 @@ function useLoop(callback: UseLoopCallback, durationMs: number): UseLoopReturn;
  * @param options Full configuration for loop behavior.
  * @returns A stable control API that includes `run()` (tuple/object form depends on `useDemandStructure`).
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useLoop.md
+ * @see https://react-hooks.webea.ch/hooks/useLoop.html
  */
 function useLoop(
   callback: UseLoopCallback,

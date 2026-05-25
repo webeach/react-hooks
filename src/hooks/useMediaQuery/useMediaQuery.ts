@@ -23,7 +23,7 @@ import {
  *   console.log('Desktop layout');
  * }
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useMediaQuery.md
+ * @see https://react-hooks.webea.ch/hooks/useMediaQuery.html
  */
 function useMediaQuery(rule: UseMediaQueryRule): UseMediaQueryReturn;
 
@@ -41,7 +41,7 @@ function useMediaQuery(rule: UseMediaQueryRule): UseMediaQueryReturn;
  *   { orientation: 'landscape' },
  * ]);
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useMediaQuery.md
+ * @see https://react-hooks.webea.ch/hooks/useMediaQuery.html
  */
 function useMediaQuery(
   rules: ReadonlyArray<UseMediaQueryRule>,
@@ -57,7 +57,7 @@ function useMediaQuery(
  * @example
  * const [isPrintLandscape] = useMediaQuery('print', { orientation: 'landscape' });
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useMediaQuery.md
+ * @see https://react-hooks.webea.ch/hooks/useMediaQuery.html
  */
 function useMediaQuery(
   type: UseMediaQueryType,
@@ -79,7 +79,7 @@ function useMediaQuery(
  *   { minResolution: 2 },
  * ]);
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useMediaQuery.md
+ * @see https://react-hooks.webea.ch/hooks/useMediaQuery.html
  */
 function useMediaQuery(
   type: UseMediaQueryType,

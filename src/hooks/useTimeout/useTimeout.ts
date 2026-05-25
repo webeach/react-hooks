@@ -15,7 +15,7 @@ import { UseTimeoutCallback, UseTimeoutReturn } from './types';
  * @param ms - Timeout duration in milliseconds.
  * @returns An object containing `isDone`, which becomes `true` after the timeout completes.
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useTimeout.md
+ * @see https://react-hooks.webea.ch/hooks/useTimeout.html
  */
 function useTimeout(ms: number): UseTimeoutReturn;
 
@@ -29,7 +29,7 @@ function useTimeout(ms: number): UseTimeoutReturn;
  * @param ms - Timeout duration in milliseconds.
  * @returns An object containing `isDone`, which becomes `true` after the timeout completes.
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useTimeout.md
+ * @see https://react-hooks.webea.ch/hooks/useTimeout.html
  */
 function useTimeout(callback: UseTimeoutCallback, ms: number): UseTimeoutReturn;
 

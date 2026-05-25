@@ -24,7 +24,7 @@ import { isBrowser } from '../../constants/common';
  * }
  * ```
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useIsomorphicLayoutEffect.md
+ * @see https://react-hooks.webea.ch/hooks/useIsomorphicLayoutEffect.html
  */
 export const useIsomorphicLayoutEffect = isBrowser
   ? useLayoutEffect

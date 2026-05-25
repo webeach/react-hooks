@@ -10,7 +10,7 @@ import { useDeps } from '../useDeps';
  * @param effect - The effect callback.
  * @param deps - Dependency array to track.
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useEffectCompare.md
+ * @see https://react-hooks.webea.ch/hooks/useEffectCompare.html
  */
 function useEffectCompare(
   effect: () => void | (() => void),
@@ -26,7 +26,7 @@ function useEffectCompare(
  * @param compare - A function comparing the previous and next value.
  * @param comparedValue - The current value to compare.
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useEffectCompare.md
+ * @see https://react-hooks.webea.ch/hooks/useEffectCompare.html
  */
 function useEffectCompare<ComparedValue>(
   effect: () => void | (() => void),
@@ -42,7 +42,7 @@ function useEffectCompare<ComparedValue>(
  * @param effect - The effect callback.
  * @param compare - A function that determines whether the value changed.
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useEffectCompare.md
+ * @see https://react-hooks.webea.ch/hooks/useEffectCompare.html
  */
 function useEffectCompare(
   effect: () => void | (() => void),

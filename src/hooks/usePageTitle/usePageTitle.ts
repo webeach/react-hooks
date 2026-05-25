@@ -17,7 +17,7 @@ let globalTitleKey = 0;
  *
  * @param {string} title - The title to set for the current page/component context.
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/usePageTitle.md
+ * @see https://react-hooks.webea.ch/hooks/usePageTitle.html
  */
 export function usePageTitle(title: string) {
   // Allocate a unique key for this hook instance, stable across renders

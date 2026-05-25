@@ -27,7 +27,7 @@ import { createObjectDescriptor } from './utils/createObjectDescriptor';
  * const [a, b] = useDemandStructure([() => 1, () => 2]);
  * ```
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useDemandStructure.md
+ * @see https://react-hooks.webea.ch/hooks/useDemandStructure.html
  */
 function useDemandStructure<
   const AccessorArray extends readonly UseDemandStructureAccessor<any>[],
@@ -64,7 +64,7 @@ function useDemandStructure<
  * console.log(result[0]);    // 123
  * console.log(result.foo);   // 123
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useDemandStructure.md
+ * @see https://react-hooks.webea.ch/hooks/useDemandStructure.html
  */
 function useDemandStructure<
   const AccessorArray extends ReadonlyArray<
@@ -107,7 +107,7 @@ function useDemandStructure<
  * console.log(result.name); // 'John'
  * console.log(result.age);  // 30
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useDemandStructure.md
+ * @see https://react-hooks.webea.ch/hooks/useDemandStructure.html
  */
 function useDemandStructure<
   const AccessorObject extends {

@@ -10,7 +10,7 @@ import { MutableRefObject, useRef } from 'react';
  * @param {T} value - The current value to track.
  * @returns {React.RefObject<Value>} A ref object whose `.current` is always the latest value.
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useLiveRef.md
+ * @see https://react-hooks.webea.ch/hooks/useLiveRef.html
  */
 export function useLiveRef<Value>(value: Value): MutableRefObject<Value> {
   const ref = useRef<Value>(value);

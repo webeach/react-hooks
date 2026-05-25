@@ -28,7 +28,7 @@ import { compareEventMapStructure, eventArgsIsMap } from './utils';
  *   console.log(window.innerWidth);
  * });
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useUnmount.md
+ * @see https://react-hooks.webea.ch/hooks/useUnmount.html
  */
 function useWindowEvent<EventType extends UseWindowEventType>(
   eventType: EventType,
@@ -52,7 +52,7 @@ function useWindowEvent<EventType extends UseWindowEventType>(
  *   keydown: [(e) => console.log(e.key), { once: true }],
  * });
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useUnmount.md
+ * @see https://react-hooks.webea.ch/hooks/useUnmount.html
  */
 function useWindowEvent(eventsMap: UseWindowEventMap): void;
 

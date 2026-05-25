@@ -25,7 +25,7 @@ function checkDocumentIsVisible(): boolean {
  * @param callback - Optional function called on visibility change.
  * @returns Whether the page is currently visible.
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/usePageVisibility.md
+ * @see https://react-hooks.webea.ch/hooks/usePageVisibility.html
  */
 export function usePageVisibility(
   callback?: UsePageVisibilityCallback,

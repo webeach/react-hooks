@@ -14,7 +14,7 @@ import { useDeps } from '../useDeps';
  * @example
  * const memo = useMemoCompare(() => computeSomething(a, b), [a, b]);
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useMemoCompare.md
+ * @see https://react-hooks.webea.ch/hooks/useMemoCompare.html
  */
 function useMemoCompare<ValueType>(
   factory: () => ValueType,
@@ -34,7 +34,7 @@ function useMemoCompare<ValueType>(
  * @example
  * const memo = useMemoCompare(() => expensiveTransform(user), (a, b) => a.id === b.id, user);
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useMemoCompare.md
+ * @see https://react-hooks.webea.ch/hooks/useMemoCompare.html
  */
 function useMemoCompare<ValueType, ComparedValue>(
   factory: () => ValueType,
@@ -51,7 +51,7 @@ function useMemoCompare<ValueType, ComparedValue>(
  * @param compare - A comparison function with manually tracked state.
  * @returns The memoized value, recomputed only when the comparison fails.
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useMemoCompare.md
+ * @see https://react-hooks.webea.ch/hooks/useMemoCompare.html
  */
 function useMemoCompare<ValueType>(
   factory: () => ValueType,

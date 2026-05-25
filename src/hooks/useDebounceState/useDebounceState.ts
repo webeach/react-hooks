@@ -32,7 +32,7 @@ import { UseDebounceStateReturn } from './types';
  * @param delayMs Debounce delay in **milliseconds**.
  * @returns A tuple: `[state, setDebounceState]`.
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useDebounceState.md
+ * @see https://react-hooks.webea.ch/hooks/useDebounceState.html
  */
 function useDebounceState<State = undefined>(
   delayMs: number,
@@ -54,7 +54,7 @@ function useDebounceState<State = undefined>(
  * @param delayMs Debounce delay in **milliseconds**.
  * @returns A tuple: `[state, setDebounceState]`.
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useDebounceState.md
+ * @see https://react-hooks.webea.ch/hooks/useDebounceState.html
  */
 function useDebounceState<State>(
   initialState: State | (() => State),

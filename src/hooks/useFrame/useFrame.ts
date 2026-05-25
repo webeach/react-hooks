@@ -19,7 +19,7 @@ import { UseFrameCallback } from './types';
  *   console.log(`Total: ${timeSinceStart.toFixed(2)}ms`);
  * });
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useFrame.md
+ * @see https://react-hooks.webea.ch/hooks/useFrame.html
  */
 export function useFrame(callback: UseFrameCallback) {
   const callbackLiveRef = useLiveRef(callback);

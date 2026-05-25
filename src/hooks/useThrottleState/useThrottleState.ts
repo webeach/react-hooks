@@ -25,7 +25,7 @@ import { UseThrottleStateReturn } from './types';
  * @param delayMs Throttle window in **milliseconds**.
  * @returns A tuple: `[state, setThrottleState]`.
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useThrottleState.md
+ * @see https://react-hooks.webea.ch/hooks/useThrottleState.html
  */
 function useThrottleState<State = undefined>(
   delayMs: number,
@@ -52,7 +52,7 @@ function useThrottleState<State = undefined>(
  * @param delayMs Throttle window in **milliseconds**.
  * @returns A tuple: `[state, setThrottleState]`.
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useThrottleState.md
+ * @see https://react-hooks.webea.ch/hooks/useThrottleState.html
  */
 function useThrottleState<State>(
   initialState: State | (() => State),

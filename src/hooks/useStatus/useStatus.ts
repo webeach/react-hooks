@@ -33,7 +33,7 @@ import { UseStatusReturn } from './types';
  *   }
  * }, [status.isError, status.error]);
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useStatus.md
+ * @see https://react-hooks.webea.ch/hooks/useStatus.html
  */
 export function useStatus(defaultStatus: Status = 'initial'): UseStatusReturn {
   const [currentError, setCurrentError] = useState<ErrorLike | null>(null);

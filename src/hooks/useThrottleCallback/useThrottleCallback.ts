@@ -41,7 +41,7 @@ import { SharedOptions } from './types';
  *
  * recompute(container.offsetWidth);
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useThrottleCallback.md
+ * @see https://react-hooks.webea.ch/hooks/useThrottleCallback.html
  */
 export function useThrottleCallback<CallbackArgs extends any[]>(
   callback: (...args: CallbackArgs) => unknown,

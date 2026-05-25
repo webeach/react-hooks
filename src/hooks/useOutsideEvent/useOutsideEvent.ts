@@ -24,7 +24,7 @@ import { UseOutsideEventHandler, UseOutsideEventType } from './types';
  *   console.log('Clicked outside the box');
  * });
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useOutsideEvent.md
+ * @see https://react-hooks.webea.ch/hooks/useOutsideEvent.html
  */
 export function useOutsideEvent<
   ElementType extends HTMLElement,

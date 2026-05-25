@@ -47,7 +47,7 @@ const mediaQueryInstanceCacheMap = new Map<number, MediaQueryList>();
  *
  * console.log('Current breakpoint:', activeBreakpoint);
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useViewportBreakpoint.md
+ * @see https://react-hooks.webea.ch/hooks/useViewportBreakpoint.html
  */
 export function useViewportBreakpoint<BreakpointKeys extends BreakpointBaseKey>(
   breakpointMap: Record<BreakpointKeys, number>,

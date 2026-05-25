@@ -33,7 +33,7 @@ import { UseResizeObserverCallback, UseResizeObserverReturn } from './types';
  *   }
  * }, [currentEntry]);
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useResizeObserver.md
+ * @see https://react-hooks.webea.ch/hooks/useResizeObserver.html
  */
 export function useResizeObserver<ElementType extends Element | null>(
   ref: RefObject<ElementType | null>,

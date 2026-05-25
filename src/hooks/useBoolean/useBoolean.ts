@@ -28,7 +28,7 @@ import { UseBooleanReturn } from './types';
  * console.log(state.value);
  * ```
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useBoolean.md
+ * @see https://react-hooks.webea.ch/hooks/useBoolean.html
  */
 export function useBoolean(initialValue: boolean = false): UseBooleanReturn {
   const [currentValue, setCurrentValue] = useState(initialValue);

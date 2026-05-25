@@ -27,7 +27,7 @@ import { useForceUpdate } from '../useForceUpdate';
  * }, []);
  * ```
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useSet.md
+ * @see https://react-hooks.webea.ch/hooks/useSet.html
  */
 export function useSet<ValueType = any>(
   initialValues?: ReadonlyArray<ValueType> | (() => ReadonlyArray<ValueType>),

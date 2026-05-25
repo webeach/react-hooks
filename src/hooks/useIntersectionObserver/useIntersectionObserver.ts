@@ -38,7 +38,7 @@ import {
  *   }
  * }, [currentEntry]);
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useIntersectionObserver.md
+ * @see https://react-hooks.webea.ch/hooks/useIntersectionObserver.html
  */
 export function useIntersectionObserver<ElementType extends Element | null>(
   ref: RefObject<ElementType | null>,

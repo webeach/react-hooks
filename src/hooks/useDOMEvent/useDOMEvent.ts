@@ -32,7 +32,7 @@ import {
  *   e.preventDefault(); // e: MouseEvent
  * });
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useDOMEvent.md
+ * @see https://react-hooks.webea.ch/hooks/useDOMEvent.html
  */
 function useDOMEvent<
   ElementType extends Element | null,
@@ -61,7 +61,7 @@ function useDOMEvent<
  *
  * return <input ref={ref} />;
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useDOMEvent.md
+ * @see https://react-hooks.webea.ch/hooks/useDOMEvent.html
  */
 function useDOMEvent<
   ElementType extends Element | null,
@@ -92,7 +92,7 @@ function useDOMEvent<
  *   keydown: [(e) => console.log(e.key), { once: true }],
  * });
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useDOMEvent.md
+ * @see https://react-hooks.webea.ch/hooks/useDOMEvent.html
  */
 function useDOMEvent<ElementType extends Element | null>(
   ref: RefObject<ElementType | null>,
@@ -113,7 +113,7 @@ function useDOMEvent<ElementType extends Element | null>(
  *   mouseenter: [(e) => console.log(e.clientX), { passive: true }],
  * });
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useDOMEvent.md
+ * @see https://react-hooks.webea.ch/hooks/useDOMEvent.html
  */
 function useDOMEvent<ElementType extends Element | null>(
   eventsMap: UseDOMEventMap,

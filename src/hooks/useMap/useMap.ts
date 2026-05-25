@@ -31,7 +31,7 @@ import { useForceUpdate } from '../useForceUpdate';
  * }, []);
  * ```
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useMap.md
+ * @see https://react-hooks.webea.ch/hooks/useMap.html
  */
 export function useMap<KeyType = any, ValueType = any>(
   initialEntries?:
