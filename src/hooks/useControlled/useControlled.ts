@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
+import { isFunction } from '../../functions/isFunction';
 import { useDemandStructure } from '../useDemandStructure';
 import { useLiveRef } from '../useLiveRef';
 import { UseControlledReturn } from './types';
@@ -7,72 +8,93 @@ import { UseControlledReturn } from './types';
 /**
  * Manages a value that can be either controlled or uncontrolled.
  *
- * - If `value` is provided, the hook operates in controlled mode and mirrors it.
- * - Otherwise, it manages internal state using `defaultValue`.
+ * - If `value` is provided (not `undefined`), the hook operates in controlled mode and mirrors it.
+ * - Otherwise, it manages internal state seeded from `defaultValue`.
  *
  * The result can be accessed both as a tuple and as an object:
  * - Tuple: `[value, setValue, isControlled]`
  * - Object: `{ value, setValue, isControlled }`
  *
- * @template ValueType - Type of the value being controlled.
- * @param defaultValue - Initial value used in uncontrolled mode.
- *                       Can be a plain value or a lazy initializer function.
- * @param value - Controlled value. If defined, takes precedence over internal state.
- * @returns A hybrid structure exposing:
- * - `value`: The current value (controlled or internal).
- * - `setValue(nextValue)`: Updates the value if uncontrolled.
- * - `isControlled`: Whether the hook is currently in controlled mode.
+ * `setValue` supports both a plain value and an updater function `(prev) => next`,
+ * just like React's `useState` setter.
+ *
+ * `ValueType` is inferred **only** from `defaultValue`:
+ * - `useControlled('default', value)` → `value: string`
+ * - `useControlled<string | undefined>(undefined, value)` → `value: string | undefined`
+ *
+ * @template ValueType - Type of the value being controlled (derived from `defaultValue`).
+ * @param defaultValue - Seed value (or lazy initializer) used while uncontrolled.
+ * @param value - Optional controlled value. When `undefined`, the hook is uncontrolled.
  *
  * @example
  * ```tsx
- * // Controlled:
- * const { value, setValue, isControlled } = useControlled(undefined, props.value);
+ * // Uncontrolled with defaultValue (value is always defined):
+ * const [count, setCount] = useControlled(0, props.value);
+ * setCount((prev) => prev + 1);
  *
- * // Uncontrolled:
- * const [value, setValue, isControlled] = useControlled(0, undefined);
+ * // Controlled-only mode (value may be undefined):
+ * const { value } = useControlled<string | undefined>(undefined, props.value);
  * ```
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useControlled.md
+ * @see https://react-hooks.webea.ch/hooks/useControlled.html
  */
 export function useControlled<ValueType>(
-  defaultValue: ValueType | (() => ValueType) | undefined,
-  value: ValueType | undefined,
+  defaultValue: ValueType | (() => ValueType),
+  value?: NoInfer<ValueType>,
 ): UseControlledReturn<ValueType> {
   // Internal state used when the component is uncontrolled
   const [uncontrolledValue, setUncontrolledValue] = useState(defaultValue);
 
   // Determine if the component is controlled
   const isControlled = value !== undefined;
-  const currentValue = isControlled ? value : uncontrolledValue;
+  const currentValue = (isControlled ? value : uncontrolledValue) as ValueType;
 
-  // Refs to track controlled mode and last controlled value
+  // Live ref so the stable `setValue` always reads the latest controlled flag
   const isControlledRef = useLiveRef(isControlled);
-  const isMountedRef = useRef(false);
-  const lastControlledValueRef = useRef<ValueType>(undefined);
+
+  // Tracks the previous `isControlled` value so we can detect a controlled → uncontrolled
+  // transition explicitly. StrictMode-safe: if the effect runs twice in dev mode,
+  // the second run sees `prevIsControlledRef === isControlled` and does nothing.
+  const prevIsControlledRef = useRef(isControlled);
+  const lastControlledValueRef = useRef<ValueType | undefined>(value);
 
   /**
    * Setter function that only updates internal state in uncontrolled mode.
+   * Supports both a plain value and an updater function `(prev) => next`.
    */
-  const setValue = useCallback((nextValue: ValueType) => {
-    if (!isControlledRef.current) {
-      setUncontrolledValue(nextValue);
-    }
-  }, []);
+  const setValue = useCallback(
+    (nextValue: ValueType | ((prev: ValueType) => ValueType)) => {
+      if (!isControlledRef.current) {
+        setUncontrolledValue((prev) =>
+          isFunction(nextValue) ? nextValue(prev as ValueType) : nextValue,
+        );
+      }
+    },
+    [],
+  );
 
   useEffect(() => {
-    // If component switches from controlled to uncontrolled after mount,
-    // fallback to the last known controlled value.
-    if (!isControlled && uncontrolledValue && isMountedRef.current) {
+    // When the component switches from controlled to uncontrolled, restore the last
+    // known controlled value. Guarded by an explicit prev→next comparison so that:
+    //  - first mount never triggers it,
+    //  - StrictMode's double-invocation of effects can't trigger it either.
+    if (
+      prevIsControlledRef.current &&
+      !isControlled &&
+      lastControlledValueRef.current !== undefined
+    ) {
       setUncontrolledValue(lastControlledValueRef.current);
     }
-
-    isMountedRef.current = true;
+    prevIsControlledRef.current = isControlled;
   }, [isControlled]);
 
   useEffect(() => {
-    // Store last known controlled value to restore if needed
-    lastControlledValueRef.current = value;
-  }, [value]);
+    // Store last known controlled value to restore if needed. Only update while
+    // actually controlled so we don't overwrite it with `undefined` on transitions.
+    if (isControlled) {
+      lastControlledValueRef.current = value;
+    }
+  }, [value, isControlled]);
 
   return useDemandStructure([
     {

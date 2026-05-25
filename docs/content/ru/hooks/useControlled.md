@@ -2,10 +2,14 @@
 
 ## Описание
 
-`useControlled` — хук для управления значением в двух режимах: **контролируемом** (от внешнего `value`) и **неконтролируемом** (внутреннее состояние на базе `defaultValue`). Хук возвращает _гибридную_ структуру, поддерживающую **кортежную** и **объектную** деструктуризацию:
+`useControlled` — хук для управления значением в двух режимах: **контролируемом** (от внешнего `value`) и **неконтролируемом** (внутреннее состояние, инициализированное из `defaultValue`).
+
+Результат — _гибридная_ структура, поддерживающая **кортежную** и **объектную** деструктуризацию:
 
 - Кортеж: `[value, setValue, isControlled]`
 - Объект: `{ value, setValue, isControlled }`
+
+`setValue` принимает либо значение, либо функцию‑апдейтер `(prev) => next` — как сеттер обычного `useState`.
 
 ---
 
@@ -13,19 +17,29 @@
 
 ```ts
 function useControlled<ValueType>(
-  defaultValue: ValueType | (() => ValueType) | undefined,
-  value: ValueType | undefined,
+  defaultValue: ValueType | (() => ValueType),
+  value?: NoInfer<ValueType>,
 ): UseControlledReturn<ValueType>;
 ```
 
 - **Параметры**
-  - `defaultValue` — начальное значение **для неконтролируемого** режима. Можно передать функцию‑инициализатор для ленивой инициализации.
-  - `value` — **контролируемое** значение. Если `value !== undefined`, хук работает в контролируемом режиме.
+  - `defaultValue` — начальное значение для **неконтролируемого** режима. Можно передать функцию‑инициализатор (`() => ValueType`) для ленивой инициализации.
+  - `value` — опциональное **контролируемое** значение. Если `value !== undefined`, хук работает в контролируемом режиме.
 
 - **Возвращает**: `UseControlledReturn<ValueType>` — гибридная структура:
-  - `value: ValueType | undefined` — текущее значение (внешнее или внутреннее);
-  - `setValue(nextValue: ValueType): void` — обновляет значение **только** в неконтролируемом режиме (в контролируемом — no‑op);
+  - `value: ValueType` — текущее значение (внешнее или внутреннее);
+  - `setValue(nextValue): void` — обновляет значение **только** в неконтролируемом режиме (в контролируемом — no‑op). Принимает либо значение, либо функцию `(prev) => next`;
   - `isControlled: boolean` — признак контролируемого режима.
+
+### Инференция типов
+
+`ValueType` выводится **только** из `defaultValue`:
+
+- `useControlled('default', value)` → `ValueType = string`, `value: string`
+- `useControlled(0, value)` → `ValueType = number`, `value: number`
+- `useControlled<string | undefined>(undefined, value)` → `ValueType = string | undefined`, `value: string | undefined`
+
+Если нужен полностью опциональный тип (без дефолта), укажите его явно через дженерик.
 
 ---
 
@@ -38,32 +52,51 @@ import { useControlled } from '@webeach/react-hooks';
 
 export type ToggleProps = {
   value?: boolean; // если undefined — неконтролируемый режим
-  defaultValue?: boolean; // используется только при uncontrolled
+  defaultValue?: boolean; // используется только в uncontrolled-режиме
   onChange?: (next: boolean) => void;
 };
 
 export function Toggle(props: ToggleProps) {
-  const { value, defaultValue, onChange } = props;
+  const { value, defaultValue = false, onChange } = props;
 
-  const state = useControlled<boolean>(defaultValue, value);
+  const state = useControlled(defaultValue, value);
 
   const handleClick = () => {
-    state.setValue(!state.value);
-    onChange?.(!state.value);
+    const next = !state.value;
+    state.setValue(next);
+    onChange?.(next);
   };
 
   return (
-    <button aria-pressed={Boolean(state.value)} onClick={handleClick}>
+    <button aria-pressed={state.value} onClick={handleClick}>
       {state.value ? 'On' : 'Off'}
     </button>
   );
 }
 ```
 
-### 2) Компонент `<Modal>` с пропсами `defaultVisible` и `visible`
+### 2) Счётчик с функциональным обновлением
 
 ```tsx
-import { type ReactNode } from 'react';
+import { useControlled } from '@webeach/react-hooks';
+
+export function Counter({ value }: { value?: number }) {
+  const [count, setCount] = useControlled(0, value);
+
+  return (
+    <div>
+      <button onClick={() => setCount((prev) => prev - 1)}>−</button>
+      <span>{count}</span>
+      <button onClick={() => setCount((prev) => prev + 1)}>+</button>
+    </div>
+  );
+}
+```
+
+### 3) Компонент `<Modal>` с пропсами `defaultVisible` и `visible`
+
+```tsx
+import { type ReactNode, useState } from 'react';
 import { useControlled } from '@webeach/react-hooks';
 
 export type ModalProps = {
@@ -75,12 +108,12 @@ export type ModalProps = {
 };
 
 export function Modal(props: ModalProps) {
-  const { children, visible, defaultVisible, onVisibleChange } = props;
+  const { children, visible, defaultVisible = false, onVisibleChange } = props;
 
-  const visibilityState = useControlled<boolean>(defaultVisible, visible);
+  const visibilityState = useControlled(defaultVisible, visible);
 
   const setVisible = (next: boolean) => {
-    // можно вызывать без проверки isControlled — в controlled это no-op внутри, но событие уведомит родителя
+    // в controlled это no-op внутри, но событие уведомит родителя
     visibilityState.setValue(next);
     onVisibleChange?.(next);
   };
@@ -124,17 +157,19 @@ export function Modal(props: ModalProps) {
 ## Поведение
 
 1. **Определение режима**
-   - Значение считается контролируемым, если `value !== undefined`. Значение `null` трактуется как контролируемое.
+   - Хук считается контролируемым, если `value !== undefined`. Значение `null` трактуется как контролируемое.
 
 2. **Актуальное значение**
-   - В контролируемом режиме используется внешнее `value`; в неконтролируемом — внутреннее значение, инициализируемое из `defaultValue` (поддерживается ленивая инициализация через функцию).
+   - В контролируемом режиме используется внешнее `value`.
+   - В неконтролируемом — внутреннее значение, инициализированное из `defaultValue` (поддерживается ленивая инициализация через функцию).
 
 3. **Работа `setValue`**
-   - Меняет значение только в неконтролируемом режиме; в контролируемом — no‑op.
-   - `setValue` можно вызывать без проверки `isControlled`; в контролируемом режиме вызов **не** приведёт к изменению значения и **не** вызовет перерисовку.
+   - В неконтролируемом режиме: меняет внутреннее значение. Принимает значение или функцию‑апдейтер `(prev) => next`.
+   - В контролируемом режиме: **no‑op** — не вызывает перерисовку. Безопасно вызывать без проверки `isControlled`; для проброса значения наружу комбинируйте с родительским `onChange`.
 
 4. **Переход между режимами**
-   - При переходе из контролируемого в неконтролируемый после маунта сохраняется последнее контролируемое значение, чтобы не терять состояние.
+   - При переходе из контролируемого в неконтролируемый после маунта сохраняется последнее контролируемое значение. Работает корректно и для falsy‑значений (`0`, `''`, `false`).
+   - Безопасно работает под React `<StrictMode>`: восстановление срабатывает только при настоящем переходе controlled → uncontrolled, а не на dev‑mode двойном маунте.
 
 5. **Гибридный доступ**
    - Результат можно использовать как кортеж `[value, setValue, isControlled]` или как объект `{ value, setValue, isControlled }`.
@@ -164,14 +199,11 @@ export function Modal(props: ModalProps) {
 2. **Смешение `null` и `undefined`**
    - Режим определяется строго по `value !== undefined`. Значение `null` трактуется как _контролируемое_. Если нужен неконтролируемый режим, передавайте `value: undefined`.
 
-3. **Дерганый переход между режимами**
-   - Частое переключение controlled/uncontrolled усложняет логику и UX. Предпочтительнее фиксировать режим на время жизни компонента.
+3. **Ожидание `value` типа `T | undefined`, когда задан `defaultValue`**
+   - Если `defaultValue` есть, возвращаемый `value` имеет тип `ValueType` (всегда определён). Чтобы разрешить `undefined`, явно укажите дженерик: `useControlled<string | undefined>(undefined, controlled)`.
 
-4. **Потеря значения при переключении**
-   - Убедитесь, что внешняя логика корректно снабжает компонент последним значением при переходе в контролируемый режим и обрабатывает его при обратном переходе.
-
-5. **Неверное использование ленивой инициализации**
-   - Не оборачивайте простое значение в функцию без необходимости — это усложняет чтение. Функция нужна только для дорогой инициализации.
+4. **Неверное использование ленивой инициализации**
+   - Оборачивайте `defaultValue` в функцию, только если вычисление дорогое: `useControlled(() => expensiveInit(), value)`.
 
 ---
 
@@ -180,13 +212,13 @@ export function Modal(props: ModalProps) {
 **Экспортируемые типы**
 
 - `UseControlledReturn<ValueType>`
-  - Гибрид: кортеж `[value: ValueType | undefined, setValue: (next: ValueType) => void, isControlled: boolean]` **и** объект `{ value: ValueType | undefined; setValue: (next: ValueType) => void; isControlled: boolean }`.
+  - Гибрид: кортеж `[value: ValueType, setValue, isControlled: boolean]` **и** объект `{ value: ValueType; setValue; isControlled: boolean }`.
 
 - `UseControlledReturnObject<ValueType>`
-  - Объектная форма: `{ value: ValueType | undefined; setValue: (next: ValueType) => void; isControlled: boolean }`.
+  - Объектная форма: `{ value: ValueType; setValue: (next: ValueType | ((prev: ValueType) => ValueType)) => void; isControlled: boolean }`.
 
 - `UseControlledReturnTuple<ValueType>`
-  - Кортежная форма: `[value: ValueType | undefined, setValue: (next: ValueType) => void, isControlled: boolean]`.
+  - Кортежная форма: `[value: ValueType, setValue: (next: ValueType | ((prev: ValueType) => ValueType)) => void, isControlled: boolean]`.
 
 ---
 

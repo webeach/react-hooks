@@ -5,9 +5,9 @@
  * - Tuple: `[value, setValue, isControlled]`
  * - Object: `{ value, setValue, isControlled }`
  *
- * The `value` is either:
- * - The controlled value passed to the hook,
- * - Or the internal state managed internally when uncontrolled.
+ * `ValueType` is inferred from `defaultValue`:
+ * - `useControlled('default', value)` → `ValueType = string`, `value: string`
+ * - `useControlled<string | undefined>(undefined, value)` → `value: string | undefined`
  */
 export type UseControlledReturn<ValueType = unknown> =
   UseControlledReturnTuple<ValueType> & UseControlledReturnObject<ValueType>;
@@ -19,13 +19,17 @@ export type UseControlledReturnObject<ValueType = unknown> = {
   /**
    * The current value (controlled or internal).
    */
-  value: ValueType | undefined;
+  value: ValueType;
 
   /**
    * Sets the value if uncontrolled. No-op in controlled mode.
-   * @param nextValue - New value to assign.
+   *
+   * Accepts either a value or an updater function `(prev) => next`,
+   * analogous to React's `useState` setter.
+   *
+   * @param nextValue - New value or updater function.
    */
-  setValue: (nextValue: ValueType) => void;
+  setValue: (nextValue: ValueType | ((prev: ValueType) => ValueType)) => void;
 
   /**
    * Whether the hook is operating in controlled mode.
@@ -40,13 +44,17 @@ export type UseControlledReturnTuple<ValueType = unknown> = readonly [
   /**
    * The current value (controlled or internal).
    */
-  value: ValueType | undefined,
+  value: ValueType,
 
   /**
    * Sets the value if uncontrolled. No-op in controlled mode.
-   * @param nextValue - New value to assign.
+   *
+   * Accepts either a value or an updater function `(prev) => next`,
+   * analogous to React's `useState` setter.
+   *
+   * @param nextValue - New value or updater function.
    */
-  setValue: (nextValue: ValueType) => void,
+  setValue: (nextValue: ValueType | ((prev: ValueType) => ValueType)) => void,
 
   /**
    * Whether the hook is operating in controlled mode.
