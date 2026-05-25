@@ -22,7 +22,7 @@ function useAsyncCallback<Args extends unknown[], R>(
 - **Возвращает**: `UseAsyncCallbackReturn<Args, R>` — гибридная структура:
   - `handler(...args): Promise<R>` — обёртка над исходной функцией;
   - `status` — флаги `isPending`, `isSuccess`, `isError` и `error` (только при ошибке);
-  - `abort()` — отменяет актуальный вызов и переводит статус в `'initial'`.
+  - `abort()` — отменяет актуальный вызов и переводит статус в `'initial'`. Важно: реальный promise при этом **не прерывается** (например, HTTP-запрос продолжит выполняться) — для настоящей отмены передавайте и обрабатывайте свой `AbortSignal` внутри асинхронной функции.
 
 ---
 

@@ -237,4 +237,85 @@ describe('useAsyncCallback hook', () => {
       expect(status.error).toBeNull();
     });
   });
+
+  it('does not apply async result after unmount', async () => {
+    let resolve: (v: string) => void;
+
+    const { result, unmount } = renderHook(() =>
+      useAsyncCallback(() => new Promise<string>((r) => (resolve = r))),
+    );
+
+    const [callback, status] = result.current;
+
+    act(() => {
+      void callback();
+    });
+
+    expect(status.isPending).toBe(true);
+
+    // Unmount while the promise is still pending.
+    unmount();
+
+    // Resolving after unmount must not throw or warn — the hook's
+    // unmount-cleanup invalidates the call token via `abort()`.
+    await act(async () => {
+      resolve?.('done');
+    });
+  });
+
+  it('uses the latest asyncCallback between renders (via live ref)', async () => {
+    const first = vi.fn().mockResolvedValue('first');
+    const second = vi.fn().mockResolvedValue('second');
+
+    const { result, rerender } = renderHook(
+      ({ fn }: { fn: () => Promise<string> }) => useAsyncCallback(fn),
+      { initialProps: { fn: first } },
+    );
+
+    rerender({ fn: second });
+
+    let value: string = '';
+    await act(async () => {
+      value = await result.current[0]();
+    });
+
+    expect(value).toBe('second');
+    expect(first).not.toHaveBeenCalled();
+    expect(second).toHaveBeenCalledTimes(1);
+  });
+
+  it('transitions success → success on repeated calls', async () => {
+    const { result } = renderHook(() =>
+      useAsyncCallback(async (x: number) => x + 1),
+    );
+
+    // Access status once to enable reactivity for the whole test.
+    const [callback, status] = result.current;
+    void status.isSuccess;
+
+    await act(() => callback(1));
+    await waitFor(() => expect(status.isSuccess).toBe(true));
+
+    await act(() => callback(2));
+
+    // pending may flicker in-between; final state must be success again
+    await waitFor(() => expect(status.isSuccess).toBe(true));
+    expect(status.isError).toBe(false);
+    expect(status.error).toBeNull();
+  });
+
+  it('abort before first call leaves status as initial', () => {
+    const { result } = renderHook(() => useAsyncCallback(async () => 'ok'));
+
+    const [, status, abort] = result.current;
+
+    act(() => {
+      abort();
+    });
+
+    expect(status.isPending).toBe(false);
+    expect(status.isSuccess).toBe(false);
+    expect(status.isError).toBe(false);
+    expect(status.error).toBeNull();
+  });
 });

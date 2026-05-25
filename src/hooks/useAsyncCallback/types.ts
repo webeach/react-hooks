@@ -24,14 +24,14 @@ export type UseAsyncCallbackAbortHandler = () => void;
  * if (status.isError) console.error(status.error);
  */
 export type UseAsyncCallbackReturn<
-  AsyncCallbackArgs extends any[] = any[],
-  AsyncCallbackReturn = any,
+  AsyncCallbackArgs extends unknown[] = unknown[],
+  AsyncCallbackReturn = unknown,
 > = UseAsyncCallbackReturnTuple<AsyncCallbackArgs, AsyncCallbackReturn> &
   UseAsyncCallbackReturnObject<AsyncCallbackArgs, AsyncCallbackReturn>;
 
 export type UseAsyncCallbackReturnObject<
-  AsyncCallbackArgs extends any[] = any[],
-  AsyncCallbackReturn = any,
+  AsyncCallbackArgs extends unknown[] = unknown[],
+  AsyncCallbackReturn = unknown,
 > = {
   abort: UseAsyncCallbackAbortHandler;
   handler: (...args: AsyncCallbackArgs) => Promise<AsyncCallbackReturn>;
@@ -39,8 +39,8 @@ export type UseAsyncCallbackReturnObject<
 };
 
 export type UseAsyncCallbackReturnTuple<
-  AsyncCallbackArgs extends any[] = any[],
-  AsyncCallbackReturn = any,
+  AsyncCallbackArgs extends unknown[] = unknown[],
+  AsyncCallbackReturn = unknown,
 > = readonly [
   handler: (...args: AsyncCallbackArgs) => Promise<AsyncCallbackReturn>,
   status: StatusStateMapTuple & StatusStateMap,

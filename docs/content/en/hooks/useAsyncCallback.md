@@ -22,7 +22,7 @@ function useAsyncCallback<Args extends unknown[], R>(
 - **Returns**: `UseAsyncCallbackReturn<Args, R>` — a hybrid structure:
   - `handler(...args): Promise<R>` — a wrapper around the original async function.
   - `status` — flags `isPending`, `isSuccess`, `isError`, and `error` (present only when an error occurs).
-  - `abort()` — logically cancels the current call and resets the status to `'initial'`.
+  - `abort()` — logically cancels the current call and resets the status to `'initial'`. Note: it does **not** stop the underlying promise (e.g. an HTTP request will keep running) — pass and honor your own `AbortSignal` inside the async function if you need real cancellation.
 
 ---
 

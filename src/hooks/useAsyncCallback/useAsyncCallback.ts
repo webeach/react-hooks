@@ -30,7 +30,10 @@ import { UseAsyncCallbackReturn } from './types';
  * @returns A structure with:
  * - `handler` — the wrapped async function that updates status on each call
  * - `status` — a reactive structure with flags like `isPending`, `isSuccess`, `isError`, and the `error` object
- * - `abort` — a function to cancel any pending call and reset the status
+ * - `abort` — discards the result of any in-flight call and resets the status to `initial`.
+ *   Note: this does **not** cancel the underlying promise (e.g. an HTTP request will keep running);
+ *   it only stops the result from updating the hook's status. To cancel the work itself, pass and
+ *   honor your own `AbortSignal` inside the async function.
  *
  * @example
  * const { handler: submitForm, status } = useAsyncCallback(async (data) => {
@@ -50,7 +53,7 @@ import { UseAsyncCallbackReturn } from './types';
  * // If `status` is never accessed, status updates will not trigger re-renders:
  * const [submit] = useAsyncCallback(...);
  *
- * @see https://github.com/webeach/react-hooks/blob/main/docs/en/useAsyncCallback.md
+ * @see https://react-hooks.webea.ch/hooks/useAsyncCallback.html
  */
 export function useAsyncCallback<
   AsyncCallbackArgs extends unknown[],
@@ -61,29 +64,31 @@ export function useAsyncCallback<
   >(['initial', null]);
 
   const asyncCallbackLiveRef = useLiveRef(asyncCallback);
-  const callIdRef = useRef(0);
+
+  // Marks the latest call; `handler()` and `abort()` rotate it to invalidate stale results.
+  const callTokenRef = useRef(Symbol());
 
   const abort = useCallback(() => {
-    callIdRef.current = Math.random();
+    callTokenRef.current = Symbol();
     setStatusState(['initial', null]);
   }, []);
 
   const handler = useCallback(
     async (...args: AsyncCallbackArgs): Promise<AsyncCallbackReturn> => {
-      const currentCallCounter = ++callIdRef.current;
+      const currentCallToken = (callTokenRef.current = Symbol());
 
       setStatusState(['pending', null]);
 
       try {
         const resultValue = await asyncCallbackLiveRef.current(...args);
 
-        if (callIdRef.current === currentCallCounter) {
+        if (callTokenRef.current === currentCallToken) {
           setStatusState(['success', null]);
         }
 
         return resultValue;
       } catch (reason) {
-        if (callIdRef.current === currentCallCounter) {
+        if (callTokenRef.current === currentCallToken) {
           setStatusState([
             'error',
             isErrorLike(reason)
