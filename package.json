@@ -1,6 +1,6 @@
 {
   "name": "@webeach/react-hooks",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A set of smart React hooks for performant UIs",
   "keywords": [
     "ahooks",

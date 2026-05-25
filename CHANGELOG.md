@@ -1,3 +1,11 @@
+# [0.3.0](https://github.com/webeach/react-hooks/compare/v0.2.0...v0.3.0) (2026-05-25)
+
+
+### Features
+
+* **useCollection:** rework API — methods facade, lazy initializer, stable subscription ([e02314b](https://github.com/webeach/react-hooks/commit/e02314ba31bd2fe3bdd598fd137170324706fc9a))
+* **useControlled:** fix restore-on-switch, add functional setValue, infer ValueType ([01a8a5e](https://github.com/webeach/react-hooks/commit/01a8a5e432bbbf26ba26817c86d12e307405817e))
+
 # [0.2.0](https://github.com/webeach/react-hooks/compare/v0.1.1...v0.2.0) (2025-09-20)
 
 
