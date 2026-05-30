@@ -50,7 +50,8 @@ function useDebounceState<State = undefined>(
  * onChange={(next) => setSliderDebounced(next)};
  *
  * @template State Type of the state value.
- * @param initialState Initial state value (or lazy initializer).
+ * @param initialState Initial state value (or lazy initializer). Like `useState`,
+ *   it is only used on the **first render** — later changes to this argument are ignored.
  * @param delayMs Debounce delay in **milliseconds**.
  * @returns A tuple: `[state, setDebounceState]`.
  *
