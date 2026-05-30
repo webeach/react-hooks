@@ -264,4 +264,59 @@ describe('useDemandStructure hook', () => {
       y: true,
     });
   });
+
+  it('invokes the same accessor for both index and alias access', () => {
+    const spy = vi.fn(() => 'value');
+
+    const result = renderHook(() =>
+      useDemandStructure([{ alias: 'a', accessor: spy }]),
+    ).result.current;
+
+    void result[0];
+    void result.a;
+
+    // Index and alias are two views over the SAME accessor, not two separate ones.
+    expect(spy).toHaveBeenCalledTimes(2);
+  });
+
+  it('keeps usage tracking cumulative across rerenders (no reset)', () => {
+    const { result, rerender } = renderHook(() =>
+      useDemandStructure([
+        { alias: 'a', accessor: () => 1 },
+        { alias: 'b', accessor: () => 2 },
+      ]),
+    );
+
+    void result.current.a;
+    expect(result.current[$DemandStructureUsingSymbol]).toEqual({
+      0: true,
+      a: true,
+    });
+
+    // A rerender must NOT clear previously tracked usage.
+    rerender();
+    expect(result.current[$DemandStructureUsingSymbol]).toEqual({
+      0: true,
+      a: true,
+    });
+
+    // Newly accessed keys are added on top of the existing ones.
+    void result.current.b;
+    expect(result.current[$DemandStructureUsingSymbol]).toEqual({
+      0: true,
+      1: true,
+      a: true,
+      b: true,
+    });
+  });
+
+  it('returns a stable structure reference across rerenders', () => {
+    const { result, rerender } = renderHook(() =>
+      useDemandStructure({ foo: () => 1 }),
+    );
+
+    const firstReference = result.current;
+    rerender();
+    expect(result.current).toBe(firstReference);
+  });
 });

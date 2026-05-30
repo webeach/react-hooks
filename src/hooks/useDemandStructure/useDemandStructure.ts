@@ -19,6 +19,11 @@ import { createObjectDescriptor } from './utils/createObjectDescriptor';
  * This is useful for conditional state updates or performance optimizations
  * when values shouldn't be computed unless explicitly used.
  *
+ * Usage tracking is **cumulative across the component's lifetime**: once a property
+ * is read, it stays marked as used in `$DemandStructureUsingSymbol`. There is no
+ * per-render reset, so the map only grows. This is intentional — consumers use it
+ * to lazily "arm" reactivity on first access and keep it armed afterwards.
+ *
  * @param accessors - An array of factory functions.
  * @returns An array-like structure with demand-evaluated values and usage tracking.
  *
