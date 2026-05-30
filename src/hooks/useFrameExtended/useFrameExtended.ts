@@ -1,6 +1,5 @@
-import { useCallback, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 
-import { useIsomorphicLayoutEffect } from '../useIsomorphicLayoutEffect';
 import { useLiveRef } from '../useLiveRef';
 import { UseFrameExtendedCallback, UseFrameExtendedReturn } from './types';
 
@@ -113,7 +112,7 @@ export function useFrameExtended(callback: UseFrameExtendedCallback) {
   }, []);
 
   // Handle initial mount and deferred start
-  useIsomorphicLayoutEffect(() => {
+  useEffect(() => {
     const sharedOptions = sharedOptionsRef.current;
     sharedOptions.isInitial = false;
 
@@ -121,8 +120,21 @@ export function useFrameExtended(callback: UseFrameExtendedCallback) {
       methods.start();
     }
 
-    // Clean up loop on unmount
-    return methods.stop;
+    // Clean up on unmount. Resetting the latches here keeps the hook honest
+    // under React StrictMode: the dev-time mount → cleanup → mount cycle cancels
+    // the rAF scheduled by the discarded mount and rolls the shared flags back to
+    // their initial state, so the surviving mount behaves exactly like a fresh one
+    // (no leaked frame request, no skewed `startTime`).
+    //
+    // `isDeferredStart` is intentionally NOT reset: a deferred start requested
+    // during render must survive the StrictMode remount and be honored once by
+    // the surviving mount.
+    return () => {
+      methods.stop();
+
+      sharedOptions.isInitial = true;
+      sharedOptions.isFirstStart = true;
+    };
   }, []);
 
   return methods;

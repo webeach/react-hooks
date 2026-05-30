@@ -14,12 +14,18 @@ export type UseFrameExtendedCallback = (
  */
 export interface UseFrameExtendedCallbackOptions {
   /**
-   * The current frame number, starting from 0 on the first frame after `start()` or `restart()`.
+   * Time in milliseconds since the previous animation frame.
+   */
+  deltaTime: number;
+
+  /**
+   * The current frame number, starting from 1 on the first frame after `start()` or `restart()`.
    */
   frame: number;
 
   /**
    * Total elapsed time in milliseconds since the hook was first started.
+   * Reset by `restart()`.
    */
   timeSinceStart: number;
 
@@ -27,11 +33,6 @@ export interface UseFrameExtendedCallbackOptions {
    * Time in milliseconds since the last call to `start()` or `restart()`.
    */
   timeSinceLastStart: number;
-
-  /**
-   * Time in milliseconds since the previous animation frame.
-   */
-  deltaTime: number;
 }
 
 /**

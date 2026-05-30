@@ -1,4 +1,5 @@
 import { act, renderHook } from '@testing-library/react';
+import { StrictMode } from 'react';
 
 import { useFrameExtended } from '../useFrameExtended';
 
@@ -167,5 +168,77 @@ describe('useFrameExtended hook', () => {
         timeSinceLastStart: 16,
       }),
     );
+  });
+
+  it('does not start until start() is called, even under StrictMode', () => {
+    const callback = vi.fn();
+
+    renderHook(() => useFrameExtended(callback), { wrapper: StrictMode });
+
+    // The double mount/cleanup must not auto-start the loop.
+    vi.advanceTimersByTime(64);
+    expect(callback).toHaveBeenCalledTimes(0);
+  });
+
+  it('runs a single loop under StrictMode after start()', () => {
+    const callback = vi.fn();
+
+    const { result } = renderHook(() => useFrameExtended(callback), {
+      wrapper: StrictMode,
+    });
+
+    act(() => {
+      result.current.start();
+    });
+
+    // A single time-step must yield exactly one callback — no double loop.
+    vi.advanceTimersByTime(16);
+    expect(callback).toHaveBeenCalledTimes(1);
+    expect(callback).toHaveBeenNthCalledWith(
+      1,
+      expect.objectContaining({ frame: 1 }),
+    );
+  });
+
+  it('honors a deferred start exactly once under StrictMode', () => {
+    const callback = vi.fn();
+
+    // Calling start() during render defers it to the mount effect. Under
+    // StrictMode the mount → cleanup → mount cycle must still result in a
+    // single running loop, not zero and not two.
+    renderHook(
+      () => {
+        const controls = useFrameExtended(callback);
+        controls.start();
+        return controls;
+      },
+      { wrapper: StrictMode },
+    );
+
+    vi.advanceTimersByTime(16);
+    expect(callback).toHaveBeenCalledTimes(1);
+    expect(callback).toHaveBeenNthCalledWith(
+      1,
+      expect.objectContaining({ frame: 1 }),
+    );
+  });
+
+  it('stops the loop after unmount under StrictMode', () => {
+    const callback = vi.fn();
+
+    const { result, unmount } = renderHook(() => useFrameExtended(callback), {
+      wrapper: StrictMode,
+    });
+
+    act(() => {
+      result.current.start();
+    });
+
+    vi.advanceTimersByTime(16);
+    expect(callback).toHaveBeenCalledTimes(1);
+
+    unmount();
+    vi.advanceTimersByTime(64);
+    expect(callback).toHaveBeenCalledTimes(1);
   });
 });
