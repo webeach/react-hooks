@@ -1,3 +1,10 @@
+## [0.3.1](https://github.com/webeach/react-hooks/compare/v0.3.0...v0.3.1) (2026-05-30)
+
+
+### Bug Fixes
+
+* **useFrameExtended:** improve StrictMode compatibility and enhance cleanup logic ([50d6a04](https://github.com/webeach/react-hooks/commit/50d6a0404cfbeefdfdad4db7f2c0148c09948b80))
+
 # [0.3.0](https://github.com/webeach/react-hooks/compare/v0.2.0...v0.3.0) (2026-05-25)
 
 
