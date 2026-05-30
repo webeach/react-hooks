@@ -41,7 +41,7 @@ import { useUnmount } from '../useUnmount';
  *
  * @see https://react-hooks.webea.ch/hooks/useDebounceCallback.html
  */
-export function useDebounceCallback<CallbackArgs extends any[]>(
+export function useDebounceCallback<CallbackArgs extends unknown[]>(
   callback: (...args: CallbackArgs) => unknown,
   delayMs: number,
 ) {

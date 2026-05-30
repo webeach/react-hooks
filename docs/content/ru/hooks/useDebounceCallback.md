@@ -13,7 +13,7 @@
 ## Сигнатура
 
 ```ts
-function useDebounceCallback<Args extends any[]>(
+function useDebounceCallback<Args extends unknown[]>(
   callback: (...args: Args) => unknown,
   delayMs: number,
 ): (...args: Args) => void;
