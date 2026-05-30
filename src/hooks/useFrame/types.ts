@@ -11,7 +11,7 @@ export type UseFrameCallback = (options: UseFrameCallbackOptions) => void;
  */
 export interface UseFrameCallbackOptions {
   /**
-   * The current frame number, starting from 0 at the first `requestAnimationFrame` call.
+   * The current frame number, starting from 1 at the first `requestAnimationFrame` call.
    */
   frame: number;
 

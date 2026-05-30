@@ -1,4 +1,5 @@
-import { useIsomorphicLayoutEffect } from '../useIsomorphicLayoutEffect';
+import { useEffect } from 'react';
+
 import { useLiveRef } from '../useLiveRef';
 import { UseFrameCallback } from './types';
 
@@ -24,7 +25,7 @@ import { UseFrameCallback } from './types';
 export function useFrame(callback: UseFrameCallback) {
   const callbackLiveRef = useLiveRef(callback);
 
-  useIsomorphicLayoutEffect(() => {
+  useEffect(() => {
     const startTime = performance.now();
 
     let frame = 1;

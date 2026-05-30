@@ -1,4 +1,5 @@
 import { act, renderHook } from '@testing-library/react';
+import { StrictMode } from 'react';
 
 import { useFrame } from '../useFrame';
 
@@ -87,5 +88,42 @@ describe('useFrame hook', () => {
       3,
       expect.objectContaining({ frame: 3 }),
     );
+  });
+
+  it('runs a single loop under StrictMode (no duplicate frame requests)', () => {
+    const callback = vi.fn();
+
+    renderHook(() => useFrame(callback), { wrapper: StrictMode });
+
+    // StrictMode mounts twice in dev; the discarded mount's rAF must be
+    // cancelled so a single time-step yields exactly one callback, not two.
+    vi.advanceTimersByTime(16);
+    expect(callback).toHaveBeenCalledTimes(1);
+    expect(callback).toHaveBeenNthCalledWith(
+      1,
+      expect.objectContaining({ frame: 1 }),
+    );
+
+    vi.advanceTimersByTime(16);
+    expect(callback).toHaveBeenCalledTimes(2);
+    expect(callback).toHaveBeenNthCalledWith(
+      2,
+      expect.objectContaining({ frame: 2 }),
+    );
+  });
+
+  it('stops the loop after unmount under StrictMode', () => {
+    const callback = vi.fn();
+
+    const { unmount } = renderHook(() => useFrame(callback), {
+      wrapper: StrictMode,
+    });
+
+    vi.advanceTimersByTime(16);
+    expect(callback).toHaveBeenCalledTimes(1);
+
+    unmount();
+    vi.advanceTimersByTime(64);
+    expect(callback).toHaveBeenCalledTimes(1);
   });
 });
