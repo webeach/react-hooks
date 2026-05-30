@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { RefObject, useRef, useState } from 'react';
+import { RefObject, StrictMode, useRef, useState } from 'react';
 
 import {
   UseDOMEventHandler,
@@ -267,5 +267,39 @@ describe('useDOMEvent hook', () => {
 
     expect(handler1).toHaveBeenCalledTimes(1);
     expect(handler2).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not attach duplicate listeners under StrictMode', async () => {
+    const handler = vi.fn();
+
+    render(
+      <StrictMode>
+        <ComponentWithParams onClick={handler} />
+      </StrictMode>,
+    );
+
+    await userEvent.click(screen.getByText('Box'));
+
+    // A single click must fire the handler exactly once even though
+    // StrictMode mounts and runs effects twice in development.
+    expect(handler).toHaveBeenCalledTimes(1);
+  });
+
+  it('cleans up listeners on unmount under StrictMode', async () => {
+    const handler = vi.fn();
+
+    const { unmount } = render(
+      <StrictMode>
+        <ComponentWithParams onClick={handler} />
+      </StrictMode>,
+    );
+
+    const box = screen.getByText('Box');
+
+    unmount();
+
+    await userEvent.click(box);
+
+    expect(handler).not.toHaveBeenCalled();
   });
 });
